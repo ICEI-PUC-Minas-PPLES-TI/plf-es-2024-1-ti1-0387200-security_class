@@ -6,6 +6,7 @@ Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
 
 * Víctor Gabriel Cruz Pereira
 * Matheus Ferreira Titton
+* Rafael de Paiva Gomes
 
 ## Professores responsáveis
 
