@@ -8,6 +8,7 @@ Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
 * Matheus Ferreira Titton
 * Rafael de Paiva Gomes
 * Luiza Lorys Silva Lima
+* Vinícius Arthur Nascimento Macedo de Souza
 
 ## Professores responsáveis
 
