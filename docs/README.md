@@ -30,7 +30,7 @@ Segundo uma pesquisa feita pela agência Brasil, aponta que pessoas entre 36 e 5
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
+Este trabalho tem como objetivo geral desenvolver uma aplicação web a fim de previnir golpes virtuais. Utilizando de conhecimentos agregados para facilitar o acesso a informação e como identificar possíveis armadilhas. Como objetivos especificos temos: o desenvolvimento de uma plataforma intuitiva para pessoas com dificuldades tecnológicas, estruturar um forúm para que os usuários da aplicação troquem informações sobres os golpes dos quais tem conhecimento e fornecer ferramentas necessárias para que os usuários identifiquem com facilidades Url's, telefones e progandas falsas.
 
 **Links Úteis**:
 
@@ -47,10 +47,10 @@ O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estat�
 - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
 
 ## Público-Alvo
+O público-alvo da aplicação trata-se de todos usuários que navegam na WEB. Cada usuário tem a possibilidade de ser atraido para um link falso ou programa que roubará dados e afins. Por tanto, entende-se como Público-Alvo as possíveis vítimas destes golpes. Foi utilizado de um mapa de stakeholders para definir o as pessoas fundamentais, importantes e influênciadoras da aplicação. O diagrama abaixo destaca os principais stakeholders do trabalho e os conhecimentos levantados.
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/531fd466-4c77-4e1c-93a3-10e414a39597)
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc.
-
-Adicione informações sobre o público-alvo por meio de uma descrição textual, ou diagramas de personas, mapa de stakeholders, ou como o grupo achar mais conveniente.
+Foram definidos como pessoas fundamentais os usuários da web e os golpistas/hackers. Para as pessoas importantes temos: Bancos, Pessoas públicas, E-comerces, Governo, Grandes marcas e instituições e lojas de aplicativos. Por fim, as pessoas influenciadoras para a aplicação são: Comunidades e blogs online, a Opnião Pública, profissionais do direito, profissionais de segurança da informação e orgãos e instituições reguladoras da internet.
 
 **Links Úteis**:
 
@@ -59,7 +59,48 @@ Adicione informações sobre o público-alvo por meio de uma descrição textual
 
 ## Personas
 
-Relacione as personas identificadas no seu projeto e os respectivos mapas de empatia. Lembre-se que você deve ser enumerar e descrever precisamente e de forma personalizada todos os principais envolvidos com a solução almeja.
+As personas propostas estão descritas nas imagens a seguir.
+
+A primeira persona, trata-se do perfil geral de um golpista, uma pessoa que tem como objetivo enriquecer rápido e sem esforço, independente dos meios para alcançar esse objetivo.
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/66148b78-a5c4-4b8c-9ae3-f5ead6f69007)
+
+
+As propostas de valor para essa persona são:
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/192c8efe-a183-4da9-ad0a-55e44fa5486c)
+
+
+A segunda persona, trata-se de um perfil mais suscétivel a ser vítima de um golpe virtual. Esta persona tem pouco conhecimento em navegar na web e de identificar possíveis fraudes, sejam de sites, em aplicativos ou no momento de realizar compras virtuais. 
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/ac49ac0a-030f-4475-8718-2e78848ce2e7)
+
+
+As propostas de valor para essa persona são:
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/4c48aaa4-a825-422c-9877-3dff129d1cd3)
+
+
+A terceira persona, trata-se de um usuário que agregará informações importantes ao sistema WEB. Auxiliando, os usuários e as possíveis vítimas, a como identificar as fraudes e golpes.
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/c4a8439f-ae8f-4262-8afc-2349553b9dea)
+
+
+As propostas de valor para essa persona são:
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/08a67937-f7fd-4434-b07f-2a5f0bb22a52)
+
+
+A quarta persona, trata-se de outra vítima com perfil parecido a segundo. Entretanto, esta persona não possui conhecimento sobre como navegar na web e está totalmente desinformado sobre a possibilidade de sofrer golpes virtuais. Acredita em práticamente todo anúncio e informação passada, através da web até ele.
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/fd2d47a3-3559-49dd-8949-6b117f2f0e41)
+
+
+As propostas de valor para essa persona são:
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/2ebc51e3-0160-497b-82d1-198e75d27444)
+
+
+Por fim, a quinta e ultima persona construída, trata-se de uma vítima que caiu em um golpe devido a pressa e falta de atenção. Esta persona possui conhecimentos avançados sobre o assunto e as ferramentas disponíveis na Web, mas por falta de tempo e atenção está suscetível aos golpes virtuais.
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/4e41edf4-ccaa-45ed-8c9e-bc59575d0e79)
+
+
+As propostas de valor para essa persona são:
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/7b9541c3-bef0-4c25-9f58-820eff102fcb)
+
+
 
 **Links Úteis**:
 
