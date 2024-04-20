@@ -136,7 +136,7 @@ Lembre-se que cada requisito deve corresponder à uma e somente uma característ
 
 ## User Flow
 
-Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapear todo fluxo de telas do site ou app. Essa técnica funciona para alinhar os caminhos e as possíveis ações que o usuário pode fazer junto com os membros de sua equipe.
+O User Flow do trabalho foi criado utilizando da plataforma Miro, de acordo com o link: https://miro.com/app/board/uXjVKU2rS70=/ . Todo o fluxo do sistema e as respectivas páginas a serem acessadas pelo usuário. Bem como, às funções disponíveis na aplicação a ser construída. O user flow foi realizado em conjunto com o Wireframe em baixa resolução e estará disposto na próxima sessão deste documento. 
 
 **Links Úteis**:
 
@@ -146,7 +146,18 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
 
 ## Wireframes
 
-Wireframes são protótipos das telas da aplicação usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante ao layout de elementos fundamentais na interface.
+Wireframes são protótipos das telas da aplicação usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante ao layout de elementos fundamentais na interface. Dessa forma, o grupo decidiu construir dois Wireframes para representar o Sistema Web. O primeiro a ser disposto será o wireframe em baixa resolução, ainda sem apresentação das imagens e palhetas de cores a serem utilizadas nma construção da aplicação. O segundo wireframe, trata-se de um prototipo de alta resolução, já definindo com mais rigor a paleta de cor aplicada, bem como as composições de estruturas presentes no sistema. Para realizar a elaboração do wireframe de alta resolução, foi utilizada a plataforma Figma disposta a baixo na sessão de links uteis.
+
+Wireframe de baixa resolução com User Flow integrado:
+
+**<Colocar aqui>**
+
+Visando tornar o Wireframe mais "limpo", foram omitidas os retornos a página incial do site ao clicar na Logo no canto superior esquerdo.
+
+Wireframe de alta resolução:
+
+**<Colocar aqui>**
+
 
 **Links Úteis**:
 
