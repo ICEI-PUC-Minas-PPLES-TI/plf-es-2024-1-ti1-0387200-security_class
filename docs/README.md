@@ -90,7 +90,14 @@ As propostas de valor para essa persona são:
 
 ## Histórias de Usuários
 
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
+As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento. Abaixo, segue tabela com as histórias de usuários que serviram de base para elaboração dos requisitos do sistema.
+
+QUEM SOU?	O QUE QUERO?	PARA QUE?
+Eu, Claúdio, como usuário	quero saber se determinado link é seguro	para navegar na web com tranquilidade e segurança, sem ser alvo de fraudes
+Eu, Mirian, como usuário	espero poder encontrar algum painel de informação com dados de golpes	para que eu possa identificar facilmente similaridades caso tentem realizar isto comigo.
+Eu, Andrei, como usuário 	quero uma ferramenta rápida, simples de usar e confiável	para que eu tenha agilidade em encontrar possiveis fraudes.
+Eu, Gabriel, como Profissional em segurança cibernética	quero uma plataforma intuitiva	para que  seja facil transmitir meu conhecimento e consiga ajuda pessoas leigas a se manterem seguras na Web.
+Eu, Gabriel, como Profissional em segurança cibernética	quero um plataforma que ofereça meu curso	para que mais pessoas tenham conhecimento em como previnir e solucionar possiveis fraudes e golpes virtuais.
 
 **Links Úteis**:
 
