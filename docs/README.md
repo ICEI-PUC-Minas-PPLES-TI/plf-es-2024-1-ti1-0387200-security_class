@@ -142,7 +142,7 @@ Requisitos Funcionais (RF):
     Os usuários podem fornecer feedback sobre o sistema.
     Eles podem relatar novos golpes virtuais que ainda não foram relatados no site.
 
-    Requisitos Não Funcionais (RNF):
+Requisitos Não Funcionais (RNF):
 1. Desempenho:
     O sistema deve ser rápido, carregando as páginas rapidamente e suportando uma grande quantidade de usuários simultâneos.
 2. Confiabilidade:
