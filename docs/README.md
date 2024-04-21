@@ -16,9 +16,7 @@ O template para o site é estruturado e permite que a equipe evolua a documenta�
 
 # Orientações gerais
 
-FALTA COMPLETAR:
-- Histórias de Usuários (montar tabela "o que sou?", "o que preciso?", "por que preciso?");
-- Gestão de Projetos;
+A definir.
 
 ## Problema
 
