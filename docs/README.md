@@ -160,7 +160,12 @@ Visando tornar o Wireframe mais "limpo", foram omitidas os retornos a página in
 
 Wireframe de alta resolução:
 
-**<Colocar aqui>**
+![Blacklist](./images/Blacklist.png)
+![Cadastro](./images/Cadastro.png)
+![Comentário do Fórum](./images/Comentario_Forum.png)
+![Descrição de Cursos](./images/Descricao_Cursos.png)
+![Fórum](./images/Forum.png)
+![Login](./images/Login.png)
 
 
 **Links Úteis**:
