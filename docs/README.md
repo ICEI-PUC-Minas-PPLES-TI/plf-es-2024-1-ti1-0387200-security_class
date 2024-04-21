@@ -163,19 +163,32 @@ Wireframe de alta resolução:
 ## Versão Desktop
 
 ![Cadastro](./assets/images/Cadastro.png)
- - Formulário de Cadastro
+
+- Formulário de Cadastro
+
 ![Cursos](./assets/images/Pagina_Cursos.png)
- - Página de Cursos
+
+- Página de Cursos
+
 ![Descrição de Cursos](./assets/images/Descricao_Cursos.png)
- - Descrição dos Cursos
+ 
+- Descrição dos Cursos
+
 ![Fórum](./assets/images/Forum.png)
- - Página do Fórum
+
+- Página do Fórum
+
 ![Login](./assets/images/Login.png)
- - Página de Login
+
+- Página de Login
+
 ![Recuperação](./assets/images/Recuperacao.png)
- - Recuperação de Conta
+
+- Recuperação de Conta
+
 ![Blacklist](./assets/images/Blacklist.png)
- - Lista de Exclusão
+
+- Lista de Exclusão
 
 ## Versão Mobile
 
