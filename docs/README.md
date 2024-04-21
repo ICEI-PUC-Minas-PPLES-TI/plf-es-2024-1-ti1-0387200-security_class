@@ -221,6 +221,8 @@ Também oferecemos uma versão mobile do projeto com as seguintes funcionalidade
 
 - Lista de Exclusão (Mobile)
 
+**Links do nosso projeto no Figma**:
+[Security Class](https://www.figma.com/file/00Zv1xsk6vGzwMRtS4ZyTj/SecurityClass.com?type=design&node-id=20-2&mode=design&t=thWtMzvLwk0jtheQ-0)
 
 **Links Úteis**:
 
