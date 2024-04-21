@@ -24,7 +24,7 @@ FALTA COMPLETAR:
 
 ## Problema
 
-Segundo uma pesquisa feita pela agência Brasil, aponta que pessoas entre 36 e 50 anos são as vítimas preferidas por golpistas na internet, sofrendo 35,9% das fraudes registradas. Os golpes virtuais, também conhecidos como golpes online ou cibernéticos, referem-se a práticas fraudulentas realizadas através da internet ou de dispositivos eletrônicos. Esses golpes geralmente têm o objetivo de enganar as vítimas para obter informações pessoais, financeiras ou confidenciais, ou para induzi-las a realizar ações prejudiciais. Como por exemplo as fraudes em compras online, na qual, Os golpistas criam sites falsos de comércio eletrônico que parecem ser legítimos, oferecendo produtos a preços muito baixos. Eles aceitam o pagamento, mas nunca enviam os produtos, ou enviam produtos falsificados ou de baixa qualidade. Os golpistas em geral visam o lucro e golpes que sejam mais rápidos de serem aplicados, procuram o ponto fraco da vitima (momentos de possivel falta de atenção ou conhecimento), na qual a vitima não verifica as informações, como por exemplo os e-mails falsos de venda no mercado livre, ou mensagens de compra por sms.
+Segundo uma pesquisa feita pela agência Brasil, pessoas entre 36 e 50 anos são as vítimas preferidas por golpistas na internet, sofrendo 35,9% das fraudes registradas. Os golpes virtuais, também conhecidos como golpes online ou cibernéticos, referem-se a práticas fraudulentas realizadas por meio da internet ou de dispositivos eletrônicos. Esses golpes geralmente têm o objetivo de enganar as vítimas para obter informações pessoais, financeiras ou confidenciais, ou para induzi-las a realizar ações prejudiciais. Como exemplo, temos as fraudes em compras online, na qual os golpistas criam sites falsos de comércio eletrônico que parecem ser legítimos, oferecendo produtos a preços muito baixos. Eles aceitam o pagamento, mas nunca enviam os produtos, ou enviam produtos falsificados ou de baixa qualidade. Os golpistas, em geral, visam o lucro e golpes que sejam mais rápidos de serem aplicados, procuram o ponto fraco da vitima (momentos de possivel falta de atenção ou conhecimento), na qual a vitima não verifica as informações, como, por exemplo, os e-mails falsos de venda no mercado livre, ou mensagens de compra por sms.
 
 **Links Úteis**:
 
@@ -34,7 +34,7 @@ Segundo uma pesquisa feita pela agência Brasil, aponta que pessoas entre 36 e 5
 
 ## Objetivos
 
-Este trabalho tem como objetivo geral desenvolver uma aplicação web a fim de previnir golpes virtuais. Utilizando de conhecimentos agregados para facilitar o acesso a informação e como identificar possíveis armadilhas. Como objetivos especificos temos: o desenvolvimento de uma plataforma intuitiva para pessoas com dificuldades tecnológicas, estruturar um forúm para que os usuários da aplicação troquem informações sobres os golpes dos quais tem conhecimento e fornecer ferramentas necessárias para que os usuários identifiquem com facilidades Url's, telefones e progandas falsas.
+Este trabalho tem como objetivo geral desenvolver uma aplicação web a fim de previnir golpes virtuais. Utilizando de conhecimentos agregados para facilitar o acesso a informação e como identificar possíveis armadilhas. Como objetivos especificos temos: o desenvolvimento de uma plataforma intuitiva para pessoas com dificuldades tecnológicas, estruturar um forúm para que os usuários da aplicação troquem informações sobres os golpes dos quais tem conhecimento e fornecer ferramentas necessárias para que os usuários identifiquem com facilidades Url's, telefones e propagandas falsas.
 
 **Links Úteis**:
 
@@ -42,9 +42,9 @@ Este trabalho tem como objetivo geral desenvolver uma aplicação web a fim de p
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+Conforme a pesquisa realizada pelo Centro Regional de Estudos para o Desenvolvimento da Sociedade da Informação, cerca de 84% da população do pais tem acesso a internet. Diante disso, é inegável afirmar que a Internet se transformou em uma ferramenta essencial na rotina diária, assim como destacar que isso aumenta o risco de uma criminalidade digital, tornando  a população mais vulnerável à golpes virtuais, principalmente as pessoas que compõe o grupo mais sucetivel a serem as vitimas deste tipo de golpe. Assim, a justifica desse trabalho permeia no desenvolvimento de uma plataforma que visa auxilar as pessoas para que elas tenham menos risco de cair, dentro do contexto de prevenção. Essa prevenção seria feita por meio da facilitação do acesso a informação aos usuarios da web sobre os metodos mais famosos utilizados nesses golpes ciberneticos, ferramentas uteis para identificação de telefones, mensagens, url's e anuancios falsos, além de uma comunição facilitadas entre as possiveis vitima. Com tal maior acessibilidade, seria justificado a desenvolvemento desta plataforma para a ajuda na resolução de parte do problema social aqui descrito.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
+
 
 **Links Úteis**:
 
