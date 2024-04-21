@@ -124,14 +124,9 @@ Apresente aqui as histórias de usuário que são relevantes para o projeto de s
 
 ## Requisitos
 
-Os requisitos de um projeto são classificados em dois grupos:
+Os requisitos funcionais utlizados no projeto podem representada pelas funcionalidades representadas pela disponibilização do feed onde são apresentados os principais metodos de golpes virtuais junto a informaçoes para orinetação de dicas de como evitar um golpe cibernetico. Além disso, também é disponibilizado ferramentas para a validação de Url's, uma lista de sites já conhecidos como não seguros e um fórum em que as vítimas de golpes podem trocar suas esperiencias junto ao um formulário de relatos.
+Como requisitos não funcionais, a plataforma intenciona oferencer design responsivo a dispositivos moveis e um layout intuitivo, de facil compreensão para os usuários da web em geral.
 
-- [Requisitos Funcionais (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
-  correspondem a uma funcionalidade que deve estar presente na plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade, desempenho, confiabilidade, segurança ou outro (ex: suporte a dispositivos iOS e Android).
-
-Lembre-se que cada requisito deve corresponder à uma e somente uma característica alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 **Links Úteis**:
 
