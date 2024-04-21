@@ -154,7 +154,7 @@ Wireframes são protótipos das telas da aplicação usados em design de interfa
 
 Wireframe de baixa resolução com User Flow integrado:
 
-**<Colocar aqui>**
+![Low_Fidelity_Wireframes](./assets/images/Low_Fidelity_Wireframes.jpg)
 
 Visando tornar o Wireframe mais "limpo", foram omitidas os retornos a página incial do site ao clicar na Logo no canto superior esquerdo.
 
