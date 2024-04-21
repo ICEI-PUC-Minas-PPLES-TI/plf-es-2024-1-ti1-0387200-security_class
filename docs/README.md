@@ -182,21 +182,36 @@ Wireframe de alta resolução:
 Também oferecemos uma versão mobile do projeto com as seguintes funcionalidades:
 
 ![Cadastro Mobile](./assets/images/Cadastro_Mobile.png)
- - Formulário de Cadastro (Mobile)
+
+- Formulário de Cadastro (Mobile)
+
 ![Cursos Mobile](./assets/images/Cursos_Mobile.png)
- - Página de Cursos (Mobile)
+
+- Página de Cursos (Mobile)
+  
 ![Descrição de Curso Mobile](./assets/images/DescricaoCurso_Mobile.png)
- - Descrição dos Cursos (Mobile)
+
+- Descrição dos Cursos (Mobile)
+  
 ![Fórum Mobile](./assets/images/Forum_Mobile.png)
- - Página do Fórum (Mobile)
+
+- Página do Fórum (Mobile)
+  
 ![Home Page Mobile](./assets/images/Home_Page_Mobile.png)
- - Página Inicial (Mobile)
+
+- Página Inicial (Mobile)
+  
 ![Login Mobile](./assets/images/Login_Mobile.png)
- - Página de Login (Mobile)
+
+- Página de Login (Mobile)
+  
 ![Recuperação Mobile](./assets/images/Recuperacao_Mobile.png)
- - Recuperação de Conta (Mobile)
+
+- Recuperação de Conta (Mobile)
+  
 ![Blacklist Mobile](./assets/images/blacklist_Mobile.png)
- - Lista de Exclusão (Mobile)
+
+- Lista de Exclusão (Mobile)
 
 
 **Links Úteis**:
