@@ -162,40 +162,40 @@ Wireframe de alta resolução:
 
 ## Versão Desktop
 
- ![Cadastro](./assets/images/Cadastro.png)
+![Cadastro](./assets/images/Cadastro.png)
  - Formulário de Cadastro
- ![Cursos](./assets/images/Cursos.png)
+![Cursos](./assets/images/Pagina_Cursos.png)
  - Página de Cursos
- ![Descrição de Cursos](./assets/images/Descricao_Cursos.png)
+![Descrição de Cursos](./assets/images/Descricao_Cursos.png)
  - Descrição dos Cursos
- ![Fórum](./assets/images/Forum.png)
+![Fórum](./assets/images/Forum.png)
  - Página do Fórum
- ![Login](./assets/images/Login.png)
+![Login](./assets/images/Login.png)
  - Página de Login
- ![Recuperação](./assets/images/Recuperacao.png)
+![Recuperação](./assets/images/Recuperacao.png)
  - Recuperação de Conta
- ![Blacklist](./assets/images/Blacklist.png)
+![Blacklist](./assets/images/Blacklist.png)
  - Lista de Exclusão
 
 ## Versão Mobile
 
 Também oferecemos uma versão mobile do projeto com as seguintes funcionalidades:
 
- ![Cadastro Mobile](./assets/images/Cadastro_Mobile.png)
+![Cadastro Mobile](./assets/images/Cadastro_Mobile.png)
  - Formulário de Cadastro (Mobile)
- ![Cursos Mobile](./assets/images/Cursos_Mobile.png)
+![Cursos Mobile](./assets/images/Cursos_Mobile.png)
  - Página de Cursos (Mobile)
- ![Descrição de Curso Mobile](./assets/images/DescricaoCurso_Mobile.png)
+![Descrição de Curso Mobile](./assets/images/DescricaoCurso_Mobile.png)
  - Descrição dos Cursos (Mobile)
- ![Fórum Mobile](./assets/images/Forum_Mobile.png)
+![Fórum Mobile](./assets/images/Forum_Mobile.png)
  - Página do Fórum (Mobile)
- ![Home Page Mobile](./assets/images/Home_Page_Mobile.png)
+![Home Page Mobile](./assets/images/Home_Page_Mobile.png)
  - Página Inicial (Mobile)
- ![Login Mobile](./assets/images/Login_Mobile.png)
+![Login Mobile](./assets/images/Login_Mobile.png)
  - Página de Login (Mobile)
- ![Recuperação Mobile](./assets/images/Recuperacao_Mobile.png)
+![Recuperação Mobile](./assets/images/Recuperacao_Mobile.png)
  - Recuperação de Conta (Mobile)
- ![Blacklist Mobile](./assets/images/blacklist_Mobile.png)
+![Blacklist Mobile](./assets/images/blacklist_Mobile.png)
  - Lista de Exclusão (Mobile)
 
 
