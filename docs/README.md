@@ -166,6 +166,10 @@ Wireframe de alta resolução:
 ![Descrição de Cursos](./assets/images/Descricao_Cursos.png)
 ![Fórum](./assets/images/Forum.png)
 ![Login](./assets/images/Login.png)
+![Página de Cursos](./assets/images/Pagina_Cursos.png)
+![Publicar Fórum](./assets/images/Publicar_Forum.png)
+![Recuperação](./assets/images/Recuperacao.png)
+
 
 
 **Links Úteis**:
