@@ -24,41 +24,25 @@ FALTA COMPLETAR:
 
 Segundo uma pesquisa feita pela agência Brasil, pessoas entre 36 e 50 anos são as vítimas preferidas por golpistas na internet, sofrendo 35,9% das fraudes registradas. Os golpes virtuais, também conhecidos como golpes online ou cibernéticos, referem-se a práticas fraudulentas realizadas por meio da internet ou de dispositivos eletrônicos. Esses golpes geralmente têm o objetivo de enganar as vítimas para obter informações pessoais, financeiras ou confidenciais, ou para induzi-las a realizar ações prejudiciais. Como exemplo, temos as fraudes em compras online, na qual os golpistas criam sites falsos de comércio eletrônico que parecem ser legítimos, oferecendo produtos a preços muito baixos. Eles aceitam o pagamento, mas nunca enviam os produtos, ou enviam produtos falsificados ou de baixa qualidade. Os golpistas, em geral, visam o lucro e golpes que sejam mais rápidos de serem aplicados, procuram o ponto fraco da vitima (momentos de possivel falta de atenção ou conhecimento), na qual a vitima não verifica as informações, como, por exemplo, os e-mails falsos de venda no mercado livre, ou mensagens de compra por sms.
 
-**Links Úteis**:
-
-- [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-- [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-- [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
 
 ## Objetivos
 
 Este trabalho tem como objetivo geral desenvolver uma aplicação web a fim de previnir golpes virtuais. Utilizando de conhecimentos agregados para facilitar o acesso a informação e como identificar possíveis armadilhas. Como objetivos especificos temos: o desenvolvimento de uma plataforma intuitiva para pessoas com dificuldades tecnológicas, estruturar um forúm para que os usuários da aplicação troquem informações sobres os golpes dos quais tem conhecimento e fornecer ferramentas necessárias para que os usuários identifiquem com facilidades Url's, telefones e propagandas falsas.
 
-**Links Úteis**:
-
-- [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
 
 Conforme a pesquisa realizada pelo Centro Regional de Estudos para o Desenvolvimento da Sociedade da Informação, cerca de 84% da população do pais tem acesso a internet. Diante disso, é inegável afirmar que a Internet se transformou em uma ferramenta essencial na rotina diária, assim como destacar que isso aumenta o risco de uma criminalidade digital, tornando  a população mais vulnerável à golpes virtuais, principalmente as pessoas que compõe o grupo mais sucetivel a serem as vitimas deste tipo de golpe. Assim, a justifica desse trabalho permeia no desenvolvimento de uma plataforma que visa auxilar as pessoas para que elas tenham menos risco de cair, dentro do contexto de prevenção. Essa prevenção seria feita por meio da facilitação do acesso a informação aos usuarios da web sobre os metodos mais famosos utilizados nesses golpes ciberneticos, ferramentas uteis para identificação de telefones, mensagens, url's e anuancios falsos, além de uma comunição facilitadas entre as possiveis vitima. Com tal maior acessibilidade, seria justificado a desenvolvemento desta plataforma para a ajuda na resolução de parte do problema social aqui descrito.
 
 
-
-**Links Úteis**:
-
-- [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
-
 ## Público-Alvo
+
 O público-alvo da aplicação trata-se de todos usuários que navegam na WEB. Cada usuário tem a possibilidade de ser atraido para um link falso ou programa que roubará dados e afins. Por tanto, entende-se como Público-Alvo as possíveis vítimas destes golpes. Foi utilizado de um mapa de stakeholders para definir o as pessoas fundamentais, importantes e influênciadoras da aplicação. O diagrama abaixo destaca os principais stakeholders do trabalho e os conhecimentos levantados.
 
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/531fd466-4c77-4e1c-93a3-10e414a39597)
 
 Foram definidos como pessoas fundamentais os usuários da web e os golpistas/hackers. Para as pessoas importantes temos: Bancos, Pessoas públicas, E-comerces, Governo, Grandes marcas e instituições e lojas de aplicativos. Por fim, as pessoas influenciadoras para a aplicação são: Comunidades e blogs online, a Opnião Pública, profissionais do direito, profissionais de segurança da informação e orgãos e instituições reguladoras da internet.
 
-**Links Úteis**:
-
-- [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-- [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
 
 ## Personas
 
@@ -103,14 +87,6 @@ Por fim, a quinta e ultima persona construída, trata-se de uma vítima que caiu
 As propostas de valor para essa persona são:
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/7b9541c3-bef0-4c25-9f58-820eff102fcb)
 
-
-**Links Úteis**:
-
-- [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-- [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-- [Rock Content](https://rockcontent.com/blog/personas/)
-- [Criar personas (Hotmart)](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-  
 
 ## Histórias de Usuários
 
@@ -159,11 +135,6 @@ Requisitos Não Funcionais (RNF):
 
 O User Flow do trabalho foi criado utilizando da plataforma Miro, de acordo com o link: https://miro.com/app/board/uXjVKU2rS70=/ . Todo o fluxo do sistema e as respectivas páginas a serem acessadas pelo usuário. Bem como, às funções disponíveis na aplicação a ser construída. O user flow foi realizado em conjunto com o Wireframe em baixa resolução e estará disposto na próxima sessão deste documento. 
 
-**Links Úteis**:
-
-- [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-- [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-- [Top 25 User Flow Tools &amp; Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
 
 ## Wireframes
 
@@ -243,15 +214,9 @@ Também oferecemos uma versão mobile do projeto com as seguintes funcionalidade
 
 - Lista de Exclusão (Mobile)
 
-**Links do nosso projeto no Figma**:
+**Link do nosso projeto no Figma**:
 [Security Class](https://www.figma.com/file/00Zv1xsk6vGzwMRtS4ZyTj/SecurityClass.com?type=design&node-id=20-2&mode=design&t=thWtMzvLwk0jtheQ-0)
 
-**Links Úteis**:
-
-- [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-- [Figma](https://www.figma.com/)
-- [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-- [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
 
 ## Gestão de Projetos
 
