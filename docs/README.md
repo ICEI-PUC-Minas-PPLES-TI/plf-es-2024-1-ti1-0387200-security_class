@@ -124,14 +124,37 @@ Apresente aqui as histórias de usuário que são relevantes para o projeto de s
 
 ## Requisitos
 
-Os requisitos funcionais utlizados no projeto podem representada pelas funcionalidades representadas pela disponibilização do feed onde são apresentados os principais metodos de golpes virtuais junto a informaçoes para orinetação de dicas de como evitar um golpe cibernetico. Além disso, também é disponibilizado ferramentas para a validação de Url's, uma lista de sites já conhecidos como não seguros e um fórum em que as vítimas de golpes podem trocar suas esperiencias junto ao um formulário de relatos.
-Como requisitos não funcionais, a plataforma intenciona oferencer design responsivo a dispositivos moveis e um layout intuitivo, de facil compreensão para os usuários da web em geral.
+Requisitos Funcionais (RF):
+1. Cadastro e Login:
+    Os usuários podem se cadastrar e fazer login com nome de usuário e senha.
+2. Informações sobre Golpes:
+    O sistema mostra informações sobre diferentes tipos de golpes virtuais.
+    Dicas são fornecidas para identificar e evitar golpes online.
+3. Fórum de Discussão:
+    Os usuários podem discutir golpes virtuais em um fórum.
+    Os usuários podem criar novos tópicos e responder a outros.
+4. Ferramentas de Verificação:
+    Os usuários podem verificar a autenticidade de URLs, telefones e anúncios online.
+5. Atualizações e Notificações:
+    Os usuários recebem atualizações sobre novos golpes virtuais.
+    Notificações são enviadas para alertar sobre possíveis ameaças.
+6. Feedback dos Usuários:
+    Os usuários podem fornecer feedback sobre o sistema.
+    Eles podem relatar novos golpes virtuais que ainda não foram relatados no site.
 
-
-**Links Úteis**:
-
-- [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-- [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+    Requisitos Não Funcionais (RNF):
+1. Desempenho:
+    O sistema deve ser rápido, carregando as páginas rapidamente e suportando uma grande quantidade de usuários simultâneos.
+2. Confiabilidade:
+    O sistema deve estar disponível a maior parte do tempo e deve ter uma capacidade de recuperação rápida de falhas.
+3. Segurança:
+    Todas as transações devem ser seguras, utilizando criptografia HTTPS, e os usuários devem ter a opção de autenticação de dois fatores.
+4. Usabilidade:
+    A interface do usuário deve ser fácil de usar, acessível para todos os usuários e seguir as diretrizes de acessibilidade da Web.
+5. Manutenibilidade:
+    O código-fonte deve ser bem documentado e fácil de modificar, seguindo as melhores práticas de desenvolvimento.
+6. Portabilidade:
+    O sistema deve funcionar em diferentes navegadores da web e ser facilmente implantado em diferentes ambientes de hospedagem.
 
 ## User Flow
 
