@@ -160,15 +160,17 @@ Visando tornar o Wireframe mais "limpo", foram omitidas os retornos a página in
 
 Wireframe de alta resolução:
 
-![Blacklist](./assets/images/Blacklist.png)
-![Cadastro](./assets/images/Cadastro.png)
-![Comentário do Fórum](./assets/images/Comentario_Forum.png)
-![Descrição de Cursos](./assets/images/Descricao_Cursos.png)
-![Fórum](./assets/images/Forum.png)
-![Login](./assets/images/Login.png)
-![Página de Cursos](./assets/images/Pagina_Cursos.png)
-![Publicar Fórum](./assets/images/Publicar_Forum.png)
-![Recuperação](./assets/images/Recuperacao.png)
+
+![Cadastro](./assets/images/Cadastro.png) - Formulário de Cadastro
+![Login](./assets/images/Login.png) - Página de Login
+![Recuperação](./assets/images/Recuperacao.png) - Recuperação de Conta
+![Blacklist](./assets/images/Blacklist.png) - - Lista de sites maliciosos de golpes
+![Descrição de Cursos](./assets/images/Descricao_Cursos.png) - Descrição dos Cursos
+![Fórum](./assets/images/Forum.png) - Página do Fórum
+![Comentário do Fórum](./assets/images/Comentario_Forum.png) - Comentários no Fórum
+![Publicar Fórum](./assets/images/Publicar_Forum.png) - Publicar no Fórum
+![Página de Cursos](./assets/images/Pagina_Cursos.png) - Página dos Cursos
+
 
 
 
