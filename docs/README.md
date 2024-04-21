@@ -223,9 +223,11 @@ Também oferecemos uma versão mobile do projeto com as seguintes funcionalidade
 
 ## Gestão de Projetos
 
- Nesta parte do documento, você deve apresentar  o processo de trabalho baseado nas metodologias ágeis, a divisão de papéis e tarefas, as ferramentas empregadas e como foi realizada a gestão de configuração do projeto via GitHub.
+Dentro da gestão do projeto de densenvolvimento da plataforma, depois da escolha da equipe, o Aluno Victor Gabriel da Cruz foi escolhido como Scrum Master, visto que este assumiu um papel de orientação da estrutura de processos do scrum e atuou como facilitador no progresso das atividaes. Após, foi feita uma reunião de matriz para alinhamento de determinados topicos para realização do projeto, separando quais eram nossas duvidas, certezas e suposições uteis para realização dos projetos, elaborando um mapa do projeto que seria util para atingir o necessidade do usuario e objetivo do trabalho. Foram feitas entrevistas, cada uma por cada membro da equipe, e a partir destas foram analisadas as estatiticas que se tem acesso - como, por exemplo, o perfil mais vulnerável a cair em golpes - para que então houvesse a reunião para que fosse definido o planejamento do sprint e seu objetivo de forma clara. 
+Para que todas as atividades fossem realizadas, foi elaborado um mural de posibilidade de funçoes e requisitos dentro da plataforma, e também uma lista de prioridades. Por fim, assim que definido os requisitos funcionais e como deveria ser elaborada a documentação do projeto,as atividades de cada uma ds funçoes foram divididas entre cada um do membro da equipe.
+Como facilitador, o scrum master criou o repositorio dentro da pagina do GitHub para que a equipe pudesse trabalhar em conjunto e na orientação da estrutura do projeto. Os membros da equipe Jonathan Sena, Vinicius Arthur e Rafael de paiva dividiram as atividades do desenvolvimento da plataforma. Já os membros Matheus Titton, Luiza Lorys e Bruno dividiram as tarefas dentro da elaboração da documentação do projeto.
+Por fim, foi elaborado determinado prazo para entrega das atividades para que o desenvolvimento fosse mais agil e com maior qualidade, finalizando com a reunião para o demostração do produto e retrospectiva do sprint, para que o projeto fosse bem sucedido em atender as necessidades do usuário.
 
-Coloque detalhes sobre o processo de Design Thinking e a implementação do Framework Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
 
 **Links Úteis**:
 
