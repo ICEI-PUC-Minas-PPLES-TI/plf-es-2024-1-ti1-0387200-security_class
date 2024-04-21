@@ -161,17 +161,41 @@ Visando tornar o Wireframe mais "limpo", foram omitidas os retornos a página in
 Wireframe de alta resolução:
 
 
-![Cadastro](./assets/images/Cadastro.png) - Formulário de Cadastro
-![Login](./assets/images/Login.png) - Página de Login
-![Recuperação](./assets/images/Recuperacao.png) - Recuperação de Conta
-![Blacklist](./assets/images/Blacklist.png) - - Lista de sites maliciosos de golpes
-![Descrição de Cursos](./assets/images/Descricao_Cursos.png) - Descrição dos Cursos
-![Fórum](./assets/images/Forum.png) - Página do Fórum
-![Comentário do Fórum](./assets/images/Comentario_Forum.png) - Comentários no Fórum
-![Publicar Fórum](./assets/images/Publicar_Forum.png) - Publicar no Fórum
-![Página de Cursos](./assets/images/Pagina_Cursos.png) - Página dos Cursos
+- ![Cadastro](./assets/images/Cadastro.png)
+- - Formulário de Cadastro
+- ![Cursos](./assets/images/Cursos.png)
+- - Página de Cursos
+- ![Descrição de Cursos](./assets/images/Descricao_Cursos.png)
+- - Descrição dos Cursos
+- ![Fórum](./assets/images/Forum.png)
+- - Página do Fórum
+- ![Login](./assets/images/Login.png)
+- - Página de Login
+- ![Recuperação](./assets/images/Recuperacao.png)
+- - Recuperação de Conta
+- ![Blacklist](./assets/images/Blacklist.png)
+- - Lista de Exclusão
 
+## Versão Mobile
 
+Também oferecemos uma versão mobile do projeto com as seguintes funcionalidades:
+
+- ![Cadastro Mobile](./assets/images/Cadastro_Mobile.png)
+- - Formulário de Cadastro (Mobile)
+- ![Cursos Mobile](./assets/images/Cursos_Mobile.png)
+- - Página de Cursos (Mobile)
+- ![Descrição de Curso Mobile](./assets/images/DescricaoCurso_Mobile.png)
+- - Descrição dos Cursos (Mobile)
+- ![Fórum Mobile](./assets/images/Forum_Mobile.png)
+- - Página do Fórum (Mobile)
+- ![Home Page Mobile](./assets/images/Home_Page_Mobile.png)
+- - Página Inicial (Mobile)
+- ![Login Mobile](./assets/images/Login_Mobile.png)
+- - Página de Login (Mobile)
+- ![Recuperação Mobile](./assets/images/Recuperacao_Mobile.png)
+- - Recuperação de Conta (Mobile)
+- ![Blacklist Mobile](./assets/images/blacklist_Mobile.png)
+- - Lista de Exclusão (Mobile)
 
 
 **Links Úteis**:
