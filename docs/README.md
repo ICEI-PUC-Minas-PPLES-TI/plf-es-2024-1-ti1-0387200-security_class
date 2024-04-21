@@ -47,42 +47,52 @@ Foram definidos como pessoas fundamentais os usuários da web e os golpistas/hac
 As personas propostas estão descritas nas imagens a seguir.
 
 A primeira persona, trata-se do perfil geral de um golpista, uma pessoa que tem como objetivo enriquecer rápido e sem esforço, independente dos meios para alcançar esse objetivo.
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/66148b78-a5c4-4b8c-9ae3-f5ead6f69007)
 
 
 As propostas de valor para essa persona são:
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/192c8efe-a183-4da9-ad0a-55e44fa5486c)
 
 
 A segunda persona, trata-se de um perfil mais suscétivel a ser vítima de um golpe virtual. Esta persona tem pouco conhecimento em navegar na web e de identificar possíveis fraudes, sejam de sites, em aplicativos ou no momento de realizar compras virtuais. 
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/ac49ac0a-030f-4475-8718-2e78848ce2e7)
 
 
 As propostas de valor para essa persona são:
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/4c48aaa4-a825-422c-9877-3dff129d1cd3)
 
 
 A terceira persona, trata-se de um usuário que agregará informações importantes ao sistema WEB. Auxiliando, os usuários e as possíveis vítimas, a como identificar as fraudes e golpes.
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/c4a8439f-ae8f-4262-8afc-2349553b9dea)
 
 
 As propostas de valor para essa persona são:
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/08a67937-f7fd-4434-b07f-2a5f0bb22a52)
 
 
 A quarta persona, trata-se de outra vítima com perfil parecido a segundo. Entretanto, esta persona não possui conhecimento sobre como navegar na web e está totalmente desinformado sobre a possibilidade de sofrer golpes virtuais. Acredita em práticamente todo anúncio e informação passada, através da web até ele.
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/fd2d47a3-3559-49dd-8949-6b117f2f0e41)
 
 
 As propostas de valor para essa persona são:
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/2ebc51e3-0160-497b-82d1-198e75d27444)
 
 
 Por fim, a quinta e ultima persona construída, trata-se de uma vítima que caiu em um golpe devido a pressa e falta de atenção. Esta persona possui conhecimentos avançados sobre o assunto e as ferramentas disponíveis na Web, mas por falta de tempo e atenção está suscetível aos golpes virtuais.
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/4e41edf4-ccaa-45ed-8c9e-bc59575d0e79)
 
 
 As propostas de valor para essa persona são:
+
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/7b9541c3-bef0-4c25-9f58-820eff102fcb)
 
 
@@ -92,11 +102,6 @@ As Histórias de Usuário consistem em uma ferramenta poderosa para a compreens�
 
 ![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class/assets/165722302/eb2a2464-9cf6-42c2-9908-83a4d86b123b)
 
-
-**Links Úteis**:
-
-- [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-- [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
 
 ## Requisitos
 
