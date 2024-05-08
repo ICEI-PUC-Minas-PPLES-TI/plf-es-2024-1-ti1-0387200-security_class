@@ -1,0 +1,14 @@
+{
+    "courses": [
+      {
+        "id": 1,
+        "title": "Título do Curso",
+        "platform": "Plataforma do Curso",
+        "description": "Descrição do Curso",
+        "recommendation": "Recomendação do Curso",
+        "price": "Preço do Curso",
+        "link": "Link do Curso"
+      }
+    ]
+  }
+  
