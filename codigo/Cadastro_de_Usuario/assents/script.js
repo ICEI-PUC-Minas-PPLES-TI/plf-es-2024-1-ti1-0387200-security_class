@@ -81,3 +81,9 @@ function preencherSelect() {
         selectUsuario.appendChild(option);
     });
 }
+
+//Função para mostrar a section de deletar
+function mostrarDelete() {
+    let section = document.getElementById('deleteUser');
+    section.style.display = 'block';
+}
