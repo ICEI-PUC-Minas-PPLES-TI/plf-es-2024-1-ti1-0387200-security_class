@@ -9,7 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Email do admin:", admin.email);
     } else {
       // Redireciona se não houver sessão válida
-      window.location.href = "login_admin.html";
+      window.location.href = "../Login_Admin/index.html";
     }
   });
+
+  function cadastrar_cursos(){
+    window.location.href = "../Cadastro_de_Curso/index.html";
+  }
+  
   
