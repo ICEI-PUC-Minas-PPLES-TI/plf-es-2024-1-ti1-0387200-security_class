@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/codigo/Cadastro_de_Usuario/assents/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/codigo/Cadastro_de_Usuario/assents/style.css">
     <title>Cadastro de Usuário</title>
 </head>
 <body>
@@ -44,8 +44,6 @@
         <Section id="cadastro">
             <h1>Cadastro de Novo Usuário</h1>
             <form id="cadastroForm" action="submit" method="POST">
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id"><br><br>
 
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome"><br><br>
@@ -77,8 +75,15 @@
 
                 <input type="submit" value="Cadastrar">
             </form>
-
         </Section>
+        <section id="deleteUser">
+            <h1>Deletar Usuário</h1>
+            <label for="selecionarUsuario">Selecione o usuário:</label>
+            <select id="selecionarUsuario">
+            <option value="">Selecione um usuário</option>
+            </select>
+            <button onclick="excluirUsuario(id)">Excluir</button>
+        </section>
     </main>
     <footer class="footer bg-light">
         <div class="container">
@@ -98,5 +103,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/codigo/Cadastro_de_Usuario/assents/script.js"></script>
 </body>
 </html>
