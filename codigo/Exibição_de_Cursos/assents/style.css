@@ -29,6 +29,25 @@ ul {
     justify-content: space-between;
 }
 
+button a {
+    text-decoration: none;
+    color: black;
+}
+
+.botao{
+    position: relative;
+    top: -70px;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.botao button {
+    background-color: transparent; 
+    border: none; 
+    cursor: pointer; 
+    padding: 10px; 
+}
+
 .numeracao{
     font-family: "Freeman", sans-serif;
     font-weight: 400;
@@ -54,6 +73,9 @@ ul {
 }
 
 @media (min-width: 330px) and (max-width:992px){
-
-
+        .botao {
+            text-align: left; 
+            top: 0px;
+            position: none;
+        }
 }
