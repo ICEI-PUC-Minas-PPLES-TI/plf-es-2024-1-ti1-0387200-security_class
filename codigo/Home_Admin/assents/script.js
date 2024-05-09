@@ -13,8 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  function cadastrar_cursos(){
+  function Cadastrar_cursos(){
     window.location.href = "../Cadastro_de_Curso/index.html";
   }
   
-  
+  function Gerenciar_cursos(){
+    window.location.href = "../Gerenciar_Cursos/index.html";
+  }

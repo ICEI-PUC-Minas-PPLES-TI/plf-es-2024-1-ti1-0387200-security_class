@@ -1,77 +1,83 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Recupera a sessão do usuário
-    const adminSession = sessionStorage.getItem("admin");
-    const admin = JSON.parse(adminSession);
-  
-    if (admin) {
+  // Recupera a sessão do usuário
+  const adminSession = sessionStorage.getItem("admin");
+  const admin = JSON.parse(adminSession);
+
+  if (admin) {
       // Exemplo de uso da sessão
       console.log("ID do admin:", admin.id);
       console.log("Email do admin:", admin.email);
-    } else {
+  } else {
       // Redireciona se não houver sessão válida
       window.location.href = "../Login_Admin/index.html";
-    }
+  }
+
+  $(document).ready(function() {
+      // Função para carregar os dados do JSON e criar a tabela
+      function carregarDados() {
+          // Recupera os dados do localStorage
+          let cursosExistente = localStorage.getItem('cursos');
+          let cursosJSON = cursosExistente ? JSON.parse(cursosExistente) : [];
+
+          var tableBody = $('#dataTable tbody');
+          tableBody.empty(); // Limpa o conteúdo atual da tabela
+
+          $.each(cursosJSON, function(index, item) {
+              // Cria uma nova linha na tabela para cada item do JSON
+              var newRow = '<tr>' +
+                  '<td>' + item.id + '</td>' +
+                  '<td>' + item.title + '</td>' +
+                  '<td>' + item.platform + '</td>' +
+                  '<td>' + item.description + '</td>' +
+                  '<td>' + item.price + '</td>' +
+                  '<td>' + item.recommendation + '</td>' +
+                  '<td>' + item.link + '</td>' +
+                  '<td>' +
+                  '<button class="btn btn-primary btn-sm editar" data-id="' + item.id + '">Editar</button>' +
+                  '<button class="btn btn-danger btn-sm excluir" data-id="' + item.id + '">Excluir</button>' +
+                  '</td>' +
+                  '</tr>';
+
+              // Adiciona a nova linha à tabela
+              tableBody.append(newRow);
+          });
+
+          // Adiciona evento de clique no botão Editar
+          $('.editar').click(function() {
+              var id = $(this).data('id');
+              // Implemente a lógica para editar o item com o ID especificado
+              alert('Editar item com ID: ' + id);
+          });
+
+          // Adiciona evento de clique no botão Excluir
+          $('.excluir').click(function() {
+              var id = $(this).data('id');
+              // Chama a função para excluir o curso
+              excluirCurso(id);
+          });
+      }
+
+      // Função para excluir um curso
+      function excluirCurso(id) {
+          // Recupera os dados do localStorage
+          let cursosExistente = localStorage.getItem('cursos');
+          let cursosJSON = cursosExistente ? JSON.parse(cursosExistente) : [];
+
+          // Filtra o array para remover o curso com o ID especificado
+          cursosJSON = cursosJSON.filter(function(curso) {
+              return curso.id !== id;
+          });
+
+          // Salva o JSON atualizado de volta no localStorage
+          localStorage.setItem('cursos', JSON.stringify(cursosJSON));
+
+          // Recarrega os dados da tabela para refletir a exclusão
+          carregarDados();
+
+          console.log('Curso excluído com sucesso!');
+      }
+
+      // Chama a função para carregar os dados ao carregar a página
+      carregarDados();
   });
-
-
-
-  document.getElementById('formCurso').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
-
-    // Captura os valores dos campos do formulário
-    const titulo = document.getElementById('titulo').value;
-    const plataforma = document.getElementById('plataforma').value;
-    const descricao = document.getElementById('descricao').value;
-    const preco = document.getElementById('preco').value;
-    const recomendacao = document.getElementById('recomendacao').value;
-    const link = document.getElementById('link').value;
-
-    // Cria o objeto curso com os valores capturados
-    const novoCurso = {
-        id: Math.floor(Math.random() * 1000) + 1, // Gera um ID aleatório
-        title: titulo,
-        platform: plataforma,
-        description: descricao,
-        recommendation: recomendacao,
-        price: preco,
-        link: link
-    };
-
-    // Chama a função para adicionar o curso ao arquivo JSON
-    adicionarCursoAoArquivo(novoCurso);
 });
-
-// Função para adicionar um novo curso ao arquivo JSON externo
-function adicionarCursoAoArquivo(curso) {
-    const filePath = '../Data/Cadastro_de_Curso.json';
-
-    // Lê o arquivo JSON existente
-    fetch(filePath)
-        .then(response => response.json())
-        .then(jsonData => {
-            // Adiciona o novo curso ao array de cursos
-            jsonData.courses.push(curso);
-
-            // Escreve os dados atualizados de volta no arquivo JSON
-            return fetch(filePath, {
-                method: 'PATCH', // Atualiza o arquivo JSON
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonData, null, 2)
-            });
-        })
-        .then(() => {
-            console.log('Novo curso adicionado com sucesso!');
-            window.location.href = "../Home_Admin/index.html";
-            // Aqui você pode exibir uma mensagem de sucesso ao usuário
-        })
-        .catch(error => {
-            console.error('Erro ao adicionar o curso:', error);
-            // Aqui você pode exibir uma mensagem de erro ao usuário
-        });
-}
-function Voltar(){
-  window.location.href = "../Home_Admin/index.html";
-
-}
