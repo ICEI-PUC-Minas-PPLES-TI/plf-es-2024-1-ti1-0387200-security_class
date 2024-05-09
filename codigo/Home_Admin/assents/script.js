@@ -13,10 +13,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  function Cadastrar_cursos(){
-    window.location.href = "../Cadastro_de_Curso/index.html";
-  }
+function Cadastrar_cursos(){
+  window.location.href = "../Cadastro_de_Curso/index.html";
+}
   
-  function Gerenciar_cursos(){
-    window.location.href = "../Gerenciar_Cursos/index.html";
-  }
+function Gerenciar_cursos(){
+  window.location.href = "../Gerenciar_Cursos/index.html";
+}
+// Verifica se já existe uma variável 'cursosJSON' no localStorage
+// Se não existir, busca o JSON do arquivo '../Data/Cadastro_Cursos.json'
+if (!localStorage.getItem('cursosJSON')) {
+  fetch('../Data/Cadastro_de_Curso.json')
+      .then(response => response.json())
+      .then(data => {
+          localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
+      })
+      .catch(error => console.error('Erro ao carregar cursos:', error));
+}
