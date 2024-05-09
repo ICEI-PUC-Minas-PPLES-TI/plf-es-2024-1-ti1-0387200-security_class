@@ -85,5 +85,9 @@ function preencherSelect() {
 //Função para mostrar a section de deletar
 function mostrarDelete() {
     let section = document.getElementById('deleteUser');
-    section.style.display = 'block';
+    if (section.style.display === 'none') {
+        section.style.display = 'block';
+    } else {
+        section.style.display = 'none';
+    }
 }
