@@ -29,7 +29,7 @@ document.getElementById('formCurso').addEventListener('submit', function(event) 
 
     // Cria o objeto curso com os valores capturados
     const novoCurso = {
-        id: obterID(), // Gera um ID aleatório
+        id: getNextId(), // Gera um ID aleatório
         title: titulo,
         platform: plataforma,
         description: descricao,
@@ -58,18 +58,8 @@ function adicionarCurso(curso) {
 function Voltar(){
     window.location.href = "../Home_Admin/index.html";
 }
-function obterID() {
-
-    // Obter o último ID armazenado no localStorage; 
-    // se nenhum ID estiver armazenado, usar 0 como padrão
-    let id = parseInt(localStorage.getItem("id")) ;
-
-    // Incrementar o ID em 1 para gerar um novo ID 
-    id += 1;
-    
-    // Armazenar o novo ID de volta no localStorage 
-    // para ser usado na próxima chamada desta função
-    localStorage.setItem("id", id);
-
-    return id;
+function getNextId() {
+    let cursos = JSON.parse(localStorage.getItem('cursosJSON')) || [];
+    let nextId = cursos.length.toString();
+    return nextId;
 }
