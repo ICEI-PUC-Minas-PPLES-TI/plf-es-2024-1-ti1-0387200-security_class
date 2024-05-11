@@ -17,7 +17,7 @@
     <title>Descrição do Curso</title>
 </head>
 
-<body>
+<body onload="criarConteudoPrincipal()">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -54,7 +54,7 @@
         </nav>
     </header>
 
-    <main>
+    <main onload="criarConteudoPrincipal()">
         <div class="container mt-5">
             <h1 class="text-center">Título Principal</h1>
 
@@ -68,7 +68,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo elit vel sodales feugiat.</p>
             </div>
 
-            <div class="mt-4">
+            <div class="detalhes-curso mt-4">
                 <h2>Detalhes do Curso</h2>
                 <p><strong>PROFESSOR:</strong> FULANO DE TAL</p>
                 <p><strong>PLATAFORMA:</strong> X</p>
@@ -82,26 +82,25 @@
         </div>
     </main>
 
-    <footer>
-        <footer class="footer bg-white mt-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img src="../ASSETS/IMG/Logo.png" alt="Logo" class="navbar-brand">
-                        <p>© JS Template 2023. All Rights Reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <a href="#">Terms of Use</a> |
-                        <a href="#">Privacy Policy</a> |
-                        <a href="#">Cookie Policy</a>
-                    </div>
+    <footer class="footer bg-white mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="../ASSETS/IMG/Logo.png" alt="Logo" class="navbar-brand">
+                    <p>© JS Template 2023. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#">Terms of Use</a> |
+                    <a href="#">Privacy Policy</a> |
+                    <a href="#">Cookie Policy</a>
                 </div>
             </div>
-        </footer>
+        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="assents/script.js"></script>
 
 </body>
 
