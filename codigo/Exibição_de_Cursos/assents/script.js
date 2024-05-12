@@ -1,5 +1,15 @@
 
 function puxarInformacoesDoJSON() {
+
+  /****************************** 
+  let strDados = localStorage.getItem('curso');
+  let objDados = {};
+
+  if (strDados){
+    objDados = JSON.parse (strDados);
+    return objDados;
+  } else {
+    */
   const informacoesJSON = {
     titulo: 'CompTIA Security+ (SY0-701) Curso Completo + Simulados',
     descricao: 'Aprenda Cibersegurança (Segurança da Informação) e Prepare-se para CompTIA Security+ (SY0-701)',
@@ -13,7 +23,8 @@ function puxarInformacoesDoJSON() {
       { numeracao: '04', descricao: 'MÓDULO 02 - AMEAÇAS, VULNERABILIDADE E MITIGAÇÕES' },
       { numeracao: '05', descricao: 'DICAS DE CARREIRA' }
     ]
-  };
+  //}
+};
 
   return informacoesJSON;
 }
@@ -151,3 +162,53 @@ function criarDiv() {
   main.appendChild(section);
 }
 
+
+//Função para a página descrição
+// Dados do JSON
+const curso = {
+  titulo: "Título Principal",
+  imagem: "assents/img/Ilustrativa.jpeg",
+  descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo elit vel sodales feugiat.",
+  professor: "FULANO DE TAL",
+  plataforma: "UDEMY",
+  recomendacao: "DE TALS PESSOAS",
+  preco: "R$99,99"
+};
+
+// Função para criar o HTML
+function criarHTML(curso) {
+  const main = document.getElementById("curso-container");
+  main.innerHTML = `
+      <div class="container mt-5">
+          <h1 class="text-center">${curso.titulo}</h1>
+
+          <div class="text-center">
+              <img src="${curso.imagem}" alt="Imagem do Curso" class="img-fluid mt-4 w-100"
+                  style="max-height: 400px;">
+          </div>
+
+          <h2 class="mt-3">Descrição</h2>
+          <div class="descricao mt-1" style="height: 650px;">
+              <p>${curso.descricao}</p>
+          </div>
+
+          <div class="detalhes-curso mt-4">
+              <h2>Detalhes do Curso</h2>
+              <p><strong>PROFESSOR:</strong> ${curso.professor}</p>
+              <p><strong>PLATAFORMA:</strong> ${curso.plataforma}</p>
+              <p><strong>RECOMENDAÇÃO:</strong> ${curso.recomendacao}</p>
+              <p><strong>PREÇO:</strong> ${curso.preco}</p>
+          </div>
+
+          <div class="text-end mt-4">
+              <a href="#" class="btn btn-success">IR PARA A PÁGINA</a>
+          </div>
+      </div>
+  `;
+}
+
+// Esperar o DOM estar pronto
+document.addEventListener("DOMContentLoaded", function() {
+  // Chamar a função para criar o HTML
+  criarHTML(curso);
+});
