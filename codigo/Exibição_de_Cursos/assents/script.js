@@ -1,33 +1,43 @@
 
-function puxarInformacoesDoJSON() {
+let informacoesJSON; // Definindo a variável fora do escopo da função
 
-  /****************************** 
-  let strDados = localStorage.getItem('curso');
+function puxarInformacoesDoJSON() {
+  if (!localStorage.getItem('cursosJSON')) {
+    fetch('../Data/Cadastro_de_Curso.json')
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
+        })
+        .catch(error => console.error('Erro ao carregar cursos:', error));
+  }
+
+  let strDados = localStorage.getItem('cursosJSON');
   let objDados = {};
 
-  if (strDados){
-    objDados = JSON.parse (strDados);
+  console.log(strDados);
+  if (strDados) {
+    objDados = JSON.parse(strDados);
     return objDados;
   } else {
-    */
-  const informacoesJSON = {
-    titulo: 'CompTIA Security+ (SY0-701) Curso Completo + Simulados',
-    descricao: 'Aprenda Cibersegurança (Segurança da Informação) e Prepare-se para CompTIA Security+ (SY0-701)',
-    aulas: '61 AULAS',
-    conclusao: 'CERTIFICADO',
-    plataforma: 'UDEMY',
-    secoes: [
-      { numeracao: '01', descricao: 'ASSISTA ANTES DE COMPRAR' },
-      { numeracao: '02', descricao: 'INTRODUÇÃO' },
-      { numeracao: '03', descricao: 'MÓDULO 01 - CONCEITOS GERAIS DE SEGURANÇA' },
-      { numeracao: '04', descricao: 'MÓDULO 02 - AMEAÇAS, VULNERABILIDADE E MITIGAÇÕES' },
-      { numeracao: '05', descricao: 'DICAS DE CARREIRA' }
-    ]
-  //}
-};
+    informacoesJSON = {
+      titulo: 'CompTIA Security+ (SY0-701) Curso Completo + Simulados',
+      descricao: 'Aprenda Cibersegurança (Segurança da Informação) e Prepare-se para CompTIA Security+ (SY0-701)',
+      aulas: '61 AULAS',
+      conclusao: 'CERTIFICADO',
+      plataforma: 'UDEMY',
+      secoes: [
+        { numeracao: '01', descricao: 'ASSISTA ANTES DE COMPRAR' },
+        { numeracao: '02', descricao: 'INTRODUÇÃO' },
+        { numeracao: '03', descricao: 'MÓDULO 01 - CONCEITOS GERAIS DE SEGURANÇA' },
+        { numeracao: '04', descricao: 'MÓDULO 02 - AMEAÇAS, VULNERABILIDADE E MITIGAÇÕES' },
+        { numeracao: '05', descricao: 'DICAS DE CARREIRA' }
+      ]
+    };
+  }
 
   return informacoesJSON;
 }
+
 
 function criarDiv() {
 
@@ -162,7 +172,7 @@ function criarDiv() {
   main.appendChild(section);
 }
 
-
+/*************** 
 //Função para a página descrição
 // Dados do JSON
 const curso = {
@@ -208,7 +218,8 @@ function criarHTML(curso) {
 }
 
 // Esperar o DOM estar pronto
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Chamar a função para criar o HTML
   criarHTML(curso);
 });
+*/

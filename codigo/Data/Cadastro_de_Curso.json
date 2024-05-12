@@ -1,14 +1,23 @@
 {
-    "courses": [
-      {
-        "id": 1,
-        "title": "Título do Curso",
-        "platform": "Plataforma do Curso",
-        "description": "Descrição do Curso",
-        "recommendation": "Recomendação do Curso",
-        "price": "Preço do Curso",
-        "link": "Link do Curso"
-      }
-    ]
-  }
-  
+  "courses": [
+    {
+      "id": 1,
+      "title": "Título do Curso",
+      "platform": "Plataforma do Curso",
+      "description": "Descrição do Curso",
+      "aulas": "60 AULAS",
+      "conclusao": "CERTIFICADO",
+      "recommendation": "Recomendação do Curso",
+      "price": "Preço do Curso",
+      "link": "Link do Curso",
+      "Professor": "Nome do professor",
+      "secoes": [
+        { "numeracao": "01", "descricao": "ASSISTA ANTES DE COMPRAR" },
+        { "numeracao": "02", "descricao": "INTRODUÇÃO" },
+        { "numeracao": "03", "descricao": "MÓDULO 01 - CONCEITOS GERAIS DE SEGURANÇA" },
+        { "numeracao": "04", "descricao": "MÓDULO 02 - AMEAÇAS, VULNERABILIDADE E MITIGAÇÕES" },
+        { "numeracao": "05", "descricao": "DICAS DE CARREIRA" }
+      ]
+    }
+  ]
+}
