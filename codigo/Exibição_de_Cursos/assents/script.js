@@ -2,13 +2,14 @@
 let informacoesJSON; // Definindo a variável fora do escopo da função
 
 function puxarInformacoesDoJSON() {
+  /************ 
   if (!localStorage.getItem('cursosJSON')) {
     fetch('../Data/Cadastro_de_Curso.json')
-        .then(response => response.json())
-        .then(data => {
-            localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
-        })
-        .catch(error => console.error('Erro ao carregar cursos:', error));
+      .then(response => response.json())
+      .then(data => {
+        localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
+      })
+      .catch(error => console.error('Erro ao carregar cursos:', error));
   }
 
   let strDados = localStorage.getItem('cursosJSON');
@@ -19,6 +20,7 @@ function puxarInformacoesDoJSON() {
     objDados = JSON.parse(strDados);
     return objDados;
   } else {
+    */
     informacoesJSON = {
       titulo: 'CompTIA Security+ (SY0-701) Curso Completo + Simulados',
       descricao: 'Aprenda Cibersegurança (Segurança da Informação) e Prepare-se para CompTIA Security+ (SY0-701)',
@@ -33,7 +35,7 @@ function puxarInformacoesDoJSON() {
         { numeracao: '05', descricao: 'DICAS DE CARREIRA' }
       ]
     };
-  }
+  //}
 
   return informacoesJSON;
 }
@@ -132,21 +134,25 @@ function criarDiv() {
   const divConteudoPrincipal = document.createElement('div');
   divConteudoPrincipal.className = 'row conteudo-principal pt-5';
 
-  informacoes.secoes.forEach(secao => {
-    const divCol = document.createElement('div');
-    divCol.className = 'col-md';
-    const ul = document.createElement('ul');
-    const liNumeracao = document.createElement('li');
-    liNumeracao.className = 'numeracao';
-    liNumeracao.textContent = secao.numeracao;
-    const liDescricao = document.createElement('li');
-    liDescricao.className = 'descricao';
-    liDescricao.textContent = secao.descricao;
-    ul.appendChild(liNumeracao);
-    ul.appendChild(liDescricao);
-    divCol.appendChild(ul);
-    divConteudoPrincipal.appendChild(divCol);
-  });
+  if (informacoes && informacoes.secoes) { // Verifica se informacoes e informacoes.secoes estão definidos
+    informacoes.secoes.forEach(secao => {
+      const divCol = document.createElement('div');
+      divCol.className = 'col-md';
+      const ul = document.createElement('ul');
+      const liNumeracao = document.createElement('li');
+      liNumeracao.className = 'numeracao';
+      liNumeracao.textContent = secao.numeracao;
+      const liDescricao = document.createElement('li');
+      liDescricao.className = 'descricao';
+      liDescricao.textContent = secao.descricao;
+      ul.appendChild(liNumeracao);
+      ul.appendChild(liDescricao);
+      divCol.appendChild(ul);
+      divConteudoPrincipal.appendChild(divCol);
+    });
+  } else {
+    console.error('As informações sobre as seções não foram encontradas.');
+  }
 
   // Adiciona os elementos criados à estrutura
   divCardBody1.appendChild(h3);
@@ -172,54 +178,5 @@ function criarDiv() {
   main.appendChild(section);
 }
 
-/*************** 
-//Função para a página descrição
-// Dados do JSON
-const curso = {
-  titulo: "Título Principal",
-  imagem: "assents/img/Ilustrativa.jpeg",
-  descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo elit vel sodales feugiat.",
-  professor: "FULANO DE TAL",
-  plataforma: "UDEMY",
-  recomendacao: "DE TALS PESSOAS",
-  preco: "R$99,99"
-};
 
-// Função para criar o HTML
-function criarHTML(curso) {
-  const main = document.getElementById("curso-container");
-  main.innerHTML = `
-      <div class="container mt-5">
-          <h1 class="text-center">${curso.titulo}</h1>
 
-          <div class="text-center">
-              <img src="${curso.imagem}" alt="Imagem do Curso" class="img-fluid mt-4 w-100"
-                  style="max-height: 400px;">
-          </div>
-
-          <h2 class="mt-3">Descrição</h2>
-          <div class="descricao mt-1" style="height: 650px;">
-              <p>${curso.descricao}</p>
-          </div>
-
-          <div class="detalhes-curso mt-4">
-              <h2>Detalhes do Curso</h2>
-              <p><strong>PROFESSOR:</strong> ${curso.professor}</p>
-              <p><strong>PLATAFORMA:</strong> ${curso.plataforma}</p>
-              <p><strong>RECOMENDAÇÃO:</strong> ${curso.recomendacao}</p>
-              <p><strong>PREÇO:</strong> ${curso.preco}</p>
-          </div>
-
-          <div class="text-end mt-4">
-              <a href="#" class="btn btn-success">IR PARA A PÁGINA</a>
-          </div>
-      </div>
-  `;
-}
-
-// Esperar o DOM estar pronto
-document.addEventListener("DOMContentLoaded", function () {
-  // Chamar a função para criar o HTML
-  criarHTML(curso);
-});
-*/
