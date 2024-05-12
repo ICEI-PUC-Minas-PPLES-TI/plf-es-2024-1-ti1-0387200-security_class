@@ -41,10 +41,10 @@ function puxarInformacoesDoJSON() {
 }
 
 
-function criarDiv() {
+function criarDiv(id) {
 
   // Puxa as informações do JSON
-  const informacoes = puxarInformacoesDoJSON();
+  const informacoes = puxarInformacoesDoJSON(id);
 
   // Cria os elementos HTML
   const section = document.createElement('section');
@@ -177,6 +177,46 @@ function criarDiv() {
   const main = document.querySelector('main');
   main.appendChild(section);
 }
+
+// Função para pesquisar cursos com base em uma palavra-chave
+function pesquisarCurso(palavraChave) {
+  // Obtenha todos os elementos de div que representam cursos
+  const divsCursos = document.querySelectorAll('.card');
+
+  // Itere sobre cada div do curso
+  divsCursos.forEach(curso => {
+      // Obtenha o título e a descrição do curso
+      const titulo = curso.querySelector('.card-title').textContent.toLowerCase();
+      const descricao = curso.querySelector('.card-text').textContent.toLowerCase();
+
+      // Verifique se a palavra-chave está presente no título ou na descrição do curso
+      if (titulo.includes(palavraChave.toLowerCase()) || descricao.includes(palavraChave.toLowerCase())) {
+          // Exiba a div do curso se a palavra-chave for encontrada
+          curso.style.display = 'block';
+      } else {
+          // Oculte a div do curso se a palavra-chave não for encontrada
+          curso.style.display = 'none';
+      }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Adicione um ouvinte de evento para o formulário de pesquisa
+  const formPesquisa = document.querySelector('.d-flex');
+  formPesquisa.addEventListener('submit', function (event) {
+      event.preventDefault(); // Evite o envio do formulário padrão
+
+      // Obtenha o valor digitado pelo usuário no campo de pesquisa
+      const palavraChave = formPesquisa.querySelector('input[type="search"]').value;
+
+      // Chame a função para pesquisar cursos com base na palavra-chave fornecida
+      pesquisarCurso(palavraChave);
+  });
+
+  // Chame a função criarDiv após a adição do ouvinte de evento para garantir que os cursos estejam disponíveis para pesquisa
+  criarDiv(1);
+  criarDiv(2);
+});
 
 
 
