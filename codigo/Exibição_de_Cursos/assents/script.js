@@ -1,22 +1,45 @@
 
+let informacoesJSON; // Definindo a variável fora do escopo da função
+
 function puxarInformacoesDoJSON() {
-  const informacoesJSON = {
-    titulo: 'CompTIA Security+ (SY0-701) Curso Completo + Simulados',
-    descricao: 'Aprenda Cibersegurança (Segurança da Informação) e Prepare-se para CompTIA Security+ (SY0-701)',
-    aulas: '61 AULAS',
-    conclusao: 'CERTIFICADO',
-    plataforma: 'UDEMY',
-    secoes: [
-      { numeracao: '01', descricao: 'ASSISTA ANTES DE COMPRAR' },
-      { numeracao: '02', descricao: 'INTRODUÇÃO' },
-      { numeracao: '03', descricao: 'MÓDULO 01 - CONCEITOS GERAIS DE SEGURANÇA' },
-      { numeracao: '04', descricao: 'MÓDULO 02 - AMEAÇAS, VULNERABILIDADE E MITIGAÇÕES' },
-      { numeracao: '05', descricao: 'DICAS DE CARREIRA' }
-    ]
-  };
+  /************ 
+  if (!localStorage.getItem('cursosJSON')) {
+    fetch('../Data/Cadastro_de_Curso.json')
+      .then(response => response.json())
+      .then(data => {
+        localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
+      })
+      .catch(error => console.error('Erro ao carregar cursos:', error));
+  }
+
+  let strDados = localStorage.getItem('cursosJSON');
+  let objDados = {};
+
+  console.log(strDados);
+  if (strDados) {
+    objDados = JSON.parse(strDados);
+    return objDados;
+  } else {
+    */
+    informacoesJSON = {
+      titulo: 'CompTIA Security+ (SY0-701) Curso Completo + Simulados',
+      descricao: 'Aprenda Cibersegurança (Segurança da Informação) e Prepare-se para CompTIA Security+ (SY0-701)',
+      aulas: '61 AULAS',
+      conclusao: 'CERTIFICADO',
+      plataforma: 'UDEMY',
+      secoes: [
+        { numeracao: '01', descricao: 'ASSISTA ANTES DE COMPRAR' },
+        { numeracao: '02', descricao: 'INTRODUÇÃO' },
+        { numeracao: '03', descricao: 'MÓDULO 01 - CONCEITOS GERAIS DE SEGURANÇA' },
+        { numeracao: '04', descricao: 'MÓDULO 02 - AMEAÇAS, VULNERABILIDADE E MITIGAÇÕES' },
+        { numeracao: '05', descricao: 'DICAS DE CARREIRA' }
+      ]
+    };
+  //}
 
   return informacoesJSON;
 }
+
 
 function criarDiv() {
 
@@ -111,21 +134,25 @@ function criarDiv() {
   const divConteudoPrincipal = document.createElement('div');
   divConteudoPrincipal.className = 'row conteudo-principal pt-5';
 
-  informacoes.secoes.forEach(secao => {
-    const divCol = document.createElement('div');
-    divCol.className = 'col-md';
-    const ul = document.createElement('ul');
-    const liNumeracao = document.createElement('li');
-    liNumeracao.className = 'numeracao';
-    liNumeracao.textContent = secao.numeracao;
-    const liDescricao = document.createElement('li');
-    liDescricao.className = 'descricao';
-    liDescricao.textContent = secao.descricao;
-    ul.appendChild(liNumeracao);
-    ul.appendChild(liDescricao);
-    divCol.appendChild(ul);
-    divConteudoPrincipal.appendChild(divCol);
-  });
+  if (informacoes && informacoes.secoes) { // Verifica se informacoes e informacoes.secoes estão definidos
+    informacoes.secoes.forEach(secao => {
+      const divCol = document.createElement('div');
+      divCol.className = 'col-md';
+      const ul = document.createElement('ul');
+      const liNumeracao = document.createElement('li');
+      liNumeracao.className = 'numeracao';
+      liNumeracao.textContent = secao.numeracao;
+      const liDescricao = document.createElement('li');
+      liDescricao.className = 'descricao';
+      liDescricao.textContent = secao.descricao;
+      ul.appendChild(liNumeracao);
+      ul.appendChild(liDescricao);
+      divCol.appendChild(ul);
+      divConteudoPrincipal.appendChild(divCol);
+    });
+  } else {
+    console.error('As informações sobre as seções não foram encontradas.');
+  }
 
   // Adiciona os elementos criados à estrutura
   divCardBody1.appendChild(h3);
@@ -150,4 +177,6 @@ function criarDiv() {
   const main = document.querySelector('main');
   main.appendChild(section);
 }
+
+
 
