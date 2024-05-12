@@ -12,7 +12,7 @@ function verificarDadosLocalStorage() {
 
 
 function adicionarPostagem(link, descricao, data) {
-    let postagens = JSON.parse(localStorage.getItem('postagens')) 
+    let postagens = JSON.parse(localStorage.getItem('postagens')) ||[]
     // Gerar um ID 
     const id = Date.now().toString();
     // Adiciona a nova postagem à lista
