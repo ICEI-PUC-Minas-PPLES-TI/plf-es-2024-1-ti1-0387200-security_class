@@ -80,6 +80,7 @@
                 <input type="submit" value="Cadastrar" class="btn btn-primary btn-sm mb-1">
             </form>
             <button onclick="mostrarDelete()" class="btn btn-primary btn-sm">Excluir</button>
+            <button onclick="mostrarEdit()" class="btn btn-primary btn-sm mt-1">Editar</button>
         </section>
         <section id="deleteUser" style="display: none;">
             <h1>Deletar Usuário</h1>
@@ -89,8 +90,35 @@
             </select>
             <button onclick="excluirUsuario(id)" class="btn btn-primary btn-sm">Excluir</button>
         </section>
-        <section id="editarUser">
-            
+        <section id="editarUser" style="display: none;">
+            <section id="editarUser">
+                <h1>Editar Usuário</h1><br>
+                <label for="selecionarUsuario">Selecione o usuário:</label>
+                <select id="selecionarUsuario" onchange="carregarUsuario()">
+                    <option value="">Selecione um usuário</option>
+                </select><br>
+                <label for="editNome">Nome:</label>
+                <input type="text" id="editNome"><br>
+                <label for="editSobrenome">Sobrenome:</label>
+                <input type="text" id="editSobrenome"><br>
+                <label for="editNickname">Nickname:</label>
+                <input type="text" id="editNickname"><br>
+                <label for="editIdade">Idade:</label>
+                <input type="number" id="editIdade"><br>
+                <label for="editCelular">Celular</label>
+                <input type="number" id="editCelular"><br>
+                <label for="editSexo">Sexo:</label>
+                <select id="editSexo" name="sexo">
+                    <option value="masculino" class="opcoes">Masculino</option>
+                    <option value="feminino" class="opcoes">Feminino</option>
+                    <option value="outro" class="opcoes">Outro</option>
+                </select><br>
+                <label for="editEmail">E-mail:</label>
+                <input type="text" id="editEmail"><br>
+                <label for="editSenha">Senha:</label>
+                <input type="number" id="editSenha"><br>
+                <button onclick="salvarEdicao()" class="btn btn-primary btn-sm">Salvar Edição</button>
+            </section>
         </section>
     </main>
     <footer class="footer bg-light">
