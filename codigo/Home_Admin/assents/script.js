@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
 function Cadastrar_cursos(){
   window.location.href = "../Cadastro_de_Curso/index.html";
 }
-  
+function Gerenciar_Usuarios(){
+  window.location.href = "../Exibição_de_Usuario/index.html";
+}
 function Gerenciar_cursos(){
   window.location.href = "../Gerenciar_Cursos/index.html";
 }

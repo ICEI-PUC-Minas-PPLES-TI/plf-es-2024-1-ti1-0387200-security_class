@@ -1,3 +1,26 @@
+function fechar(){
+    window.location.reload();
+}
+$(document).ready(function() {
+    carregarDados();
+    console.log('Conteúdo do localStorage:', localStorage.getItem('Cadastro_de_Usuario'));
+    
+    // Evento de clique no botão de editar
+    $(document).on('click', '.editar', function() {
+        var id = $(this).data('id');
+        console.log(id)
+        abrirModalEdicao(id);
+    });
+    
+    // Evento de clique no botão de excluir
+    $(document).on('click', '.excluir', function() {
+        var id = $(this).data('id');
+        excluirUsuario(id);
+        carregarDados(); // Recarregar a tabela após excluir o usuário
+    });
+});
+
+// Função para carregar os dados da tabela
 function carregarDados() {
     let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
     console.log(usuarios)
@@ -11,6 +34,8 @@ function carregarDados() {
     }
 }
 
+
+
 function atualizarTabela(usuarios) {
     var tableBody = $('#dataTable tbody');
     tableBody.empty();
@@ -21,6 +46,7 @@ function atualizarTabela(usuarios) {
             '<td>' + usuario.nome + '</td>' +
             '<td>' + usuario.sobrenome + '</td>' +
             '<td>' + usuario.nickname + '</td>' +
+            '<td>' + usuario.celular + '</td>' +
             '<td>' + usuario.idade + '</td>' +
             '<td>' + usuario.sexo + '</td>' +
             '<td>' + usuario.email + '</td>' +
@@ -36,10 +62,9 @@ function atualizarTabela(usuarios) {
 }
 
 function abrirModalEdicao(id) {
-    console.log('ID do usuário para editar:', id); // Adicione este console.log para verificar o ID
-    let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
-    let usuarioParaEditar = usuarios.find(usuario => usuario.id === id);
 
+    let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
+    let usuarioParaEditar = usuarios.find(usuario => usuario.id === String(id)); // Convertendo para string antes de comparar
     $('#campoID').val(usuarioParaEditar.id);
     $('#campoNome').val(usuarioParaEditar.nome);
     $('#campoSobrenome').val(usuarioParaEditar.sobrenome);
@@ -89,7 +114,7 @@ function excluirUsuario(id) {
     let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
 
     usuarios = usuarios.filter(function(usuario) {
-        return usuario.id !== id;
+        return usuario.id !== String(id); // Convertendo para string antes de comparar
     });
 
     localStorage.setItem('Cadastro_de_Usuario', JSON.stringify(usuarios));
@@ -98,9 +123,10 @@ function excluirUsuario(id) {
     console.log('Usuário excluído com sucesso!');
 }
 
+
 document.getElementById('formEdicao').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
-    const id = parseInt(document.getElementById('campoID').value); 
+    const id = document.getElementById('campoID').value.trim(); // Garante que o ID seja tratado como uma string
     console.log(id);
     const nome = document.getElementById('campoNome').value;
     const sobrenome = document.getElementById('campoSobrenome').value;
@@ -110,6 +136,9 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
     const sexo = document.getElementById('campoSexo').value;
     const email = document.getElementById('campoEmail').value;
     const senha = document.getElementById('campoSenha').value;
+    
+    // Exclui o usuário antes de atualizar
+    excluirUsuario(id);
     
     const usuarioAtualizado = {
         id: id,
@@ -124,22 +153,11 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
     };
 
     // Atualizar o usuário no localStorage
-    atualizarUsuario(usuarioAtualizado); // O erro estava nesta linha
+    atualizarUsuario(usuarioAtualizado);
 
     // Recarregar a página ou redirecionar para outra após a edição
     window.location.reload();
 });
 
-$(document).ready(function() {
-    carregarDados();
-    console.log('Conteúdo do localStorage:', localStorage.getItem('Cadastro_de_Usuario'));
-    $(document).on('click', '.editar', function() {
-        var id = $(this).data('id');
-        abrirModalEdicao(id);
-    });
-    $(document).on('click', '.excluir', function() {
-        var id = $(this).data('id');
-        excluirUsuario(id);
-    });
 
-});
+
