@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 function fechar(){
     window.location.reload();
 }
-=======
 //Seção admin
 document.addEventListener("DOMContentLoaded", function () {
     const adminSession = sessionStorage.getItem("admin");
@@ -20,7 +18,6 @@ function fechar(){
     window.location.reload();
 }
 //Função que coleta os dados do modal, e adiciona eventos aos botões presentes na tabela
->>>>>>> 387a078c80b31b95f7b52a1e4959aa05bbd416df
 $(document).ready(function() {
     carregarDados();
     console.log('Conteúdo do localStorage:', localStorage.getItem('Cadastro_de_Usuario'));
@@ -36,11 +33,8 @@ $(document).ready(function() {
     $(document).on('click', '.excluir', function() {
         var id = $(this).data('id');
         excluirUsuario(id);
-<<<<<<< HEAD
         carregarDados(); // Recarregar a tabela após excluir o usuário
-=======
-        carregarDados(); 
->>>>>>> 387a078c80b31b95f7b52a1e4959aa05bbd416df
+
     });
 });
 
@@ -57,13 +51,7 @@ function carregarDados() {
         atualizarTabela(usuarios);
     }
 }
-<<<<<<< HEAD
-
-
-
-=======
 //Função para atualizar a tabela
->>>>>>> 387a078c80b31b95f7b52a1e4959aa05bbd416df
 function atualizarTabela(usuarios) {
     var tableBody = $('#dataTable tbody');
     tableBody.empty();
@@ -141,30 +129,19 @@ function excluirUsuario(id) {
     let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
 
     usuarios = usuarios.filter(function(usuario) {
-<<<<<<< HEAD
         return usuario.id !== String(id); // Convertendo para string antes de comparar
-=======
-        return usuario.id !== String(id); 
->>>>>>> 387a078c80b31b95f7b52a1e4959aa05bbd416df
-    });
+  });
 
     localStorage.setItem('Cadastro_de_Usuario', JSON.stringify(usuarios));
 
     console.log('Usuário excluído com sucesso!');
 }
 
-<<<<<<< HEAD
-
-document.getElementById('formEdicao').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
-    const id = document.getElementById('campoID').value.trim(); // Garante que o ID seja tratado como uma string
-=======
 //Função que ao precnher o formulario de edição o antigo usuario é apagado e um novo com os dados
 //do que foi apagado porem com as edições feitas é criado
 document.getElementById('formEdicao').addEventListener('submit', function(event) {
     event.preventDefault(); 
     const id = document.getElementById('campoID').value.trim();
->>>>>>> 387a078c80b31b95f7b52a1e4959aa05bbd416df
     console.log(id);
     const nome = document.getElementById('campoNome').value;
     const sobrenome = document.getElementById('campoSobrenome').value;
@@ -175,10 +152,7 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
     const email = document.getElementById('campoEmail').value;
     const senha = document.getElementById('campoSenha').value;
     
-<<<<<<< HEAD
     // Exclui o usuário antes de atualizar
-=======
->>>>>>> 387a078c80b31b95f7b52a1e4959aa05bbd416df
     excluirUsuario(id);
     
     const usuarioAtualizado = {
@@ -193,17 +167,11 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
         senha: senha
     };
 
-<<<<<<< HEAD
     // Atualizar o usuário no localStorage
-=======
->>>>>>> 387a078c80b31b95f7b52a1e4959aa05bbd416df
     atualizarUsuario(usuarioAtualizado);
 
     window.location.reload();
 });
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 387a078c80b31b95f7b52a1e4959aa05bbd416df
