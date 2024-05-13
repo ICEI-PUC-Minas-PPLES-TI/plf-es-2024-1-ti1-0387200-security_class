@@ -42,6 +42,7 @@
             </div>
         </div>
     </nav>
+    <br><br><br><br><br><br><br><br><br><br>
     <main>
         <div class="cadastro-container">
             <h2 class="text-center mb-4">Cadastro</h2>
@@ -70,13 +71,37 @@
                     <label for="link">Link</label>
                     <input type="link" id="link" class="form-control" placeholder="Digite o link do curso" required>
                 </div>
+                <div class="form-group">
+                    <label for="professor">Nome do Professor</label>
+                    <input type="text" id="professor" class="form-control" placeholder="Digite o nome do professor" required>
+                </div>
+                <div class="form-group">
+                    <label for="aulas">Aulas</label>
+                    <input type="text" id="aulas" class="form-control" placeholder="Digite a quantidade de aulas" required>
+                </div>
+                <div class="form-group">
+                    <label for="conclusao">Conclusão</label>
+                    <input type="text" id="conclusao" class="form-control" placeholder="Digite o tipo de conclusão" required>
+                </div>
+                <div class="secoes-container">
+                    <h3>Seções do Curso</h3>
+                    <div class="form-group">
+                        <label for="numeracao1">Numeração da Seção 1</label>
+                        <input type="number" id="numeracao1" class="form-control numeracao" placeholder="Digite a numeração da seção" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao1">Descrição da Seção 1</label>
+                        <textarea id="descricao1" class="form-control descricao" placeholder="Digite a descrição da seção" required></textarea>
+                    </div>
+                    <!-- Botão para adicionar nova seção -->
+                    <button type="button" onclick="adicionarSecao()" class="btn btn-secondary btn-block mb-2">Adicionar Seção</button>
+                </div>
                 <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
                 <button onclick="Voltar()" class="btn btn-danger btn-block">Voltar</button>
-
             </form>
         </div>        
     </main>
-    <br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
     <footer class="footer bg-light">
         <div class="container">
             <div class="row">

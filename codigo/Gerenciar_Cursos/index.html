@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../ASSETS/STYLE.css">
     <link rel="stylesheet" href="./assents/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Gerenciamento de Cursos</title>
 </head>
@@ -55,6 +54,10 @@
                             <th>Preço</th>
                             <th>Recomendação</th>
                             <th>Link</th>
+                            <th>Número de Seções</th>
+                            <th>Número de Aulas</th>
+                            <th>Conclusão</th>
+                            <th>Professor</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -86,14 +89,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Editar Curso</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="recarregarPagina()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
                     <form id="formEdicao">
                         <div class="form-group">
                             <label for="campoID" class="col-form-label">Id:</label>
-                            <input type="text" class="form-control" id="campoID">
+                            <input type="text" class="form-control" id="campoID" readonly>
                         </div>
                         <div class="form-group">
                             <label for="campoTitulo" class="col-form-label">Título:</label>
@@ -119,12 +122,27 @@
                             <label for="campoLink" class="col-form-label">Link:</label>
                             <input type="text" class="form-control" id="campoLink">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-2">Salvar</button>
-
+                        <div class="form-group">
+                            <label for="campoAulas" class="col-form-label">Aulas:</label>
+                            <input type="text" class="form-control" id="campoAulas">
+                        </div>
+                        <div class="form-group">
+                            <label for="campoConclusao" class="col-form-label">Conclusão:</label>
+                            <input type="text" class="form-control" id="campoConclusao">
+                        </div>
+                        <div class="form-group">
+                            <label for="campoProfessor" class="col-form-label">Professor:</label>
+                            <input type="text" class="form-control" id="campoProfessor">
+                        </div>
+                        <div class="secoes-edicao">
+                            <!-- As seções serão adicionadas dinamicamente aqui -->
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar Edição</button>
                     </form>
+                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="recarregarPagina()">Fechar</button>
                 </div>
             </div>
         </div>

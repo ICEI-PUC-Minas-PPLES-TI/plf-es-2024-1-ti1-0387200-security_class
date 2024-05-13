@@ -1,22 +1,19 @@
-const form = document.querySelector("form");
-document.addEventListener("DOMContentLoaded", function () {
-    // Recupera a sessão do usuário
-    const adminSession = sessionStorage.getItem("admin");
-    const admin = JSON.parse(adminSession);
-
-    if (admin) {
-        // Exemplo de uso da sessão
-        console.log("ID do admin:", admin.id);
-        console.log("Email do admin:", admin.email);
-    } else {
-        // Redireciona se não houver sessão válida
-        window.location.href = "../Login_Admin/index.html";
-    }
-});
-
+// Verifica se a chave 'cursosJSON' está vazia ou não existe no localStorage
+if (!localStorage.getItem('cursosJSON')) {
+    // Se estiver vazia ou não existir, carrega os dados do JSON e salva no localStorage
+    fetch('../Data/Cadastro_de_Curso.json')
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
+        })
+        .catch(error => console.error('Erro ao carregar cursos:', error));
+}
 
 // Adiciona um listener para o evento de envio do formulário
-document.getElementById('formCurso').addEventListener('submit', function(event) {
+const form = document.querySelector("form");
+let numSecoes = 1;
+
+form.addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
 
     // Captura os valores dos campos do formulário
@@ -26,40 +23,80 @@ document.getElementById('formCurso').addEventListener('submit', function(event) 
     const preco = document.getElementById('preco').value;
     const recomendacao = document.getElementById('recomendacao').value;
     const link = document.getElementById('link').value;
+    const professor = document.getElementById('professor').value;
+    const aulas = document.getElementById('aulas').value;
+    const conclusao = document.getElementById('conclusao').value;
+
+    // Captura as seções do curso
+    const secoes = [];
+    const numeracoes = document.querySelectorAll('.numeracao');
+    const descricoes = document.querySelectorAll('.descricao');
+    numeracoes.forEach((numeracao, index) => {
+        secoes.push({ numeracao: numeracao.value, descricao: descricoes[index].value });
+    });
 
     // Cria o objeto curso com os valores capturados
     const novoCurso = {
-        id: getNextId(), // Gera um ID aleatório
+        id: obterID(), // Você pode gerar um ID aleatório aqui se necessário
         title: titulo,
         platform: plataforma,
         description: descricao,
+        aulas: aulas,
+        conclusao: conclusao,
         recommendation: recomendacao,
         price: preco,
-        link: link
+        link: link,
+        Professor: professor,
+        secoes: secoes
     };
-    form.reset();
-    // Chama a função para adicionar o curso ao localStorage e mostrar o JSON atualizado
-    adicionarCurso(novoCurso);
+
+    // Recupera os cursos do localStorage
+    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || [];
+
+    // Adiciona o novo curso à lista de cursos
+    cursosJSON.push(novoCurso);
+
+    // Atualiza o localStorage com a lista atualizada de cursos
+    localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
+
+    console.log('Curso cadastrado:', novoCurso); // Mostra o curso cadastrado no console
+
+    form.reset(); // Limpa o formulário após o cadastro
 });
 
-// Função para adicionar um novo curso à variável 'cursosJSON' e atualizar o localStorage
-function adicionarCurso(curso) {
-    let cursos = JSON.parse(localStorage.getItem('cursosJSON'));
-    cursos.push(curso);
-    localStorage.setItem('cursosJSON', JSON.stringify(cursos));
-    
-    console.log('Novo curso adicionado com sucesso!');
-    console.log('JSON atualizado:', cursos); // Mostra o JSON atualizado no console
-    
-    // Aqui você pode exibir uma mensagem de sucesso ao usuário
+// Função para adicionar dinamicamente os campos de numeração e descrição das seções
+function adicionarSecao() {
+    numSecoes++;
+    const secoesContainer = document.querySelector('.secoes-container');
+    const novaSecao = `
+        <div class="form-group">
+            <label for="numeracao${numSecoes}">Numeração da Seção ${numSecoes}</label>
+            <input type="number" id="numeracao${numSecoes}" class="form-control numeracao" placeholder="Digite a numeração da seção" required>
+        </div>
+        <div class="form-group">
+            <label for="descricao${numSecoes}">Descrição da Seção ${numSecoes}</label>
+            <textarea id="descricao${numSecoes}" class="form-control descricao" placeholder="Digite a descrição da seção" required></textarea>
+        </div>
+    `;
+    secoesContainer.insertAdjacentHTML('beforeend', novaSecao);
 }
 
 // Função para voltar à página anterior
-function Voltar(){
+function Voltar() {
     window.location.href = "../Home_Admin/index.html";
 }
-function getNextId() {
-    let cursos = JSON.parse(localStorage.getItem('cursosJSON')) || [];
-    let nextId = cursos.length.toString();
-    return nextId;
+function obterID() {
+
+    // Obter o último ID armazenado no localStorage; 
+    // se nenhum ID estiver armazenado, usar 0 como padrão
+    let id = parseInt(localStorage.getItem("id")) || 0;
+
+    // Incrementar o ID em 1 para gerar um novo ID 
+    id += 1;
+    
+    // Armazenar o novo ID de volta no localStorage 
+    // para ser usado na próxima chamada desta função
+    localStorage.setItem("id", id);
+
+    return id;
 }
