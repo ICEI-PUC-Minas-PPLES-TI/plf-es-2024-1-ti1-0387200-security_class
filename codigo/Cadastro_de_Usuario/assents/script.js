@@ -87,6 +87,7 @@ function preencherSelect() {
     });
 }
 
+// FUNÇÃO DE OCULTAMENTO
 // Função para preenchimento do select do editar
 function preencherSelect2() {
     let selectUsuario2 = document.getElementById('selecionarUsuario2');
@@ -102,7 +103,7 @@ function preencherSelect2() {
 
 //Função para mostrar a section de deletar
 function mostrarDelete() {
-    let section = document.getElementById('deleteUser');
+    let section = document.getElementById('deletarUsuario');
     if (section.style.display === 'none') {
         section.style.display = 'block';
     } else {

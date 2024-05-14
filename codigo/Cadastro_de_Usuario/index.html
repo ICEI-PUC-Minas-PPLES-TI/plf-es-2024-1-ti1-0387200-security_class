@@ -13,6 +13,7 @@
     <title>Cadastro de Usuário</title>
 </head>
 <body>
+    <!-- Menu da Iniciar Padrão -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -45,6 +46,7 @@
         </div>
     </nav>
     <main>
+        <!-- Section de Cadastro de Usuário -->
         <section id="cadastro" class="d-flex flex-column justify-content-center">
             <h1>Cadastro de Novo Usuário</h1>
             <form id="cadastroForm" action="submit" method="POST" class="d-inline-flex flex-column justify-content-center">
@@ -82,7 +84,8 @@
             <button onclick="mostrarDelete()" class="btn btn-primary btn-sm">Excluir</button>
             <button onclick="mostrarEditar()" class="btn btn-primary btn-sm mt-1">Editar</button>
         </section>
-        <section id="deleteUser" style="display: none;">
+        <!-- Section para Exclusão de Usuários -->
+        <section id="deletarUsuario" style="display: none;">
             <h1>Deletar Usuário</h1>
             <label for="selecionarUsuario">Selecione o usuário:</label>
             <select id="selecionarUsuario">
@@ -90,6 +93,7 @@
             </select>
             <button onclick="excluirUsuario(id)" class="btn btn-primary btn-sm">Excluir</button>
         </section>
+        <!-- Section para Edição de Usuários -->
         <section id="editarUser" style="display: none;">
             <section class="editarUser">
                 <h1>Editar Usuário</h1><br>
@@ -130,6 +134,7 @@
             </section>
         </section>
     </main>
+    <!-- Rodapé padrão -->
     <footer class="footer bg-light">
         <div class="container">
             <div class="row">
