@@ -1,4 +1,3 @@
-
 function puxarInformacoesDoJSON(id) {
     if (!localStorage.getItem('cursosJSON')) {
         fetch('../Data/Cadastro_de_Curso.json')

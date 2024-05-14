@@ -1,50 +1,50 @@
 
-let informacoesJSON; // Definindo a variável fora do escopo da função
-
 function puxarInformacoesDoJSON() {
-  /************ 
-  if (!localStorage.getItem('cursosJSON')) {
-    fetch('../Data/Cadastro_de_Curso.json')
-      .then(response => response.json())
-      .then(data => {
-        localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
-      })
-      .catch(error => console.error('Erro ao carregar cursos:', error));
+    // Verifique se o JSON já está armazenado localmente
+    if (!localStorage.getItem('cursosJSON')) {
+      fetch('../Data/Cadastro_de_Curso.json')
+        .then(response => response.json())
+        .then(data => {
+          // Armazena o JSON localmente
+          localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
+        })
+        .catch(error => console.error('Erro ao carregar cursos:', error));
+    }
+  
+    // Obtenha os dados do JSON
+    let strDados = localStorage.getItem('cursosJSON');
+    let objDados = {};
+  
+    if (strDados) {
+      objDados = JSON.parse(strDados);
+      // Supondo que haja apenas um curso no JSON, obtemos apenas o primeiro item do array de cursos
+      informacoesJSON = objDados[0];
+    } else {
+      // Se o JSON não estiver disponível, use os dados de exemplo
+      informacoesJSON = {
+        titulo: 'CompTIA Security+ (SY0-701) Curso Completo + Simulados',
+        descricao: 'Aprenda Cibersegurança (Segurança da Informação) e Prepare-se para CompTIA Security+ (SY0-701)',
+        aulas: '61 AULAS',
+        conclusao: 'CERTIFICADO',
+        plataforma: 'UDEMY',
+        secoes: [
+          { numeracao: '01', descricao: 'ASSISTA ANTES DE COMPRAR' },
+          { numeracao: '02', descricao: 'INTRODUÇÃO' },
+          { numeracao: '03', descricao: 'MÓDULO 01 - CONCEITOS GERAIS DE SEGURANÇA' },
+          { numeracao: '04', descricao: 'MÓDULO 02 - AMEAÇAS, VULNERABILIDADE E MITIGAÇÕES' },
+          { numeracao: '05', descricao: 'DICAS DE CARREIRA' }
+        ]
+      };
+    }
+  
+    return informacoesJSON;
   }
-
-  let strDados = localStorage.getItem('cursosJSON');
-  let objDados = {};
-
-  console.log(strDados);
-  if (strDados) {
-    objDados = JSON.parse(strDados);
-    return objDados;
-  } else {
-    */
-    informacoesJSON = {
-      titulo: 'CompTIA Security+ (SY0-701) Curso Completo + Simulados',
-      descricao: 'Aprenda Cibersegurança (Segurança da Informação) e Prepare-se para CompTIA Security+ (SY0-701)',
-      aulas: '61 AULAS',
-      conclusao: 'CERTIFICADO',
-      plataforma: 'UDEMY',
-      secoes: [
-        { numeracao: '01', descricao: 'ASSISTA ANTES DE COMPRAR' },
-        { numeracao: '02', descricao: 'INTRODUÇÃO' },
-        { numeracao: '03', descricao: 'MÓDULO 01 - CONCEITOS GERAIS DE SEGURANÇA' },
-        { numeracao: '04', descricao: 'MÓDULO 02 - AMEAÇAS, VULNERABILIDADE E MITIGAÇÕES' },
-        { numeracao: '05', descricao: 'DICAS DE CARREIRA' }
-      ]
-    };
-  //}
-
-  return informacoesJSON;
-}
 
 
 function criarDiv(id) {
 
   // Puxa as informações do JSON
-  const informacoes = puxarInformacoesDoJSON(id);
+  const informacoes = puxarInformacoesDoJSON();
 
   // Cria os elementos HTML
   const section = document.createElement('section');
@@ -135,16 +135,16 @@ function criarDiv(id) {
   divConteudoPrincipal.className = 'row conteudo-principal pt-5';
 
   if (informacoes && informacoes.secoes) { // Verifica se informacoes e informacoes.secoes estão definidos
-    informacoes.secoes.forEach(secao => {
+    informacoes.secoes.forEach(secoes => {
       const divCol = document.createElement('div');
       divCol.className = 'col-md';
       const ul = document.createElement('ul');
       const liNumeracao = document.createElement('li');
       liNumeracao.className = 'numeracao';
-      liNumeracao.textContent = secao.numeracao;
+      liNumeracao.textContent = secoes.numeracao;
       const liDescricao = document.createElement('li');
       liDescricao.className = 'descricao';
-      liDescricao.textContent = secao.descricao;
+      liDescricao.textContent = secoes.descricao;
       ul.appendChild(liNumeracao);
       ul.appendChild(liDescricao);
       divCol.appendChild(ul);
@@ -178,45 +178,62 @@ function criarDiv(id) {
   main.appendChild(section);
 }
 
+// Variável para controlar se a mensagem "Nenhum curso encontrado" foi exibida
+let mensagemExibida = false;
+
 // Função para pesquisar cursos com base em uma palavra-chave
 function pesquisarCurso(palavraChave) {
   // Obtenha todos os elementos de div que representam cursos
   const divsCursos = document.querySelectorAll('.card');
 
+  let algumCursoEncontrado = false; // Variável para controlar se algum curso foi encontrado
+
   // Itere sobre cada div do curso
   divsCursos.forEach(curso => {
-      // Obtenha o título e a descrição do curso
-      const titulo = curso.querySelector('.card-title').textContent.toLowerCase();
-      const descricao = curso.querySelector('.card-text').textContent.toLowerCase();
+    // Obtenha o título e a descrição do curso
+    const titulo = curso.querySelector('.card-title').textContent.toLowerCase();
+    const descricao = curso.querySelector('.card-text').textContent.toLowerCase();
 
-      // Verifique se a palavra-chave está presente no título ou na descrição do curso
-      if (titulo.includes(palavraChave.toLowerCase()) || descricao.includes(palavraChave.toLowerCase())) {
-          // Exiba a div do curso se a palavra-chave for encontrada
-          curso.style.display = 'block';
-      } else {
-          // Oculte a div do curso se a palavra-chave não for encontrada
-          curso.style.display = 'none';
-      }
+    // Verifique se a palavra-chave está presente no título ou na descrição do curso
+    if (titulo.includes(palavraChave.toLowerCase()) || descricao.includes(palavraChave.toLowerCase())) {
+      // Exiba a div do curso se a palavra-chave for encontrada
+      curso.style.display = 'block';
+      algumCursoEncontrado = true; // Atualize a variável para indicar que pelo menos um curso foi encontrado
+    } else {
+      // Oculte a div do curso se a palavra-chave não for encontrada
+      curso.style.display = 'none';
+    }
   });
+
+  // Se nenhum curso for encontrado e a mensagem ainda não foi exibida, exiba a mensagem
+  if (!algumCursoEncontrado && !mensagemExibida) {
+    const mensagemNenhumCurso = document.createElement('p');
+    mensagemNenhumCurso.textContent = 'Nenhum curso encontrado.';
+    const main = document.querySelector('.confirmacao');
+    main.appendChild(mensagemNenhumCurso);
+    mensagemExibida = true; // Atualize a variável para indicar que a mensagem foi exibida
+  } else if (algumCursoEncontrado && mensagemExibida) {
+    // Se algum curso for encontrado e a mensagem já foi exibida, remova a mensagem
+    const mensagemNenhumCurso = document.querySelector('.confirmacao p');
+    mensagemNenhumCurso.remove();
+    mensagemExibida = false; // Atualize a variável para indicar que a mensagem foi removida
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   // Adicione um ouvinte de evento para o formulário de pesquisa
   const formPesquisa = document.querySelector('.d-flex');
   formPesquisa.addEventListener('submit', function (event) {
-      event.preventDefault(); // Evite o envio do formulário padrão
+    event.preventDefault(); // Evite o envio do formulário padrão
 
-      // Obtenha o valor digitado pelo usuário no campo de pesquisa
-      const palavraChave = formPesquisa.querySelector('input[type="search"]').value;
+    // Obtenha o valor digitado pelo usuário no campo de pesquisa
+    const palavraChave = formPesquisa.querySelector('input[type="search"]').value;
 
-      // Chame a função para pesquisar cursos com base na palavra-chave fornecida
-      pesquisarCurso(palavraChave);
+    // Chame a função para pesquisar cursos com base na palavra-chave fornecida
+    pesquisarCurso(palavraChave);
   });
 
   // Chame a função criarDiv após a adição do ouvinte de evento para garantir que os cursos estejam disponíveis para pesquisa
   criarDiv(1);
   criarDiv(2);
 });
-
-
-
