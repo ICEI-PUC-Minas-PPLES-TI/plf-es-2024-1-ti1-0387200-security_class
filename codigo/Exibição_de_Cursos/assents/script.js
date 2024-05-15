@@ -279,7 +279,7 @@ document.addEventListener('click', function(event) {
       setarIdLocalStorage(idCurso); // Chama a função para definir o ID no local storage
 
       // Redireciona para a página 'descricao.html' após definir o ID no local storage
-      // window.location.href = 'descricao.html';
+       window.location.href = 'descricao.html';
     }
   }
 });
