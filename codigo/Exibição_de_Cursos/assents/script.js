@@ -1,73 +1,71 @@
 // Variável global para armazenar o ID do último curso exibido
 let ultimoCursoExibido = null;
 
-function puxarInformacoesDoJSON(nomeArquivoJSON) {
-  // Verifica se o JSON já está armazenado localmente
-  if (!localStorage.getItem('cursos')) {
-    fetch(nomeArquivoJSON)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao carregar o JSON: ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        // Armazena o JSON localmente
-        localStorage.setItem('cursos', JSON.stringify(data));
-      })
-      .catch(error => console.error('Erro ao carregar o JSON:', error.message));
-  }
+// Função assíncrona para carregar o JSON e extrair informações
+async function carregarEExtrairJSON(nomeArquivoJSON) {
+  let informacoesJSON = {};
 
-  // Obtenha os dados do JSON
-  let strDados = localStorage.getItem('cursos');
-  let objDados = {};
-  let informacoesJSON = {}; // Variável local para armazenar as informações
+  try {
+    // Verifica se os dados já estão armazenados no localStorage
+    let data;
+    const storedData = localStorage.getItem('cursos');
 
-  if (strDados) {
-    try {
-      objDados = JSON.parse(strDados);
-      if (objDados && objDados.courses && objDados.courses.length > 0) {
-        // Se o JSON contém dados válidos, use o primeiro curso
-        informacoesJSON = objDados.courses[0];
-      } else {
-        throw new Error('O JSON não contém dados válidos ou não possui cursos.');
+    if (storedData) {
+      data = JSON.parse(storedData);
+    } else {
+      // Carrega os dados do JSON se não estiverem no localStorage
+      const response = await fetch(nomeArquivoJSON);
+      if (!response.ok) {
+        throw new Error('Erro ao carregar o JSON: ' + response.statusText);
       }
-    } catch (error) {
-      console.error('Erro ao analisar o JSON:', error.message);
+      data = await response.json();
+      localStorage.setItem('cursos', JSON.stringify(data));
     }
-  } else {
-    console.error('O JSON não está disponível localmente.');
+
+    // Verifica se os dados contêm cursos válidos
+    if (data && data.courses && data.courses.length > 0) {
+      informacoesJSON = data;
+    } else {
+      throw new Error('O JSON não contém dados válidos ou não possui cursos.');
+    }
+  } catch (error) {
+    console.error('Erro ao carregar e extrair informações do JSON:', error.message);
   }
 
   return informacoesJSON;
 }
 
-function criarDiv(id) {
-  // Verifica se o ID do curso já foi exibido anteriormente
-  if (id === ultimoCursoExibido) {
-    return; // Sai da função se o curso já foi exibido
+// Função para criar a div do curso
+async function criarDiv(id) {
+  if (!id) {
+    console.error('ID inválido fornecido para criarDiv:', id);
+    return;
   }
 
-  // Atualiza o ID do último curso exibido
+  if (id === ultimoCursoExibido) {
+    return;
+  }
+
   ultimoCursoExibido = id;
 
-  // Verifica se a div já existe na página
   const divExistente = document.getElementById(`curso-${id}`);
   if (divExistente) {
-    return; // Sai da função se a div já existe
+    return;
   }
 
-  // Puxa as informações do JSON
-  const informacoes = puxarInformacoesDoJSON('../Data/Cadastro_de_Curso.json');
+  const informacoes = await carregarEExtrairJSON('../Data/Cadastro_de_Curso.json');
+  const curso = informacoes.courses.find(curso => curso.id === id);
 
-  // Cria os elementos HTML
+  if (!curso) {
+    console.error(`Curso com ID ${id} não encontrado.`);
+    return;
+  }
+
   const section = document.createElement('section');
   section.className = 'py-5';
 
   const divContainer = document.createElement('div');
   divContainer.className = 'container';
-
-  // Define um ID único para a div do curso
   divContainer.id = `curso-${id}`;
 
   const divCard = document.createElement('div');
@@ -78,64 +76,62 @@ function criarDiv(id) {
 
   const h3 = document.createElement('h3');
   h3.className = 'card-title';
-  h3.textContent = informacoes.titulo;
+  h3.textContent = curso.titulo;
 
   const p = document.createElement('p');
   p.className = 'card-text';
-  p.textContent = informacoes.descricao;
+  p.textContent = curso.descricao;
 
   const divBotao = document.createElement('div');
   divBotao.className = 'botao';
 
   const button = document.createElement('button');
   button.textContent = 'Ver mais';
-  button.setAttribute('data-id', informacoes.id); // Defina o valor desejado para data-id
+  button.setAttribute('data-id', curso.id);
 
   divBotao.appendChild(button);
 
   const divRow = document.createElement('div');
   divRow.className = 'row';
 
+  const criarImagem = (src, alt) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.className = 'card-img-top';
+    img.alt = alt;
+    img.style.maxHeight = '450px';
+    return img;
+  };
+
   const divCol1 = document.createElement('div');
   divCol1.className = 'col';
-  const img1 = document.createElement('img');
-  img1.src = 'assents/img/Curso.jpeg';
-  img1.className = 'card-img-top';
-  img1.alt = 'Imagem 1';
-  img1.style.maxHeight = '450px';
-  divCol1.appendChild(img1);
+  divCol1.appendChild(criarImagem('assents/img/Curso.jpeg', 'Imagem 1'));
 
   const divCol2 = document.createElement('div');
   divCol2.className = 'col';
-  const img2 = document.createElement('img');
-  img2.src = 'assents/img/Curso_1.jpeg';
-  img2.className = 'card-img-top';
-  img2.alt = 'Imagem 2';
-  img2.style.maxHeight = '450px';
-  divCol2.appendChild(img2);
+  divCol2.appendChild(criarImagem('assents/img/Curso_1.jpeg', 'Imagem 2'));
 
   const divCol3 = document.createElement('div');
   divCol3.className = 'col';
-  const img3 = document.createElement('img');
-  img3.src = 'assents/img/Curso_2.jpeg';
-  img3.className = 'card-img-top';
-  img3.alt = 'Imagem 3';
-  img3.style.maxHeight = '450px';
-  divCol3.appendChild(img3);
+  divCol3.appendChild(criarImagem('assents/img/Curso_2.jpeg', 'Imagem 3'));
 
   const divAtributos = document.createElement('div');
   divAtributos.className = 'atributos mt-2 d-flex';
+
   const spanAulas = document.createElement('span');
   spanAulas.className = 'quantidade_aulas';
-  spanAulas.textContent = informacoes.aulas;
+  spanAulas.textContent = curso.aulas;
+
   const spanConclusao = document.createElement('span');
   spanConclusao.className = 'tipo_conclusao';
-  spanConclusao.textContent = informacoes.conclusao;
+  spanConclusao.textContent = curso.conclusao;
+
   const divPlataforma = document.createElement('div');
   divPlataforma.className = 'ms-auto';
   const spanPlataforma = document.createElement('span');
   spanPlataforma.className = 'plataforma';
-  spanPlataforma.textContent = informacoes.plataforma;
+  spanPlataforma.textContent = curso.plataforma;
+
   divPlataforma.appendChild(spanPlataforma);
   divAtributos.appendChild(spanAulas);
   divAtributos.appendChild(spanConclusao);
@@ -143,33 +139,33 @@ function criarDiv(id) {
 
   const divCardBody2 = document.createElement('div');
   divCardBody2.className = 'card-body';
+
   const h5 = document.createElement('h5');
   h5.className = 'card-title';
   h5.textContent = 'PRINCIPAIS SEÇÕES';
+
   const divConteudoPrincipal = document.createElement('div');
   divConteudoPrincipal.className = 'row conteudo-principal pt-5';
 
-  if (informacoes && informacoes.secoes && Array.isArray(informacoes.secoes)) {
-    informacoes.secoes.forEach(secoes => {
-      const divCol = document.createElement('div');
-      divCol.className = 'col-md';
-      const ul = document.createElement('ul');
-      const liNumeracao = document.createElement('li');
-      liNumeracao.className = 'numeracao';
-      liNumeracao.textContent = secoes.numeracao;
-      const liDescricao = document.createElement('li');
-      liDescricao.className = 'descricao';
-      liDescricao.textContent = secoes.descricao;
-      ul.appendChild(liNumeracao);
-      ul.appendChild(liDescricao);
-      divCol.appendChild(ul);
-      divConteudoPrincipal.appendChild(divCol);
-    });
-  } else {
-    console.error('As informações sobre as seções não foram encontradas ou estão em um formato inválido.');
-  }
+  curso.secoes.forEach(secao => {
+    const divCol = document.createElement('div');
+    divCol.className = 'col-md';
 
-  // Adiciona os elementos criados à estrutura do card
+    const ul = document.createElement('ul');
+    const liNumeracao = document.createElement('li');
+    liNumeracao.className = 'numeracao';
+    liNumeracao.textContent = secao.numeracao;
+
+    const liDescricao = document.createElement('li');
+    liDescricao.className = 'descricao';
+    liDescricao.textContent = secao.descricao;
+
+    ul.appendChild(liNumeracao);
+    ul.appendChild(liDescricao);
+    divCol.appendChild(ul);
+    divConteudoPrincipal.appendChild(divCol);
+  });
+
   divCardBody1.appendChild(h3);
   divCardBody1.appendChild(p);
   divCardBody1.appendChild(divBotao);
@@ -185,102 +181,95 @@ function criarDiv(id) {
   divCardBody2.appendChild(h5);
   divCardBody2.appendChild(divConteudoPrincipal);
 
-  // Adiciona o card à estrutura da página HTML
   divContainer.appendChild(divCard);
   section.appendChild(divContainer);
+
   const main = document.querySelector('main');
   main.appendChild(section);
 }
-
 
 // Variável para controlar se a mensagem "Nenhum curso encontrado" foi exibida
 let mensagemExibida = false;
 
 // Função para pesquisar cursos com base em uma palavra-chave
 function pesquisarCurso(palavraChave) {
-  // Obtenha todos os elementos de div que representam cursos
   const divsCursos = document.querySelectorAll('.card');
+  let algumCursoEncontrado = false;
 
-  let algumCursoEncontrado = false; // Variável para controlar se algum curso foi encontrado
-
-  // Itere sobre cada div do curso
   divsCursos.forEach(curso => {
-    // Obtenha o título e a descrição do curso
     const titulo = curso.querySelector('.card-title').textContent.toLowerCase();
     const descricao = curso.querySelector('.card-text').textContent.toLowerCase();
 
-    // Verifique se a palavra-chave está presente no título ou na descrição do curso
     if (titulo.includes(palavraChave.toLowerCase()) || descricao.includes(palavraChave.toLowerCase())) {
-      // Exiba a div do curso se a palavra-chave for encontrada
       curso.style.display = 'block';
-      algumCursoEncontrado = true; // Atualize a variável para indicar que pelo menos um curso foi encontrado
+      algumCursoEncontrado = true;
     } else {
-      // Oculte a div do curso se a palavra-chave não for encontrada
       curso.style.display = 'none';
     }
   });
 
-  /**************************** BARRA DE PESQUISA ***************************************/
-  // Se nenhum curso for encontrado e a mensagem ainda não foi exibida, exiba a mensagem
   if (!algumCursoEncontrado && !mensagemExibida) {
     const mensagemNenhumCurso = document.createElement('p');
     mensagemNenhumCurso.textContent = 'Nenhum curso encontrado.';
     const main = document.querySelector('.confirmacao');
     main.appendChild(mensagemNenhumCurso);
-    mensagemExibida = true; // Atualize a variável para indicar que a mensagem foi exibida
+    mensagemExibida = true;
   } else if (algumCursoEncontrado && mensagemExibida) {
-    // Se algum curso for encontrado e a mensagem já foi exibida, remova a mensagem
     const mensagemNenhumCurso = document.querySelector('.confirmacao p');
     mensagemNenhumCurso.remove();
-    mensagemExibida = false; // Atualize a variável para indicar que a mensagem foi removida
+    mensagemExibida = false;
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Verifique se os cards já foram criados para o curso atual
-  if (!ultimoCursoExibido) {
-    // Chame a função criarDiv com o nome do arquivo JSON correspondente ao curso desejado
-    criarDiv('cursos');
+document.addEventListener("DOMContentLoaded", async function () {
+  const informacoes = await carregarEExtrairJSON('../Data/Cadastro_de_Curso.json');
+
+  const idCursoSelecionado = localStorage.getItem('idCursoSelecionado');
+  if (idCursoSelecionado) {
+    criarDiv(idCursoSelecionado);
+  } else if (!ultimoCursoExibido) {
+    criarDiv(informacoes.courses[0].id);
   }
 
-  // Adicione um ouvinte de evento para o formulário de pesquisa
+  function setarIdLocalStorage(id) {
+    if (!id) {
+      console.error('ID inválido.');
+      return;
+    }
+    localStorage.setItem('idCursoSelecionado', id);
+  }
+
+  document.addEventListener('click', function(event) {
+    const botaoVerMais = event.target.closest('button');
+    if (botaoVerMais) {
+      const dataId = botaoVerMais.getAttribute('data-id');
+      const idCurso = dataId ? dataId : '';
+  
+      if (idCurso) {
+        setarIdLocalStorage(idCurso);
+        window.location.href = 'descricao.html';
+      }
+    }
+  });
+
   const formPesquisa = document.querySelector('.d-flex');
+  const searchInput = formPesquisa.querySelector('input[type="search"]');
+  if (!searchInput.id) {
+    searchInput.id = 'search-course';
+  }
+  if (!searchInput.classList.contains('form-control')) {
+    searchInput.classList.add('form-control');
+  }
+  searchInput.placeholder = 'Pesquise aqui...';
+
   formPesquisa.addEventListener('submit', function (event) {
-    event.preventDefault(); // Evite o envio do formulário padrão
-
-    // Obtenha o valor digitado pelo usuário no campo de pesquisa
-    const palavraChave = formPesquisa.querySelector('input[type="search"]').value;
-
-    // Chame a função para pesquisar cursos com base na palavra-chave fornecida
-    pesquisarCurso(palavraChave);
+    event.preventDefault();
+    const palavraChave = searchInput.value;
+    if (palavraChave) {
+      pesquisarCurso(palavraChave);
+    }
   });
 });
 
 
-function setarIdLocalStorage(id) {
-  // Verifica se o ID não está vazio ou nulo
-  if (!id) {
-    console.error('ID inválido.');
-    return;
-  }
-
-  // Define o ID no local storage
-  localStorage.setItem('idCursoSelecionado', id);
-}
-
-
-document.addEventListener('click', function(event) {
-  const botaoVerMais = event.target.closest('button');
-  if (botaoVerMais) {
-    const dataId = botaoVerMais.getAttribute('data-id'); // Obtém o valor do atributo data-id
-    const idCurso = dataId ? dataId : ''; // Define idCurso como o valor de data-id, se existir
-
-    if (idCurso) {
-      setarIdLocalStorage(idCurso); // Chama a função para definir o ID no local storage
-
-      // Redireciona para a página 'descricao.html' após definir o ID no local storage
-       window.location.href = 'descricao.html';
-    }
-  }
-});
 
