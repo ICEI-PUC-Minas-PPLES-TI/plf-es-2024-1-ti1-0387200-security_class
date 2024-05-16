@@ -41,24 +41,27 @@
         </div>
     </nav>
     <main>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="container">
+            <h1>Cadastrar Post</h1>
+            <form id="cadastroPostForm">
+                <label for="titulo">Título do Post:</label>
+                <input type="text" id="titulo" name="titulo" required>
+
+                <label for="tipoGolpe">Tipo do Golpe:</label>
+                <input type="text" id="tipoGolpe" name="tipoGolpe" required>
+
+                <label for="descricao">Descrição do Golpe:</label>
+                <textarea id="descricao" name="descricao" required></textarea>
+
+                <label for="link">Link do Golpe:</label>
+                <input type="url" id="link" name="link" required>
+
+                <input type="checkbox" id="publico" name="publico">
+                <label for="publico">Post Público</label>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
     </main>
     <footer class="footer bg-light">
         <div class="container">
@@ -78,5 +81,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
