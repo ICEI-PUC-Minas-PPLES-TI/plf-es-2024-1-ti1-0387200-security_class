@@ -1,20 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Recupera a sessão do usuário
-    const adminSession = sessionStorage.getItem("admin");
-    const admin = JSON.parse(adminSession);
+// Variáveis globais
 
-    if (admin) {
-        // Exemplo de uso da sessão
-        console.log("ID do admin:", admin.id);
-        console.log("Email do admin:", admin.email);
-    } else {
-        // Redireciona se não houver sessão válida
-        window.location.href = "../Login_Admin/index.html";
-    }
+const adminSession = sessionStorage.getItem("admin");
+const admin = JSON.parse(adminSession);
 
-    // Carrega os dados do JSON e atualiza a tabela HTML
-    carregarDados();
-});
+// Funções
 
 function carregarDados() {
     let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
@@ -33,7 +22,6 @@ function carregarDados() {
     }
 }
 
-// Função para atualizar a tabela HTML com os dados do JSON
 function atualizarTabela(cursosJSON) {
     var tableBody = $('#dataTable tbody');
     tableBody.empty();
@@ -41,16 +29,16 @@ function atualizarTabela(cursosJSON) {
     $.each(cursosJSON, function(index, item) {
         var newRow = '<tr>' +
             '<td>' + item.id + '</td>' +
-            '<td>' + item.title + '</td>' +
-            '<td>' + item.platform + '</td>' +
-            '<td>' + item.description + '</td>' +
-            '<td>' + item.price + '</td>' +
-            '<td>' + item.recommendation + '</td>' +
+            '<td>' + item.titulo + '</td>' +
+            '<td>' + item.plataforma + '</td>' +
+            '<td>' + item.descricao + '</td>' +
+            '<td>' + item.preco + '</td>' +
+            '<td>' + item.recomendacao + '</td>' +
             '<td>' + item.link + '</td>' +
             '<td>' + (item.secoes ? item.secoes.length : 0) + '</td>' + // Número de Seções
             '<td>' + item.aulas + '</td>' +
             '<td>' + item.conclusao + '</td>' +
-            '<td>' + item.Professor + '</td>' +
+            '<td>' + item.professor + '</td>' +
             '<td>' +
             '<button class="btn btn-primary btn-sm editar mt-1" data-id="' + item.id + '">Editar</button>' +
             '<button class="btn btn-danger btn-sm excluir mt-1" data-id="' + item.id + '">Excluir</button>' +
@@ -78,16 +66,16 @@ function abrirModalEdicao(id) {
     let cursoParaEditar = cursosJSON.find(curso => curso.id === id);
 
     $('#campoID').val(cursoParaEditar.id);
-    $('#campoTitulo').val(cursoParaEditar.title);
-    $('#campoPlataforma').val(cursoParaEditar.platform);
-    $('#campoDescricao').val(cursoParaEditar.description);
-    $('#campoPreco').val(cursoParaEditar.price);
-    $('#campoRecomendacao').val(cursoParaEditar.recommendation);
+    $('#campoTitulo').val(cursoParaEditar.titulo);
+    $('#campoPlataforma').val(cursoParaEditar.plataforma);
+    $('#campoDescricao').val(cursoParaEditar.descricao);
+    $('#campoPreco').val(cursoParaEditar.preco);
+    $('#campoRecomendacao').val(cursoParaEditar.recomendacao);
     $('#campoLink').val(cursoParaEditar.link);
     $('#campoSecoes').val(cursoParaEditar.secoes.length);
     $('#campoAulas').val(cursoParaEditar.aulas);
     $('#campoConclusao').val(cursoParaEditar.conclusao);
-    $('#campoProfessor').val(cursoParaEditar.Professor);
+    $('#campoProfessor').val(cursoParaEditar.professor);
 
     // Remove as seções antigas antes de adicionar as novas seções dinamicamente
     $('.secao-edicao').remove();
@@ -113,6 +101,47 @@ function abrirModalEdicao(id) {
     modal.show();
 }
 
+function excluirCurso(id) {
+    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
+
+    cursosJSON = cursosJSON.filter(function(curso) {
+        return curso.id !== id;
+    });
+
+    localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
+
+    console.log('Curso excluído com sucesso!');
+    console.log('JSON atualizado:', cursosJSON); // Mostra o JSON atualizado no console
+
+    // Recarrega a tabela após a exclusão
+    atualizarTabela(cursosJSON);
+    recarregarPagina();
+}
+
+function recarregarPagina() {
+    window.location.reload();
+}
+
+// Eventos
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Recupera a sessão do usuário
+    const adminSession = sessionStorage.getItem("admin");
+    const admin = JSON.parse(adminSession);
+
+    if (admin) {
+        // Exemplo de uso da sessão
+        console.log("ID do admin:", admin.id);
+        console.log("Email do admin:", admin.email);
+    } else {
+        // Redireciona se não houver sessão válida
+        window.location.href = "../Login_Admin/index.html";
+    }
+
+    // Carrega os dados do JSON e atualiza a tabela HTML
+    carregarDados();
+});
+
 // Event listener para o envio do formulário de edição
 document.getElementById('formEdicao').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
@@ -130,15 +159,15 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
     // Atualiza as informações do curso no localStorage
     let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
     let cursoIndex = cursosJSON.findIndex(curso => curso.id === id);
-    cursosJSON[cursoIndex].title = titulo;
-    cursosJSON[cursoIndex].platform = plataforma;
-    cursosJSON[cursoIndex].description = descricao;
-    cursosJSON[cursoIndex].price = preco;
-    cursosJSON[cursoIndex].recommendation = recomendacao;
+    cursosJSON[cursoIndex].titulo = titulo;
+    cursosJSON[cursoIndex].plataforma = plataforma;
+    cursosJSON[cursoIndex].descricao = descricao;
+    cursosJSON[cursoIndex].preco = preco;
+    cursosJSON[cursoIndex].recomendacao = recomendacao;
     cursosJSON[cursoIndex].link = link;
     cursosJSON[cursoIndex].aulas = aulas;
     cursosJSON[cursoIndex].conclusao = conclusao;
-    cursosJSON[cursoIndex].Professor = professor;
+    cursosJSON[cursoIndex].professor = professor;
 
     // Atualiza as seções do curso
     const secoesEditadas = [];
@@ -160,26 +189,3 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
     modal.hide();
     recarregarPagina();
 });
-
-
-// Função para excluir um curso do localStorage e atualizar a tabela
-function excluirCurso(id) {
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
-
-    cursosJSON = cursosJSON.filter(function(curso) {
-        return curso.id !== id;
-    });
-
-    localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
-
-    console.log('Curso excluído com sucesso!');
-    console.log('JSON atualizado:', cursosJSON); // Mostra o JSON atualizado no console
-
-    // Recarrega a tabela após a exclusão
-    atualizarTabela(cursosJSON);
-    recarregarPagina();
-}
-
-function recarregarPagina() {
-    window.location.reload();
-}
