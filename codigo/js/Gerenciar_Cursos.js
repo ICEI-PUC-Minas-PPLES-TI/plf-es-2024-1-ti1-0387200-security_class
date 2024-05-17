@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Email do admin:", admin.email);
     } else {
         // Redireciona se não houver sessão válida
-        window.location.href = "../Login_Admin/index.html";
+        window.location.href = "../views/Login_Admin.html";
     }
 
     // Carrega os dados do JSON e atualiza a tabela HTML

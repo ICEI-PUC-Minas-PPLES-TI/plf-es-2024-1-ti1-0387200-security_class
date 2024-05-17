@@ -105,15 +105,15 @@ async function criarDiv(id) {
 
   const divCol1 = document.createElement('div');
   divCol1.className = 'col';
-  divCol1.appendChild(criarImagem('assents/img/Curso.jpeg', 'Imagem 1'));
+  divCol1.appendChild(criarImagem('../assets/IMG/Curso.jpeg', 'Imagem 1'));
 
   const divCol2 = document.createElement('div');
   divCol2.className = 'col';
-  divCol2.appendChild(criarImagem('assents/img/Curso_1.jpeg', 'Imagem 2'));
+  divCol2.appendChild(criarImagem('../assets/IMG/Curso_1.jpeg', 'Imagem 2'));
 
   const divCol3 = document.createElement('div');
   divCol3.className = 'col';
-  divCol3.appendChild(criarImagem('assents/img/Curso_2.jpeg', 'Imagem 3'));
+  divCol3.appendChild(criarImagem('../assets/IMG/Curso_2.jpeg', 'Imagem 3'));
 
   const divAtributos = document.createElement('div');
   divAtributos.className = 'atributos mt-2 d-flex';

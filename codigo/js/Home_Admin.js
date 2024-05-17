@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 function Cadastrar_cursos(){
-  window.location.href = "../Cadastro_de_Curso/index.html";
+  window.location.href = "../views/Cadastro_de_Curso.html";
 }
 function Gerenciar_Usuarios(){
-  window.location.href = "../Exibição_de_Usuario/index.html";
+  window.location.href = "../views/Exibição_de_Usuario.html";
 }
 function Gerenciar_cursos(){
-  window.location.href = "../Gerenciar_Cursos/index.html";
+  window.location.href = "../views/Gerenciar_Cursos.html";
 }
 // Verifica se já existe uma variável 'cursosJSON' no localStorage
 // Se não existir, busca o JSON do arquivo '../Data/Cadastro_Cursos.json'

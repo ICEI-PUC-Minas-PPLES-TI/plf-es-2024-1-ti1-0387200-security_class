@@ -83,7 +83,7 @@ function adicionarSecao() {
 
 // Função para voltar à página anterior
 function Voltar() {
-    window.location.href = "../Home_Admin/index.html";
+    window.location.href = "../views/Home_Admin.html";
 }
 function obterID() {
 

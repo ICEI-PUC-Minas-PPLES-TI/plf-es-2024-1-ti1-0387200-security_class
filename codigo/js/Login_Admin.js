@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             sessionStorage.setItem("admin", JSON.stringify(admin));
             alert("Login realizado com sucesso!");
             // Redireciona para a página de administração
-            window.location.href = "../Home_Admin/index.html";
+            window.location.href = "../views/Home_Admin.html";
           } else {
             alert("Email, ID ou senha incorretos. Tente novamente.");
           }
