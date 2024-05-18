@@ -53,6 +53,11 @@ form.addEventListener('submit', function(event) {
     // Recupera os cursos do localStorage
     let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || [];
 
+    // Verifica se cursosJSON é realmente um array
+    if (!Array.isArray(cursosJSON)) {
+        cursosJSON = [];
+    }
+
     // Adiciona o novo curso à lista de cursos
     cursosJSON.push(novoCurso);
 
@@ -85,8 +90,8 @@ function adicionarSecao() {
 function Voltar() {
     window.location.href = "../views/Home_Admin.html";
 }
-function obterID() {
 
+function obterID() {
     // Obter o último ID armazenado no localStorage; 
     // se nenhum ID estiver armazenado, usar 0 como padrão
     let id = parseInt(localStorage.getItem("id")) || 0;
