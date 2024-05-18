@@ -8,7 +8,7 @@ async function carregarEExtrairJSON(nomeArquivoJSON) {
   try {
     // Verifica se os dados já estão armazenados no localStorage
     let data;
-    const storedData = localStorage.getItem('cursos');
+    const storedData = localStorage.getItem('cursosJSON');
 
     if (storedData) {
       data = JSON.parse(storedData);
@@ -19,7 +19,7 @@ async function carregarEExtrairJSON(nomeArquivoJSON) {
         throw new Error('Erro ao carregar o JSON: ' + response.statusText);
       }
       data = await response.json();
-      localStorage.setItem('cursos', JSON.stringify(data));
+      localStorage.setItem('cursosJSON', JSON.stringify(data));
     }
 
     // Verifica se os dados contêm cursos válidos
