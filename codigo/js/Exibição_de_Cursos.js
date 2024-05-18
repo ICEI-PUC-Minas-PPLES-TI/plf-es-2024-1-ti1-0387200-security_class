@@ -222,6 +222,14 @@ function pesquisarCurso(palavraChave) {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
+  const currentPath = window.location.pathname.toLowerCase();
+  console.log('Current Path:', currentPath); // Debugging line
+
+  // Se não estiver na página de descrição, remove o idCursoSelecionado
+  if (!currentPath.endsWith('Descricao_curso.html')) {
+    localStorage.removeItem('idCursoSelecionado');
+  }
+
   const informacoes = await carregarEExtrairJSON('../Data/Cadastro_de_Curso.json');
 
   const idCursoSelecionado = localStorage.getItem('idCursoSelecionado');
@@ -272,11 +280,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // Redefine idCursoSelecionado ao sair da página de descrição
   window.addEventListener('beforeunload', function () {
-    if (window.location.pathname.endsWith('descricao.html')) {
+    if (window.location.pathname.endsWith('Descricao_curso.html')) {
       localStorage.removeItem('idCursoSelecionado');
     }
   });
 });
+
 
 
 
