@@ -92,16 +92,22 @@ function Voltar() {
 }
 
 function obterID() {
-    // Obter o último ID armazenado no localStorage; 
-    // se nenhum ID estiver armazenado, usar 0 como padrão
-    let id = parseInt(localStorage.getItem("id")) || 0;
+    // Recupera os cursos do localStorage
+    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || [];
 
-    // Incrementar o ID em 1 para gerar um novo ID 
-    id += 1;
-    
-    // Armazenar o novo ID de volta no localStorage 
-    // para ser usado na próxima chamada desta função
-    localStorage.setItem("id", id);
+    // Verifica se cursosJSON é realmente um array
+    if (!Array.isArray(cursosJSON)) {
+        cursosJSON = [];
+    }
 
-    return id;
+    // Se não houver cursos cadastrados, retorna 1 como o próximo ID
+    if (cursosJSON.length === 0) {
+        return 1;
+    }
+
+    // Encontra o maior ID entre os cursos
+    let ultimoID = Math.max(...cursosJSON.map(curso => curso.id));
+
+    // Incrementa o ID em 1 para gerar um novo ID
+    return ultimoID + 1;
 }
