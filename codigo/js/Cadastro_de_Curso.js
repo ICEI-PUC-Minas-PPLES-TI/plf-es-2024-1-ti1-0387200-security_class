@@ -38,15 +38,15 @@ form.addEventListener('submit', function(event) {
     // Cria o objeto curso com os valores capturados
     const novoCurso = {
         id: obterID(), // Você pode gerar um ID aleatório aqui se necessário
-        title: titulo,
-        platform: plataforma,
-        description: descricao,
+        titulo: titulo,
+        plataforma: plataforma,
+        descricao: descricao,
         aulas: aulas,
         conclusao: conclusao,
-        recommendation: recomendacao,
-        price: preco,
+        recomendacao: recomendacao,
+        preco: preco,
         link: link,
-        Professor: professor,
+        professor: professor,
         secoes: secoes
     };
 
