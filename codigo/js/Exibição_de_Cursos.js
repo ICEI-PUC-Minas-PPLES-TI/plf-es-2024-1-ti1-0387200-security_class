@@ -244,10 +244,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (botaoVerMais) {
       const dataId = botaoVerMais.getAttribute('data-id');
       const idCurso = dataId ? dataId : '';
-  
+
       if (idCurso) {
         setarIdLocalStorage(idCurso);
-        window.location.href = 'descricao.html';
+        window.location.href = 'Descricao_curso.html';
       }
     }
   });
@@ -267,6 +267,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     const palavraChave = searchInput.value;
     if (palavraChave) {
       pesquisarCurso(palavraChave);
+    }
+  });
+
+  // Redefine idCursoSelecionado ao sair da página de descrição
+  window.addEventListener('beforeunload', function () {
+    if (window.location.pathname.endsWith('descricao.html')) {
+      localStorage.removeItem('idCursoSelecionado');
     }
   });
 });
