@@ -188,6 +188,11 @@ async function criarDiv(id) {
   main.appendChild(section);
 }
 
+// Função para encontrar o curso com o maior ID
+function encontrarCursoComMaiorID(cursos) {
+  return cursos.reduce((maior, curso) => (curso.id > maior.id ? curso : maior), cursos[0]);
+}
+
 // Variável para controlar se a mensagem "Nenhum curso encontrado" foi exibida
 let mensagemExibida = false;
 
@@ -232,11 +237,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const informacoes = await carregarEExtrairJSON('../Data/Cadastro_de_Curso.json');
 
-  const idCursoSelecionado = localStorage.getItem('idCursoSelecionado');
-  if (idCursoSelecionado) {
-    criarDiv(idCursoSelecionado);
-  } else if (!ultimoCursoExibido) {
-    criarDiv(informacoes.courses[0].id);
+  if (informacoes.courses && informacoes.courses.length > 0) {
+    const idCursoSelecionado = localStorage.getItem('idCursoSelecionado');
+    if (idCursoSelecionado) {
+      criarDiv(idCursoSelecionado);
+    } else {
+      const cursoComMaiorID = encontrarCursoComMaiorID(informacoes.courses);
+      criarDiv(cursoComMaiorID.id);
+    }
+  } else {
+    console.error('Nenhum curso disponível para exibição.');
   }
 
   function setarIdLocalStorage(id) {
@@ -285,7 +295,3 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 });
-
-
-
-

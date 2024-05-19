@@ -1,6 +1,6 @@
 // Função para puxar informações do JSON armazenado localmente
 function puxarInformacoesDoJSON(id) {
-    let strDados = localStorage.getItem('cursos');
+    let strDados = localStorage.getItem('cursosJSON');
     let objDados = {};
   
     if (strDados) {
