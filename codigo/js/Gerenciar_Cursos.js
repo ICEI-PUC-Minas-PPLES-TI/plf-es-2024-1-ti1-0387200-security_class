@@ -12,15 +12,16 @@ function carregarDados() {
         fetch('../Data/Cadastro_de_Curso.json')
             .then(response => response.json())
             .then(data => {
-                localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
-                cursosJSON = data.courses;
+                localStorage.setItem('cursosJSON', JSON.stringify(data));
+                cursosJSON = data.courses; // Acessa o array 'courses' dentro dos dados
                 atualizarTabela(cursosJSON);
             })
             .catch(error => console.error('Erro ao carregar cursos:', error));
     } else {
-        atualizarTabela(cursosJSON);
+        atualizarTabela(cursosJSON.courses); // Acessa o array 'courses' dentro dos dados
     }
 }
+
 
 function atualizarTabela(cursosJSON) {
     var tableBody = $('#dataTable tbody');
@@ -61,9 +62,10 @@ function atualizarTabela(cursosJSON) {
 }
 
 function abrirModalEdicao(id) {
-    console.log('ID do curso para editar:', id); // Adicione este console.log para verificar o ID
+console.log('ID do curso para editar:', id); // Adicione este console.log para verificar o ID
     let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
-    let cursoParaEditar = cursosJSON.find(curso => curso.id === id);
+    let cursoParaEditar = cursosJSON.courses.find(curso => curso.id === id); // Acessa o array 'courses' dentro dos dados
+
 
     $('#campoID').val(cursoParaEditar.id);
     $('#campoTitulo').val(cursoParaEditar.titulo);
@@ -104,19 +106,24 @@ function abrirModalEdicao(id) {
 function excluirCurso(id) {
     let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
 
-    cursosJSON = cursosJSON.filter(function(curso) {
-        return curso.id !== id;
-    });
+    if (cursosJSON && cursosJSON.courses && Array.isArray(cursosJSON.courses)) {
+        cursosJSON.courses = cursosJSON.courses.filter(function(curso) {
+            return curso.id !== id;
+        });
 
-    localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
+        localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
 
-    console.log('Curso excluído com sucesso!');
-    console.log('JSON atualizado:', cursosJSON); // Mostra o JSON atualizado no console
+        console.log('Curso excluído com sucesso!');
+        console.log('JSON atualizado:', cursosJSON); // Mostra o JSON atualizado no console
 
-    // Recarrega a tabela após a exclusão
-    atualizarTabela(cursosJSON);
-    recarregarPagina();
+        // Recarrega a tabela após a exclusão
+        atualizarTabela(cursosJSON.courses);
+        recarregarPagina();
+    } else {
+        console.error('Erro ao carregar cursos do localStorage ou cursosJSON não é um array.');
+    }
 }
+
 
 function recarregarPagina() {
     window.location.reload();
