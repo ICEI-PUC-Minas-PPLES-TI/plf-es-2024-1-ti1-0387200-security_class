@@ -3,63 +3,54 @@ let ultimoCursoExibido = null;
 
 // Função assíncrona para carregar o JSON e extrair informações
 async function carregarEExtrairJSON(nomeArquivoJSON) {
-  let informacoesJSON = {};
-
   try {
-    // Verifica se os dados já estão armazenados no localStorage
-    let data;
-    const storedData = localStorage.getItem('cursosJSON');
+    let informacoesJSON = localStorage.getItem('cursosJSON');
 
-    if (storedData) {
-      data = JSON.parse(storedData);
-    } else {
-      // Carrega os dados do JSON se não estiverem no localStorage
+    if (!informacoesJSON) {
       const response = await fetch(nomeArquivoJSON);
       if (!response.ok) {
         throw new Error('Erro ao carregar o JSON: ' + response.statusText);
       }
-      data = await response.json();
-      localStorage.setItem('cursosJSON', JSON.stringify(data));
+      informacoesJSON = await response.json();
+      localStorage.setItem('cursosJSON', JSON.stringify(informacoesJSON));
+    } else {
+      informacoesJSON = JSON.parse(informacoesJSON);
     }
 
-    // Verifica se os dados contêm cursos válidos
-    if (data && data.courses && data.courses.length > 0) {
-      informacoesJSON = data;
+    if (informacoesJSON && informacoesJSON.courses && informacoesJSON.courses.length > 0) {
+      return informacoesJSON;
     } else {
       throw new Error('O JSON não contém dados válidos ou não possui cursos.');
     }
   } catch (error) {
     console.error('Erro ao carregar e extrair informações do JSON:', error.message);
+    throw error;
   }
-
-  return informacoesJSON;
 }
-
 // Função para criar a div do curso
 async function criarDiv(id) {
-  if (!id) {
-    console.error('ID inválido fornecido para criarDiv:', id);
-    return;
-  }
+  try {
+    if (!id) {
+      throw new Error('ID inválido fornecido para criarDiv:', id);
+    }
 
-  if (id === ultimoCursoExibido) {
-    return;
-  }
+    if (id === ultimoCursoExibido) {
+      return;
+    }
 
-  ultimoCursoExibido = id;
+    ultimoCursoExibido = id;
 
-  const divExistente = document.getElementById(`curso-${id}`);
-  if (divExistente) {
-    return;
-  }
+    let divExistente = document.getElementById(`curso-${id}`);
+    if (divExistente) {
+      return;
+    }
 
-  const informacoes = await carregarEExtrairJSON('../Data/Cadastro_de_Curso.json');
-  const curso = informacoes.courses.find(curso => curso.id === id);
+    const informacoes = await carregarEExtrairJSON('../Data/Cadastro_de_Curso.json');
+    const curso = informacoes.courses.find(curso => curso.id === id);
 
-  if (!curso) {
-    console.error(`Curso com ID ${id} não encontrado.`);
-    return;
-  }
+    if (!curso) {
+      throw new Error(`Curso com ID ${id} não encontrado.`);
+    }
 
   const section = document.createElement('section');
   section.className = 'py-5';
@@ -186,6 +177,9 @@ async function criarDiv(id) {
 
   const main = document.querySelector('main');
   main.appendChild(section);
+} catch (error) {
+  console.error(error.message);
+}
 }
 
 // Função para encontrar o curso com o maior ID
@@ -235,18 +229,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     localStorage.removeItem('idCursoSelecionado');
   }
 
-  const informacoes = await carregarEExtrairJSON('../Data/Cadastro_de_Curso.json');
+  try {
+    const informacoes = await carregarEExtrairJSON('../Data/Cadastro_de_Curso.json');
 
-  if (informacoes.courses && informacoes.courses.length > 0) {
-    const idCursoSelecionado = localStorage.getItem('idCursoSelecionado');
-    if (idCursoSelecionado) {
-      criarDiv(idCursoSelecionado);
+    if (informacoes.courses && informacoes.courses.length > 0) {
+      informacoes.courses.forEach(curso => {
+        criarDiv(curso.id);
+      });
     } else {
-      const cursoComMaiorID = encontrarCursoComMaiorID(informacoes.courses);
-      criarDiv(cursoComMaiorID.id);
+      console.error('Nenhum curso disponível para exibição.');
     }
-  } else {
-    console.error('Nenhum curso disponível para exibição.');
+  } catch (error) {
+    console.error('Erro ao carregar informações:', error.message);
   }
 
   function setarIdLocalStorage(id) {

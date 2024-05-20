@@ -4,7 +4,7 @@ if (!localStorage.getItem('cursosJSON')) {
     fetch('../Data/Cadastro_de_Curso.json')
         .then(response => response.json())
         .then(data => {
-            localStorage.setItem('cursosJSON', JSON.stringify(data.courses));
+            localStorage.setItem('cursosJSON', JSON.stringify(data));
         })
         .catch(error => console.error('Erro ao carregar cursos:', error));
 }
@@ -51,17 +51,17 @@ form.addEventListener('submit', function(event) {
     };
 
     // Recupera os cursos do localStorage
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || [];
+    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || { courses: [] };
 
-    // Verifica se cursosJSON é realmente um array
-    if (!Array.isArray(cursosJSON)) {
-        cursosJSON = [];
+    // Verifica se 'courses' é realmente um array
+    if (!Array.isArray(cursosJSON.courses)) {
+        cursosJSON.courses = [];
     }
 
-    // Adiciona o novo curso à lista de cursos
-    cursosJSON.push(novoCurso);
+    // Adiciona o novo curso ao array de cursos
+    cursosJSON.courses.push(novoCurso);
 
-    // Atualiza o localStorage com a lista atualizada de cursos
+    // Atualiza o localStorage com os cursos atualizados
     localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
 
     console.log('Curso cadastrado:', novoCurso); // Mostra o curso cadastrado no console
@@ -93,20 +93,20 @@ function Voltar() {
 
 function obterID() {
     // Recupera os cursos do localStorage
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || [];
+    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || { courses: [] };
 
-    // Verifica se cursosJSON é realmente um array
-    if (!Array.isArray(cursosJSON)) {
-        cursosJSON = [];
+    // Verifica se 'courses' é realmente um array
+    if (!Array.isArray(cursosJSON.courses)) {
+        cursosJSON.courses = [];
     }
 
     // Se não houver cursos cadastrados, retorna 1 como o próximo ID
-    if (cursosJSON.length === 0) {
+    if (cursosJSON.courses.length === 0) {
         return 1;
     }
 
     // Encontra o maior ID entre os cursos
-    let ultimoID = Math.max(...cursosJSON.map(curso => curso.id));
+    let ultimoID = Math.max(...cursosJSON.courses.map(curso => curso.id));
 
     // Incrementa o ID em 1 para gerar um novo ID
     return ultimoID + 1;
