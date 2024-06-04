@@ -63,20 +63,52 @@
                     <label for="usuario">Usuário que está denunciando:</label>
                     <input type="text" id="usuario" name="usuario" required>
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm mt-1" onclick="cadastrarDenuncia()">Enviar
-                    Denúncia</button>
-                    <button onclick="abrirModalExcluir()" class="btn btn-primary btn-sm mt-1">Excluir Denúncia</button>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-sm mt-1" onclick="cadastrarDenuncia()">Enviar
+                        Denúncia</button>
+                    <button type="button" onclick="abrirModalExcluir()" class="btn btn-primary btn-sm mt-1">Excluir
+                        Denúncia</button>
+                    <button type="button" onclick="abrirModalEditar()" class="btn btn-primary btn-sm mt-1">Editar
+                        Denúncia</button>
+                </div>
             </form>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal Excluir -->
         <div id="modalExcluir" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="fecharModalExcluir()">&times;</span>
                 <h2>Selecione uma Denúncia para Excluir</h2>
-                <!-- Seletor de denúncias -->
                 <select id="denunciaSelector"></select>
-                <button onclick="excluirDenuncia()">Excluir Denúncia</button>
+                <button type="button" onclick="excluirDenuncia()">Excluir Denúncia</button>
+            </div>
+        </div>
+
+        <!-- Modal Editar -->
+        <div id="modalEditar" class="modal">
+            <div class="modal-content">
+                <h2>Editar Denúncia</h2>
+                <label for="selectDenuncia">Selecione a denúncia:</label>
+                <select id="selectDenuncia" onchange="preencherFormularioEdicao()">
+                    <option value="">Selecione</option>
+                </select>
+                <form id="formEditar">
+                    <input type="hidden" id="editId" name="id">
+                    <label for="editTitulo">Título:</label>
+                    <input type="text" id="editTitulo" name="titulo" required>
+                    <label for="editDescricao">Descrição:</label>
+                    <textarea id="editDescricao" name="descricao" required></textarea>
+                    <label for="editDenunciadoPor">Denunciado Por:</label>
+                    <input type="text" id="editDenunciadoPor" name="denunciadoPor" required>
+                    <label>Status:</label>
+                    <select id="editStatus" name="status">
+                        <option value="Em análise">Em análise</option>
+                        <option value="Postada">Postada</option>
+                        <option value="Não Aprovada">Não Aprovada</option>
+                    </select>
+                    <button type="button" onclick="salvarEdicao()">Salvar</button>
+                    <button type="button" onclick="fecharModalEditar()">Cancelar</button>
+                </form>
             </div>
         </div>
     </main>

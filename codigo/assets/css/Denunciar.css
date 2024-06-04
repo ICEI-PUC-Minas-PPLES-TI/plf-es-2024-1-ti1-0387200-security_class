@@ -42,7 +42,7 @@ main {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #0510a7;
 }
 
 #selecionarUsuario {
@@ -117,6 +117,7 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+
 .modal {
     display: none;
     position: fixed;
@@ -126,16 +127,26 @@ main {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.5);
 }
+
 
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto;
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
 
 .close {
     color: #aaa;
@@ -149,4 +160,98 @@ main {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#formEditar label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#formEditar input,
+#formEditar textarea,
+#formEditar select,
+#denunciaSelector {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#formEditar textarea {
+    resize: vertical;
+}
+
+#formEditar button,
+.modal-content button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0d6efd;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#formEditar button[type="button"],
+.modal-content button[type="button"] {
+    margin-right: 10px;
+}
+
+#formEditar button:hover,
+.modal-content button:hover {
+    background-color: #0802a1;
+}
+
+#formEditar button[type="button"]:nth-child(2),
+.modal-content button[type="button"]:nth-child(2) {
+    background-color: #f44336;
+}
+
+#formEditar button[type="button"]:nth-child(2):hover,
+.modal-content button[type="button"]:nth-child(2):hover {
+    background-color: #e31b0c;
+}
+
+/* Estilizar os checkboxes como quadrados */
+.status-checkboxes label {
+    display: block;
+    margin-top: 10px;
+}
+
+.status-checkboxes input[type="checkbox"] {
+    display: none;
+}
+
+.status-checkboxes label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.status-checkboxes label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.status-checkboxes input[type="checkbox"]:checked + label:before {
+    background-color: #007bff;
+}
+
+.status-checkboxes input[type="checkbox"]:checked + label:after {
+    content: '\2713';
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    color: #fff;
 }
