@@ -1,211 +1,211 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const commentInput = document.querySelector('.new-comment-section input');
-    const commentButton = document.querySelector('.new-comment-section button');
-    const commentsSection = document.querySelector('.comments-section');
+    const entradaComentario = document.querySelector('.new-comment-section input');
+    const botaoComentario = document.querySelector('.new-comment-section button');
+    const secaoComentarios = document.querySelector('.comments-section');
 
-    // Function to get comments from localStorage
-    function getComments() {
-        const comments = localStorage.getItem('comments');
-        return comments ? JSON.parse(comments) : { comentariosDenuncia: [] };
+    // Função para obter comentários do localStorage
+    function obterComentarios() {
+        const comentarios = localStorage.getItem('comentarios');
+        return comentarios ? JSON.parse(comentarios) : { comentariosDenuncia: [] };
     }
 
-    // Function to save comments to localStorage
-    function saveComments(comments) {
-        localStorage.setItem('comments', JSON.stringify(comments));
+    // Função para salvar comentários no localStorage
+    function salvarComentarios(comentarios) {
+        localStorage.setItem('comentarios', JSON.stringify(comentarios));
     }
 
-    // Function to render comments
-    function renderComments() {
-        const commentsData = getComments();
-        commentsSection.innerHTML = '<h6>Comentários</h6>';
-        commentsData.comentariosDenuncia.forEach(comment => {
-            const commentElement = document.createElement('div');
-            commentElement.classList.add('comment-card', 'card', 'mb-3');
-            const timeElapsed = getTimeElapsed(new Date(comment.dataHora));
-            const canEdit = isWithinOneHour(new Date(comment.dataHora));
-            commentElement.innerHTML = `
+    // Função para renderizar comentários
+    function renderizarComentarios() {
+        const dadosComentarios = obterComentarios();
+        secaoComentarios.innerHTML = '<h6>Comentários</h6>';
+        dadosComentarios.comentariosDenuncia.forEach(comentario => {
+            const elementoComentario = document.createElement('div');
+            elementoComentario.classList.add('comment-card', 'card', 'mb-3');
+            const tempoDecorrido = calcularTempoDecorrido(new Date(comentario.dataHora));
+            const podeEditar = dentroDeUmaHora(new Date(comentario.dataHora));
+            elementoComentario.innerHTML = `
                 <div class="card-body d-flex">
                     <img src="../assets/img/Perfil.jpg" alt="Foto de Usuário" class="rounded-circle me-3" width="50" height="50">
                     <div class="flex-grow-1">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="fw-bold">${comment.autor}</span>
-                                <div class="text-muted small">${timeElapsed}</div>
+                                <span class="fw-bold">${comentario.autor}</span>
+                                <div class="text-muted small">${tempoDecorrido}</div>
                             </div>
-                            <div class="comment-actions d-flex flex-column align-items-end" data-id="${comment.id}">
-                                ${canEdit ? '<span class="edit-comment mb-1" style="cursor:pointer; font-size: 16px;">&#9998;</span>' : ''}
+                            <div class="comment-actions d-flex flex-column align-items-end" data-id="${comentario.id}">
+                                ${podeEditar ? '<span class="edit-comment mb-1" style="cursor:pointer; font-size: 16px;">&#9998;</span>' : ''}
                                 <div class="comment-likes">
                                     <span>&#10084;</span>
-                                    <span>${comment.curtidas}</span>
+                                    <span>${comentario.curtidas}</span>
                                 </div>
                             </div>
                         </div>
-                        <p class="mb-1">${comment.comentario}</p>
+                        <p class="mb-1">${comentario.comentario}</p>
                     </div>
                 </div>
             `;
-            commentsSection.appendChild(commentElement);
+            secaoComentarios.appendChild(elementoComentario);
         });
 
-        // Add event listeners for like buttons
-        document.querySelectorAll('.comment-likes').forEach(likeButton => {
-            likeButton.addEventListener('click', function() {
-                const commentId = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
-                likeComment(commentId);
+        // Adicionar event listeners para botões de curtidas
+        document.querySelectorAll('.comment-likes').forEach(botaoCurtir => {
+            botaoCurtir.addEventListener('click', function() {
+                const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
+                curtirComentario(idComentario);
             });
         });
 
-        // Add event listeners for edit buttons
-        document.querySelectorAll('.edit-comment').forEach(editButton => {
-            editButton.addEventListener('click', function() {
-                const commentId = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
-                editComment(commentId);
+        // Adicionar event listeners para botões de editar
+        document.querySelectorAll('.edit-comment').forEach(botaoEditar => {
+            botaoEditar.addEventListener('click', function() {
+                const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
+                editarComentario(idComentario);
             });
         });
 
-        // Add event listeners for delete buttons
-        document.querySelectorAll('.delete-comment').forEach(deleteButton => {
-            deleteButton.addEventListener('click', function() {
-                const commentId = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
-                deleteComment(commentId);
+        // Adicionar event listeners para botões de deletar
+        document.querySelectorAll('.delete-comment').forEach(botaoDeletar => {
+            botaoDeletar.addEventListener('click', function() {
+                const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
+                deletarComentario(idComentario);
             });
         });
     }
 
-    // Function to add a new comment
-    function addComment() {
-        if (commentInput.value.trim() === "") return; // Avoid empty comments
+    // Função para adicionar um novo comentário
+    function adicionarComentario() {
+        if (entradaComentario.value.trim() === "") return; // Evitar comentários vazios
 
-        const commentsData = getComments();
-        const newComment = {
-            id: commentsData.comentariosDenuncia.length + 1,
+        const dadosComentarios = obterComentarios();
+        const novoComentario = {
+            id: dadosComentarios.comentariosDenuncia.length + 1,
             idDenuncia: 1, // Ajuste conforme necessário
-            autor: "Usuário Atual", 
+            autor: "Usuário Atual",
             dataHora: new Date().toISOString(),
             curtidas: 0,
-            comentario: commentInput.value
+            comentario: entradaComentario.value
         };
-        commentsData.comentariosDenuncia.push(newComment);
-        saveComments(commentsData);
-        renderComments();
-        commentInput.value = '';
+        dadosComentarios.comentariosDenuncia.push(novoComentario);
+        salvarComentarios(dadosComentarios);
+        renderizarComentarios();
+        entradaComentario.value = '';
     }
 
-    // Function to like a comment
-    function likeComment(commentId) {
-        const commentsData = getComments();
-        const comment = commentsData.comentariosDenuncia.find(c => c.id === commentId);
-        if (comment) {
-            comment.curtidas += 1;
-            saveComments(commentsData);
-            renderComments();
+    // Função para curtir um comentário
+    function curtirComentario(idComentario) {
+        const dadosComentarios = obterComentarios();
+        const comentario = dadosComentarios.comentariosDenuncia.find(c => c.id === idComentario);
+        if (comentario) {
+            comentario.curtidas += 1;
+            salvarComentarios(dadosComentarios);
+            renderizarComentarios();
         }
     }
 
-    // Function to edit a comment
-    function editComment(commentId) {
-        const commentsData = getComments();
-        const comment = commentsData.comentariosDenuncia.find(c => c.id === commentId);
-        if (comment) {
-            const commentElement = document.querySelector(`[data-id="${commentId}"]`).closest('.comment-card');
-            const commentTextElement = commentElement.querySelector('p.mb-1');
-            const commentLikesElement = commentElement.querySelector('.comment-likes');
-            const commentActionsElement = commentElement.querySelector('.comment-actions');
-            const editButton = commentActionsElement.querySelector('.edit-comment');
+    // Função para editar um comentário
+    function editarComentario(idComentario) {
+        const dadosComentarios = obterComentarios();
+        const comentario = dadosComentarios.comentariosDenuncia.find(c => c.id === idComentario);
+        if (comentario) {
+            const elementoComentario = document.querySelector(`[data-id="${idComentario}"]`).closest('.comment-card');
+            const textoComentario = elementoComentario.querySelector('p.mb-1');
+            const curtidasComentario = elementoComentario.querySelector('.comment-likes');
+            const acoesComentario = elementoComentario.querySelector('.comment-actions');
+            const botaoEditar = acoesComentario.querySelector('.edit-comment');
 
-            // Hide the edit button, likes, and show delete icon
-            editButton.style.display = 'none';
-            commentLikesElement.style.display = 'none';
-            if (!commentActionsElement.querySelector('.delete-comment')) {
-                const deleteIcon = document.createElement('span');
-                deleteIcon.className = 'delete-comment ms-3';
-                deleteIcon.style.cursor = 'pointer';
-                deleteIcon.style.fontSize = '16px';
-                deleteIcon.innerHTML = '&#128465;';
-                commentActionsElement.appendChild(deleteIcon);
-                deleteIcon.addEventListener('click', function () {
-                    deleteComment(commentId);
+            // Ocultar o botão de editar, curtidas e mostrar ícone de deletar
+            botaoEditar.style.display = 'none';
+            curtidasComentario.style.display = 'none';
+            if (!acoesComentario.querySelector('.delete-comment')) {
+                const iconeDeletar = document.createElement('span');
+                iconeDeletar.className = 'delete-comment ms-3';
+                iconeDeletar.style.cursor = 'pointer';
+                iconeDeletar.style.fontSize = '16px';
+                iconeDeletar.innerHTML = '&#128465;';
+                acoesComentario.appendChild(iconeDeletar);
+                iconeDeletar.addEventListener('click', function () {
+                    deletarComentario(idComentario);
                 });
             }
 
-            // Create an input field to edit the comment
-            const inputField = document.createElement('input');
-            inputField.type = 'text';
-            inputField.className = 'form-control';
-            inputField.value = comment.comentario;
+            // Criar um campo de entrada para editar o comentário
+            const campoEntrada = document.createElement('input');
+            campoEntrada.type = 'text';
+            campoEntrada.className = 'form-control';
+            campoEntrada.value = comentario.comentario;
 
-            // Replace the comment text with the input field
-            commentTextElement.replaceWith(inputField);
+            // Substituir o texto do comentário pelo campo de entrada
+            textoComentario.replaceWith(campoEntrada);
 
-            // Add an event listener to save the edited comment
-            inputField.addEventListener('keypress', function (e) {
+            // Adicionar um event listener para salvar o comentário editado
+            campoEntrada.addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
-                    comment.comentario = inputField.value;
-                    saveComments(commentsData);
-                    renderComments();
+                    comentario.comentario = campoEntrada.value;
+                    salvarComentarios(dadosComentarios);
+                    renderizarComentarios();
                 }
             });
 
-            // Add an event listener to save the edited comment on blur
-            inputField.addEventListener('blur', function () {
-                comment.comentario = inputField.value;
-                saveComments(commentsData);
-                renderComments();
+            // Adicionar um event listener para salvar o comentário editado ao perder o foco
+            campoEntrada.addEventListener('blur', function () {
+                comentario.comentario = campoEntrada.value;
+                salvarComentarios(dadosComentarios);
+                renderizarComentarios();
             });
         }
     }
 
-    // Function to delete a comment
-    function deleteComment(commentId) {
-        const commentsData = getComments();
-        commentsData.comentariosDenuncia = commentsData.comentariosDenuncia.filter(c => c.id !== commentId);
-        saveComments(commentsData);
-        renderComments();
+    // Função para deletar um comentário
+    function deletarComentario(idComentario) {
+        const dadosComentarios = obterComentarios();
+        dadosComentarios.comentariosDenuncia = dadosComentarios.comentariosDenuncia.filter(c => c.id !== idComentario);
+        salvarComentarios(dadosComentarios);
+        renderizarComentarios();
     }
 
-    // Function to calculate time elapsed
-    function getTimeElapsed(postDate) {
-        const now = new Date();
-        const elapsed = now - postDate; // time in milliseconds
+    // Função para calcular o tempo decorrido
+    function calcularTempoDecorrido(dataPostagem) {
+        const agora = new Date();
+        const decorrido = agora - dataPostagem; // tempo em milissegundos
 
-        const seconds = Math.floor(elapsed / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
-        const weeks = Math.floor(days / 7);
-        const months = Math.floor(weeks / 4.35);
-        const years = Math.floor(months / 12);
+        const segundos = Math.floor(decorrido / 1000);
+        const minutos = Math.floor(segundos / 60);
+        const horas = Math.floor(minutos / 60);
+        const dias = Math.floor(horas / 24);
+        const semanas = Math.floor(dias / 7);
+        const meses = Math.floor(semanas / 4.35);
+        const anos = Math.floor(meses / 12);
 
-        if (years > 0) return years + ' ano(s) atrás';
-        if (months > 0) return months + ' mês(es) atrás';
-        if (weeks > 0) return weeks + ' semana(s) atrás';
-        if (days > 0) return days + ' dia(s) atrás';
-        if (hours > 0) return hours + ' hora(s) atrás';
-        if (minutes > 0) return minutes + ' minuto(s) atrás';
-        return seconds + ' segundo(s) atrás';
+        if (anos > 0) return anos + ' ano(s) atrás';
+        if (meses > 0) return meses + ' mês(es) atrás';
+        if (semanas > 0) return semanas + ' semana(s) atrás';
+        if (dias > 0) return dias + ' dia(s) atrás';
+        if (horas > 0) return horas + ' hora(s) atrás';
+        if (minutos > 0) return minutos + ' minuto(s) atrás';
+        return segundos + ' segundo(s) atrás';
     }
 
-    // Function to check if a comment was posted within the last hour
-    function isWithinOneHour(postDate) {
-        const now = new Date();
-        const elapsed = now - postDate; // time in milliseconds
-        const oneHour = 1000 * 60 * 60;
-        return elapsed < oneHour;
+    // Função para verificar se um comentário foi postado na última hora
+    function dentroDeUmaHora(dataPostagem) {
+        const agora = new Date();
+        const decorrido = agora - dataPostagem; // tempo em milissegundos
+        const umaHora = 1000 * 60 * 60;
+        return decorrido < umaHora;
     }
 
-    // Event listener for adding a comment with button
-    commentButton.addEventListener('click', addComment);
+    // Event listener para adicionar um comentário com o botão
+    botaoComentario.addEventListener('click', adicionarComentario);
 
-    // Event listener for adding a comment with Enter key
-    commentInput.addEventListener('keypress', function (e) {
+    // Event listener para adicionar um comentário com a tecla Enter
+    entradaComentario.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
-            addComment();
+            adicionarComentario();
         }
     });
 
-    // Initial render
-    renderComments();
+    // Renderização inicial
+    renderizarComentarios();
 
-    // Update time elapsed every minute
-    setInterval(renderComments, 60000);
+    // Atualizar tempo decorrido a cada minuto
+    setInterval(renderizarComentarios, 60000);
 });
