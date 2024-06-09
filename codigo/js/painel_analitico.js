@@ -161,3 +161,8 @@ function initChart(posts) {
 
 // Chamar a função para inicializar o mapa
 document.addEventListener('DOMContentLoaded', initMap);
+
+function Cadastrar(){
+    window.location.href = "../views/Cadastro_de_Usuario.html";
+
+}
