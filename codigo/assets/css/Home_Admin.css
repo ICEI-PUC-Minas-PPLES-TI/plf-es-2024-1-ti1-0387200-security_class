@@ -1,0 +1,27 @@
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Adiciona animação de aparecimento aos cards */
+.card-animation {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Adiciona estilos quando o mouse passa por cima do card */
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Adiciona estilo ao cursor quando passa por cima do card */
+.card:hover {
+    cursor: pointer;
+}
+
+/* Adiciona estilo de animação ao aparecer o card */
+.card-show {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -1,0 +1,235 @@
+*body{
+    background-color: #f8f9fa;
+}
+main {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 100%;
+}
+
+.cadastro-container {
+    display: flex; /* Adiciona display flex */
+    flex-direction: column; /* Alinha os itens verticalmente */
+    max-width: 900px;
+    padding: 20px;
+    margin: 35px auto ;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.form-control{
+    margin-bottom: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px; /* Aumentado o padding para aumentar o tamanho dos inputs */
+    font-size: 16px; /* Aumentado o tamanho da fonte para melhor legibilidade */
+    border-radius: 6px; /* Aumentado o border-radius para arredondar mais os cantos */
+    border: 1px solid #ced4da;
+}
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0510a7;
+}
+
+#selecionarUsuario {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+h1{
+    font-family: "Roboto", sans-serif;
+    font-size: medium;
+}
+
+h2{
+    font-family: "Roboto", sans-serif;
+    font-size: medium;
+}
+
+form label{
+    font-size: small;
+}
+
+form input{
+    margin-bottom: 2px;
+}
+
+body{
+    background-color: #f8f9fa;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+#cadastroDenuncia {
+    display: flex; 
+    flex-direction: column; 
+    max-width: 450px;
+    width: auto;
+    padding: 40px;
+    margin: 35px auto ;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#deletarDenuncia {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    width: auto;
+    padding: 40px;
+    margin: 35px auto ;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.editarDenuncia {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    width: auto;
+    padding: 40px;
+    margin: 35px auto ;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#formEditar label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#formEditar input,
+#formEditar textarea,
+#formEditar select,
+#denunciaSelector {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#formEditar textarea {
+    resize: vertical;
+}
+
+#formEditar button,
+.modal-content button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0d6efd;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#formEditar button[type="button"],
+.modal-content button[type="button"] {
+    margin-right: 10px;
+}
+
+#formEditar button:hover,
+.modal-content button:hover {
+    background-color: #0802a1;
+}
+
+#formEditar button[type="button"]:nth-child(2),
+.modal-content button[type="button"]:nth-child(2) {
+    background-color: #f44336;
+}
+
+#formEditar button[type="button"]:nth-child(2):hover,
+.modal-content button[type="button"]:nth-child(2):hover {
+    background-color: #e31b0c;
+}
+
+/* Estilizar os checkboxes como quadrados */
+.status-radios {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.status-radios label {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.status-radios input[type="radio"] {
+    margin-right: 5px;
+}
+

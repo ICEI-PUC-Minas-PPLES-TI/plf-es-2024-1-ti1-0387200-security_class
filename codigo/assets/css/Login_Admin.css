@@ -1,0 +1,21 @@
+body{
+    background-color: #f8f9fa;
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 100%;
+}
+
+.login-container {
+    display: flex; /* Adiciona display flex */
+    flex-direction: column; /* Alinha os itens verticalmente */
+    max-width: 400px;
+    padding: 20px;
+    margin: 35px auto ;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
