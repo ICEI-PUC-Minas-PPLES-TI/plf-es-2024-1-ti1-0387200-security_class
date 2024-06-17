@@ -8,8 +8,7 @@
       "tipoGolpe": "Tipo do Golpe",
       "link": "https://exemplo.com/link-do-post",
       "publico": true,
-      "dataPost": "2024-05-07T10:00:00Z",
-      "localizacao": ""
+      "dataPost": "2024-05-07T10:00:00Z"
     }
   ],
   "blacklist": [

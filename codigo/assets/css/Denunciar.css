@@ -2,7 +2,7 @@
     background-color: #f8f9fa;
 }
 main {
-    margin-top: 200px;
+    margin-top: 100px;
     margin-bottom: 100px;
     display: flex;
     justify-content: center;
@@ -217,41 +217,19 @@ main {
 }
 
 /* Estilizar os checkboxes como quadrados */
-.status-checkboxes label {
-    display: block;
+.status-radios {
+    display: flex;
+    justify-content: space-between;
     margin-top: 10px;
 }
 
-.status-checkboxes input[type="checkbox"] {
-    display: none;
+.status-radios label {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
 }
 
-.status-checkboxes label {
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
+.status-radios input[type="radio"] {
+    margin-right: 5px;
 }
 
-.status-checkboxes label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-}
-
-.status-checkboxes input[type="checkbox"]:checked + label:before {
-    background-color: #007bff;
-}
-
-.status-checkboxes input[type="checkbox"]:checked + label:after {
-    content: '\2713';
-    font-size: 14px;
-    position: absolute;
-    top: 2px;
-    left: 5px;
-    color: #fff;
-}

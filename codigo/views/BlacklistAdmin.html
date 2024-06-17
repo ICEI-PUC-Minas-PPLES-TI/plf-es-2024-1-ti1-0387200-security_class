@@ -41,19 +41,27 @@
         </div>
     </nav>
     <main>
-        <h1>Admin - Black List</h1>
-        <table id="blacklistTable" class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Data</th>
-                <th scope="col">URL</th>
-                <th scope="col">Descrição</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Linhas serão adicionadas dinamicamente -->
-            </tbody>
-          </table>
+        <div class="container mt-4">
+            <h1>Admin - Black List</h1>
+            <!-- Barra de busca -->
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <input class="form-control" id="searchInput" type="text" placeholder="Buscar na blacklist..." onkeyup="searchTable()">
+                </div>
+            </div>
+            <table id="blacklistTable" class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">Descrição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Linhas serão adicionadas dinamicamente -->
+                </tbody>
+              </table>
+        </div>
     </main>
     <footer class="footer bg-light">
         <div class="container">

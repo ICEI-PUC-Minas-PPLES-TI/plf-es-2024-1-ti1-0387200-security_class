@@ -101,18 +101,24 @@
                     <label for="editDenunciadoPor">Denunciado Por:</label>
                     <input type="text" id="editDenunciadoPor" name="denunciadoPor" required>
                     <label>Status:</label>
-                    <select id="editStatus" name="status">
-                        <option value="Em análise">Em análise</option>
-                        <option value="Postada">Postada</option>
-                        <option value="Não Aprovada">Não Aprovada</option>
-                    </select>
+                    <div class="status-radios">
+                        <label>
+                            <input type="radio" name="status" value="Em análise"> Em análise
+                        </label>
+                        <label>
+                            <input type="radio" name="status" value="Postada"> Postada
+                        </label>
+                        <label>
+                            <input type="radio" name="status" value="Não Aprovada"> Não Aprovada
+                        </label>
+                    </div>
                     <button type="button" onclick="salvarEdicao()">Salvar</button>
                     <button type="button" onclick="fecharModalEditar()">Cancelar</button>
                 </form>
             </div>
         </div>
     </main>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br>
     <footer class="footer bg-light">
         <div class="container">
             <div class="row">

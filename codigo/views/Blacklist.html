@@ -41,7 +41,15 @@
         </div>
     </nav>
     <main>
-        <table id="blacklistTable" class="table">
+        <!-- Barra de busca -->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <input class="form-control" id="searchInput" type="text" placeholder="Buscar na blacklist..." onkeyup="searchTable()">
+                </div>
+            </div>
+        </div>
+        <table id="blacklistTable" class="table mt-3">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Data</th>
@@ -51,6 +59,16 @@
             </thead>
             <tbody>
               <!-- Linhas serão adicionadas dinamicamente -->
+              <tr>
+                <td>2023-01-01</td>
+                <td>http://example.com</td>
+                <td>Exemplo de descrição</td>
+              </tr>
+              <tr>
+                <td>2023-02-01</td>
+                <td>http://example2.com</td>
+                <td>Outro exemplo de descrição</td>
+              </tr>
             </tbody>
           </table>
         <br>
@@ -91,5 +109,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../js/Black_list.js"></script>
+    <script>
+    </script>
 </body>
 </html>

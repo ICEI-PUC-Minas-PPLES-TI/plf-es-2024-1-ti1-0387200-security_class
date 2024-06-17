@@ -1,17 +1,17 @@
 // Função para cadastrar a denúncia
 function cadastrarDenuncia() {
-    var titulo = document.getElementById('titulo').value;
-    var descricao = document.getElementById('descricao').value;
-    var usuario = document.getElementById('usuario').value;
+    let titulo = document.getElementById('titulo').value;
+    let descricao = document.getElementById('descricao').value;
+    let usuario = document.getElementById('usuario').value;
 
-    var denuncias = JSON.parse(localStorage.getItem('denuncias')) || [];
+    let denuncias = JSON.parse(localStorage.getItem('denuncias')) || [];
 
-    var novoId = 1;
+    let novoId = 1;
     if (denuncias.length > 0) {
         novoId = Math.max(...denuncias.map(denuncia => denuncia.id)) + 1;
     }
 
-    var novaDenuncia = {
+    let novaDenuncia = {
         id: novoId,
         titulo: titulo,
         descricao: descricao,
@@ -23,24 +23,24 @@ function cadastrarDenuncia() {
     localStorage.setItem('denuncias', JSON.stringify(denuncias));
     alert('Denúncia cadastrada com sucesso!');
     console.log('Denúncia cadastrada com sucesso!');
-    document.querySelector('form').reset(); // Corrigido para selecionar o formulário correto
+    document.querySelector('form').reset();
     window.location.href = 'Denunciar.html';
 }
 
 // Função para preencher o seletor de denúncias
 function preencherSelectorDenuncias() {
-    var denuncias = JSON.parse(localStorage.getItem('denuncias')) || [];
-    var select = document.getElementById('denunciaSelector');
+    let denuncias = JSON.parse(localStorage.getItem('denuncias')) || [];
+    let select = document.getElementById('denunciaSelector');
 
     select.innerHTML = '';
 
-    var option = document.createElement('option');
+    let option = document.createElement('option');
     option.value = '';
     option.textContent = 'Selecione uma denúncia';
     select.appendChild(option);
 
     denuncias.forEach(function(denuncia) {
-        var option = document.createElement('option');
+        let option = document.createElement('option');
         option.value = denuncia.id;
         option.textContent = 'ID: ' + denuncia.id + ' - ' + denuncia.titulo;
         select.appendChild(option);
@@ -49,20 +49,18 @@ function preencherSelectorDenuncias() {
 
 // Função para excluir a denúncia selecionada
 function excluirDenuncia() {
-    var select = document.getElementById('denunciaSelector');
-    var idSelecionado = select.value;
+    let select = document.getElementById('denunciaSelector');
+    let idSelecionado = select.value;
 
     if (idSelecionado) {
-        var confirmacao = confirm('Tem certeza que deseja excluir esta denúncia?');
+        let confirmacao = confirm('Tem certeza que deseja excluir esta denúncia?');
 
         if (confirmacao) {
-            var denuncias = JSON.parse(localStorage.getItem('denuncias')) || [];
+            let denuncias = JSON.parse(localStorage.getItem('denuncias')) || [];
 
-            var denunciasRestantes = denuncias.filter(function(denuncia) {
+            let denunciasRestantes = denuncias.filter(function(denuncia) {
                 return denuncia.id !== parseInt(idSelecionado);
             });
-
-            localStorage.removeItem(idSelecionado);
 
             localStorage.setItem('denuncias', JSON.stringify(denunciasRestantes));
 
@@ -79,7 +77,7 @@ function excluirDenuncia() {
 
 // Função para abrir o modal Excluir
 function abrirModalExcluir() {
-    preencherSelectorDenuncias(); // Preencher o seletor de denúncias ao abrir o modal
+    preencherSelectorDenuncias();
     document.getElementById('modalExcluir').style.display = 'block';
 }
 
@@ -119,7 +117,11 @@ function preencherFormularioEdicao() {
             document.getElementById('editTitulo').value = item.titulo;
             document.getElementById('editDescricao').value = item.descricao;
             document.getElementById('editDenunciadoPor').value = item.denunciadoPor;
-            document.getElementById('editStatus').value = item.status;
+
+            const statusRadios = document.querySelectorAll('input[name="status"]');
+            statusRadios.forEach(radio => {
+                radio.checked = (radio.value === item.status);
+            });
         }
     } else {
         document.getElementById('formEditar').reset();
@@ -128,16 +130,16 @@ function preencherFormularioEdicao() {
 
 // Função para salvar a edição
 function salvarEdicao() {
-    const id = document.getElementById('editId').value;
+    const id = parseInt(document.getElementById('editId').value);
     const titulo = document.getElementById('editTitulo').value;
     const descricao = document.getElementById('editDescricao').value;
     const denunciadoPor = document.getElementById('editDenunciadoPor').value;
-    const status = document.getElementById('editStatus').value;
+    const status = document.querySelector('input[name="status"]:checked').value;
 
     let denuncias = JSON.parse(localStorage.getItem('denuncias')) || [];
 
     denuncias = denuncias.map(denuncia => {
-        if (denuncia.id == id) {
+        if (denuncia.id === id) {
             return {
                 id: id,
                 titulo: titulo,
