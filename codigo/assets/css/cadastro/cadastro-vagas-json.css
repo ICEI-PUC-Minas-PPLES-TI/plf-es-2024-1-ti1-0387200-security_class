@@ -1,0 +1,37 @@
+body {
+    display: grid;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  form {
+    margin-bottom: 20px;
+  }
+  .stored-data {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  .stored-data h3 {
+    margin-top: 0;
+  }
+  .stored-data p {
+    margin: 5px 0;
+  }
+  .key {
+    color: #d19a66;
+  }
+  .string {
+    color: #98c379;
+  }
+  .number {
+    color: #d19a66;
+  }
+  .boolean {
+    color: #56b6c2;
+  }
+  .null {
+    color: #e06c75;
+  }

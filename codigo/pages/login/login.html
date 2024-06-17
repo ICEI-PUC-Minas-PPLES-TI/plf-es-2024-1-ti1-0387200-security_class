@@ -9,39 +9,11 @@
 </head>
 <body>
 
-  <!-- Navbar dinamico -->
-  <header class="header"></header>
+  <!-- Botão de login -->
+  <button type="button" class="btn btn-primary" onclick="openLoginModal()">
+    Login
+  </button>
 
-
-  <!-- Conteúdo principal -->
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col-md-8">
-        <h2>Bem-vindo à RDEP</h2>
-        <p>Aqui na RDEP, Realizamos o contato do prestador de serviços com empresas que precisam</p>
-        <h3>Últimas Notícias</h3>
-        <ul>
-          <li><a href="#">Mais de 500 Ex presidiarios utilizam a plataforma para procurar empregos</a></li>
-          <li><a href="#">Evento de networking: Junte-se a nós para uma oportunidade única de conexão</a></li>
-          <li><a href="#">Promoção especial: Descontos exclusivos por tempo limitado</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <h3>Entre em Contato</h3>
-        <p>Telefone: (99) 9999-9999</p>
-        <p>E-mail: contato@RDEP.com</p>
-        <h3>Redes Sociais</h3>
-        <ul>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Instagram</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-   <!-- Footer dinamico -->
-  <footer class="footer"></footer>
 
   <!-- Modal de login -->
   <div class="modal" id="loginModal">
@@ -64,7 +36,8 @@
             <input type="submit" value="Acessar" class="btn btn-primary mt-3" />
           </form>
           <p class="mt-2">Não tem um login? <a href="/codigo/pages/cadastro/cadastro.html">Cadastrar-se</a></p>
-        </div> 
+        </div>
+        
       </div>
     </div>
   </div>
@@ -73,11 +46,11 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
   <script>
-     function openLoginModal() {
-    $('#loginModal').modal('show');
-  }
+function openLoginModal() {
+  $('#loginModal').modal('show');
+}
   </script>
-  <script src="./assets/js/main.js"></script>
 </body>
 </html>

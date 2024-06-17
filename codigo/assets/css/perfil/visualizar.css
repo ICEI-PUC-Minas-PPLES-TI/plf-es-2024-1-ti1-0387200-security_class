@@ -1,0 +1,71 @@
+/* Define a fonte padrão para o corpo do documento */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estiliza o elemento principal */
+main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estiliza o título principal */
+main h1 {
+    text-align: center;
+    color: #333333;
+}
+
+/* Estiliza os links */
+main a {
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Estiliza a lista de dados armazenados */
+#storedDataList {
+    margin-top: 20px;
+}
+
+/* Estiliza as linhas e colunas */
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.col-md-12 {
+    flex: 1;
+}
+
+/* Estiliza os cartões */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px 0;
+}
+
+/* Estiliza os parágrafos dentro dos cartões */
+.card p {
+    margin: 0;
+    padding: 5px 0;
+    color: #555555;
+}
+
+/* Estiliza os textos em negrito */
+.card p strong {
+    color: #333333;
+}
