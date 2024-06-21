@@ -1,13 +1,17 @@
 // Função para verificar se há dados no localStorage 
-function verificarDadosLocalStorage() {
+async function verificarDadosLocalStorage() {
     if (!localStorage.getItem('postagens')) {
-        fetch('dados.json')
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem('postagens', JSON.stringify(data));
-                adicionarLinhasTabela(); // Atualizar a tabela após carregar dados
-            })
-            .catch(error => console.error('Erro ao carregar dados:', error));
+        try {
+            const response = await fetch('http://localhost:3000/blacklist');
+            if (!response.ok) {
+                throw new Error('Erro ao carregar dados');
+            }
+            const data = await response.json();
+            localStorage.setItem('postagens', JSON.stringify(data));
+            adicionarLinhasTabela(); // Atualizar a tabela após carregar dados
+        } catch (error) {
+            console.error('Erro ao carregar dados:', error);
+        }
     } else {
         adicionarLinhasTabela(); // Atualizar a tabela se já houver dados
     }
@@ -28,11 +32,11 @@ function adicionarLinhasTabela() {
     });
 }
 
-
 window.onload = function() {
     verificarDadosLocalStorage();
 };
-//Codigo que faz a busca na barra de busca
+
+// Código que faz a busca na barra de busca
 function searchTable() {
     var input, filter, table, tr, td, i, j, txtValue;
     input = document.getElementById("searchInput");
@@ -53,4 +57,13 @@ function searchTable() {
         }
     }
 }
-
+function verificarLogin() {
+    const user = sessionStorage.getItem("user");
+    if (!user) {
+      window.location.href = "../views/login.html";
+    }
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    verificarLogin(); 
+  
+  });

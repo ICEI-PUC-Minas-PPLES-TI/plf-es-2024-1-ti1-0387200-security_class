@@ -128,6 +128,40 @@
       "publico": true,
       "dataPost": "2024-06-19T04:56:52.556Z",
       "localizacao": "-19.9213666, -43.9341315"
+    },
+    {
+      "id": "8edf",
+      "idUsuario": "1",
+      "titulo": "Inteligencia artificial",
+      "tipoGolpe": "scam",
+      "descricao": "Fui scamado",
+      "link": "https://www.figma.com/file/00Zv1xsk6vGzwMRtS4ZyTj/SecurityClass.com?type=design&node-id=20-2&mode=design&t=cbq3ErrZa6yDoj8C-0",
+      "publico": true,
+      "dataPost": "2024-06-21T17:38:15.347Z",
+      "localizacao": "-19.9213666, -43.9341315"
+    },
+    {
+      "id": "ac18",
+      "idUsuario": "c3ba",
+      "titulo": "Mercado Livre Falso",
+      "tipoGolpe": "fraude",
+      "descricao": "Uma pagina do mercado livre falsa",
+      "link": "https://chatuba.com",
+      "publico": true,
+      "dataPost": "2024-06-21T17:42:38.262Z",
+      "localizacao": "-19.9213666, -43.9341315"
+    },
+    {
+      "id": "c017",
+      "idUsuario": "c3ba",
+      "nickname": "vg",
+      "titulo": "Propaganda",
+      "tipoGolpe": "phishing",
+      "descricao": "teste",
+      "link": "https://chatgpt.com/c/6f96be0c-a0bb-420c-8e54-1ae193478255",
+      "publico": true,
+      "dataPost": "2024-06-21T17:48:34.240Z",
+      "localizacao": "-19.9244704, -43.9380218"
     }
   ],
   "blacklist": [
@@ -149,6 +183,17 @@
       "sexo": "Masculino",
       "email": "email@example.com",
       "senha": "senha123"
+    },
+    {
+      "id": "c3ba",
+      "nome": "Víctor Gabriel  ",
+      "sobrenome": "cruz",
+      "nickname": "vg",
+      "idade": "18",
+      "celular": "38998968898",
+      "sexo": "masculino",
+      "email": "cruzpereiravictorgabriel@gmail.com",
+      "senha": "123"
     }
   ],
   "admins": [

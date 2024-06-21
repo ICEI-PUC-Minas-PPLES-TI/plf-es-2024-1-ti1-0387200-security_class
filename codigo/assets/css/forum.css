@@ -1,0 +1,67 @@
+/* Estilo customizado para o fórum */
+
+body {
+    background-color: #f8f9fa;
+}
+
+header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+main {
+    margin-top: 20px;
+}
+
+.card-header {
+    background-color: #ffffff;
+    font-weight: bold;
+    border-bottom: 2px solid #f1f1f1;
+}
+
+.list-group-item {
+    font-size: 14px;
+    padding: 10px 15px;
+}
+
+#forumCards .card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#forumCards .card-body {
+    padding: 20px;
+}
+
+#forumCards .card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#forumCards .card-text {
+    font-size: 14px;
+    color: #555;
+}
+
+#forumCards .btn {
+    margin-top: 10px;
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+#searchInput {
+    margin-bottom: 20px;
+}
+
+button {
+    margin: 5px;
+}

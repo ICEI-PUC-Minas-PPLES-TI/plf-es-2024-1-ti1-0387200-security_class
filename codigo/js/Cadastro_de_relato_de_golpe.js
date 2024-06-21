@@ -1,25 +1,24 @@
 // Capturar o ID do usuário da sessionStorage ou do primeiro usuário disponível em Cadastro_de_Usuario
-let usuarioSession = sessionStorage.getItem("usuario");
+let usuarioSession = sessionStorage.getItem("user");
 let usuario;
 
 if (usuarioSession) {
+    console.log("Usuário logado encontrado na sessão:", usuarioSession);
     usuario = JSON.parse(usuarioSession);
 } else {
+    console.log("Nenhum usuário logado encontrado na sessão.");
     let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario')) || [];
     if (usuarios.length > 0) {
+        console.log("Usuários encontrados no localStorage:", usuarios);
         usuario = usuarios[0];
     } else {
         alert('Não há usuários cadastrados para criar um post.');
-        // Você pode adicionar lógica adicional aqui, como redirecionar para a página de cadastro de usuário
+        // Adicione lógica adicional aqui, como redirecionar para a página de cadastro de usuário
+        window.location.href = "../views/login.html";
     }
 }
 
-// Função para obter o próximo ID
-function proximoId() {
-    let posts = JSON.parse(localStorage.getItem('postagens')) || [];
-    let nextId = posts.length + 1;
-    return nextId;
-}
+console.log("Usuário final:", usuario);
 
 // Função para capturar a localização
 function capturarLocalizacao(callback) {
@@ -40,22 +39,23 @@ function capturarLocalizacao(callback) {
     }
 }
 
-// Adicionar evento de submissão ao formulário de cadastro de post
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('cadastroPostForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
         let idUsuario = usuario.id;
+        let nickname = usuario.nickname
         let titulo = document.getElementById('titulo').value;
         let tipoGolpe = document.getElementById('tipoGolpe').value;
+        console.log(tipoGolpe)
         let descricao = document.getElementById('descricao').value;
         let link = document.getElementById('link').value;
         let publico = document.getElementById('publico').checked;
 
         capturarLocalizacao((localizacao) => {
             let novoPost = {
-                "id": proximoId(),
                 "idUsuario": idUsuario,
+                "nickname": nickname,
                 "titulo": titulo,
                 "tipoGolpe": tipoGolpe,
                 "descricao": descricao,
@@ -65,13 +65,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 "localizacao": localizacao
             };
 
-            let posts = JSON.parse(localStorage.getItem('postagens')) || [];
-
-            posts.push(novoPost);
-            localStorage.setItem('postagens', JSON.stringify(posts));
-
-            alert('Post cadastrado com sucesso!');
-            document.getElementById('cadastroPostForm').reset();
+            fetch('http://localhost:3000/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(novoPost),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Post cadastrado com sucesso!');
+                document.getElementById('cadastroPostForm').reset();
+            })
+            .catch(error => {
+                console.error('Erro ao cadastrar post:', error);
+            });
         });
     });
 });
+function verificarLogin() {
+    const user = sessionStorage.getItem("user");
+    if (!user) {
+      window.location.href = "../views/login.html";
+    }
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    verificarLogin(); 
+  
+  });

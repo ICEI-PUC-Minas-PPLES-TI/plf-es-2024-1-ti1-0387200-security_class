@@ -1,14 +1,3 @@
-// Verifica se a chave 'cursosJSON' está vazia ou não existe no localStorage
-if (!localStorage.getItem('cursosJSON')) {
-    // Se estiver vazia ou não existir, carrega os dados do JSON e salva no localStorage
-    fetch('../Data/Cadastro_de_Curso.json')
-        .then(response => response.json())
-        .then(data => {
-            localStorage.setItem('cursosJSON', JSON.stringify(data));
-        })
-        .catch(error => console.error('Erro ao carregar cursos:', error));
-}
-
 // Adiciona um listener para o evento de envio do formulário
 const form = document.querySelector("form");
 let numSecoes = 1;
@@ -37,7 +26,6 @@ form.addEventListener('submit', function(event) {
 
     // Cria o objeto curso com os valores capturados
     const novoCurso = {
-        id: obterID(), // Você pode gerar um ID aleatório aqui se necessário
         titulo: titulo,
         plataforma: plataforma,
         descricao: descricao,
@@ -50,23 +38,22 @@ form.addEventListener('submit', function(event) {
         secoes: secoes
     };
 
-    // Recupera os cursos do localStorage
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || { courses: [] };
-
-    // Verifica se 'courses' é realmente um array
-    if (!Array.isArray(cursosJSON.courses)) {
-        cursosJSON.courses = [];
-    }
-
-    // Adiciona o novo curso ao array de cursos
-    cursosJSON.courses.push(novoCurso);
-
-    // Atualiza o localStorage com os cursos atualizados
-    localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
-
-    console.log('Curso cadastrado:', novoCurso); // Mostra o curso cadastrado no console
-
-    form.reset(); // Limpa o formulário após o cadastro
+    // Faz uma requisição POST para o JSON Server para adicionar o novo curso
+    fetch('http://localhost:3000/courses', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(novoCurso),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Curso cadastrado:', data); // Mostra o curso cadastrado no console
+        form.reset(); // Limpa o formulário após o cadastro
+    })
+    .catch(error => {
+        console.error('Erro ao cadastrar curso:', error);
+    });
 });
 
 // Função para adicionar dinamicamente os campos de numeração e descrição das seções
@@ -89,25 +76,4 @@ function adicionarSecao() {
 // Função para voltar à página anterior
 function Voltar() {
     window.location.href = "../views/Home_Admin.html";
-}
-
-function obterID() {
-    // Recupera os cursos do localStorage
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON')) || { courses: [] };
-
-    // Verifica se 'courses' é realmente um array
-    if (!Array.isArray(cursosJSON.courses)) {
-        cursosJSON.courses = [];
-    }
-
-    // Se não houver cursos cadastrados, retorna 1 como o próximo ID
-    if (cursosJSON.courses.length === 0) {
-        return 1;
-    }
-
-    // Encontra o maior ID entre os cursos
-    let ultimoID = Math.max(...cursosJSON.courses.map(curso => curso.id));
-
-    // Incrementa o ID em 1 para gerar um novo ID
-    return ultimoID + 1;
 }

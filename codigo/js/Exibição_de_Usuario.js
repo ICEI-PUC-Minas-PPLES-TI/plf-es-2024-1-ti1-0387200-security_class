@@ -1,62 +1,41 @@
-function fechar(){
+function fechar() {
     window.location.reload();
 }
-//Seção admin
+
 document.addEventListener("DOMContentLoaded", function () {
+    // Verificar se há um admin na sessão
     const adminSession = sessionStorage.getItem("admin");
     const admin = JSON.parse(adminSession);
-  
-    if (admin) {
-      console.log("ID do admin:", admin.id);
-      console.log("Email do admin:", admin.email);
-    } else {
-      window.location.href = "../Login_Admin/index.html";
-    }
-  });
-//Função de fechar do modal
-function fechar(){
-    window.location.reload();
-}
-//Função que coleta os dados do modal, e adiciona eventos aos botões presentes na tabela
-$(document).ready(function() {
-    carregarDados();
-    console.log('Conteúdo do localStorage:', localStorage.getItem('Cadastro_de_Usuario'));
-    
-    // Evento de clique no botão de editar
-    $(document).on('click', '.editar', function() {
-        var id = $(this).data('id');
-        console.log(id)
-        abrirModalEdicao(id);
-    });
-    
-    // Evento de clique no botão de excluir
-    $(document).on('click', '.excluir', function() {
-        var id = $(this).data('id');
-        excluirUsuario(id);
-        carregarDados(); // Recarregar a tabela após excluir o usuário
 
-    });
+    if (admin) {
+        console.log("ID do admin:", admin.id);
+        console.log("Email do admin:", admin.email);
+    } else {
+        window.location.href = "../Login_Admin/index.html";
+    }
 });
 
-// Função para carregar os dados da tabela
-function carregarDados() {
-    let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
-    console.log(usuarios)
-    if (!usuarios) {
-        $.getJSON('../data/Cadastro_de_Usuario.json', function(data) {
-            usuarios = data.usuarios;
-            atualizarTabela(usuarios);
-        });
-    } else {
+// Função para carregar os dados dos usuários do JSON Server
+async function carregarDados() {
+    try {
+        const response = await fetch('http://localhost:3000/usuarios');
+        if (!response.ok) {
+            throw new Error('Erro ao carregar os dados dos usuários');
+        }
+        const usuarios = await response.json();
+        console.log('Conteúdo do JSON Server:', usuarios);
         atualizarTabela(usuarios);
+    } catch (error) {
+        console.error('Erro ao carregar dados:', error.message);
     }
 }
-//Função para atualizar a tabela
+
+// Função para atualizar a tabela com os dados dos usuários
 function atualizarTabela(usuarios) {
     var tableBody = $('#dataTable tbody');
     tableBody.empty();
 
-    $.each(usuarios, function(index, usuario) {
+    usuarios.forEach(usuario => {
         var newRow = '<tr>' +
             '<td>' + usuario.id + '</td>' +
             '<td>' + usuario.nome + '</td>' +
@@ -76,73 +55,73 @@ function atualizarTabela(usuarios) {
         tableBody.append(newRow);
     });
 }
-//Função para abri o modal
-function abrirModalEdicao(id) {
 
-    let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
-    let usuarioParaEditar = usuarios.find(usuario => usuario.id === String(id)); // Convertendo para string antes de comparar
-    $('#campoID').val(usuarioParaEditar.id);
-    $('#campoNome').val(usuarioParaEditar.nome);
-    $('#campoSobrenome').val(usuarioParaEditar.sobrenome);
-    $('#campoNickname').val(usuarioParaEditar.nickname);
-    $('#campoCelular').val(usuarioParaEditar.celular);
-    $('#campoIdade').val(usuarioParaEditar.idade);
-    $('#campoSexo').val(usuarioParaEditar.sexo);
-    $('#campoEmail').val(usuarioParaEditar.email);
-    $('#campoSenha').val(usuarioParaEditar.senha);
+// Função para abrir o modal de edição com os dados do usuário selecionado
+async function abrirModalEdicao(id) {
+    try {
+        const response = await fetch(`http://localhost:3000/usuarios/${id}`);
+        if (!response.ok) {
+            throw new Error('Erro ao carregar usuário para edição');
+        }
+        const usuarioParaEditar = await response.json();
 
-    var modal = new bootstrap.Modal(document.getElementById('modalEdicao'));
-    modal.show();
-}
-//Função para atualizar os dados do usuario
-function atualizarUsuario(usuarioAtualizado) {
-    let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
+        $('#campoID').val(usuarioParaEditar.id);
+        $('#campoNome').val(usuarioParaEditar.nome);
+        $('#campoSobrenome').val(usuarioParaEditar.sobrenome);
+        $('#campoNickname').val(usuarioParaEditar.nickname);
+        $('#campoCelular').val(usuarioParaEditar.celular);
+        $('#campoIdade').val(usuarioParaEditar.idade);
+        $('#campoSexo').val(usuarioParaEditar.sexo);
+        $('#campoEmail').val(usuarioParaEditar.email);
+        $('#campoSenha').val(usuarioParaEditar.senha);
 
-    // Encontrar o índice do usuário no array
-    const index = usuarios.findIndex(usuario => usuario.id === usuarioAtualizado.id);
-
-    // Verificar se o usuário foi encontrado
-    if (index !== -1) {
-        // Atualizar os dados do usuário
-        usuarios[index] = usuarioAtualizado;
-        localStorage.setItem('Cadastro_de_Usuario', JSON.stringify(usuarios));
-        console.log('Usuário atualizado com sucesso!');
-    } else {
-        // Adicionar o usuário se não for encontrado
-        usuarios.push(usuarioAtualizado);
-        localStorage.setItem('Cadastro_de_Usuario', JSON.stringify(usuarios));
-        console.log('Novo usuário adicionado com sucesso!');
+        var modal = new bootstrap.Modal(document.getElementById('modalEdicao'));
+        modal.show();
+    } catch (error) {
+        console.error('Erro ao abrir modal de edição:', error.message);
     }
 }
-//Função para adicionar o usuario que foi editado
-function adicionarUsuario(usuario) {
-    let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
-    usuarios.push(usuario);
-    localStorage.setItem('Cadastro_de_Usuario', JSON.stringify(usuarios));
-    
-    console.log('Novo usuário adicionado com sucesso!');
-    console.log('JSON atualizado:', usuarios); // Mostra o JSON atualizado no console
 
-}
-//Função que exclui o usuario
-function excluirUsuario(id) {
-    let usuarios = JSON.parse(localStorage.getItem('Cadastro_de_Usuario'));
-
-    usuarios = usuarios.filter(function(usuario) {
-        return usuario.id !== String(id); // Convertendo para string antes de comparar
-  });
-
-    localStorage.setItem('Cadastro_de_Usuario', JSON.stringify(usuarios));
-
-    console.log('Usuário excluído com sucesso!');
+// Função para atualizar os dados do usuário no JSON Server
+async function atualizarUsuario(usuarioAtualizado) {
+    try {
+        const response = await fetch(`http://localhost:3000/usuarios/${usuarioAtualizado.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(usuarioAtualizado),
+        });
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar usuário');
+        }
+        console.log('Usuário atualizado com sucesso!');
+        window.location.reload();
+    } catch (error) {
+        console.error('Erro ao atualizar usuário:', error.message);
+    }
 }
 
-//Função que ao precnher o formulario de edição o antigo usuario é apagado e um novo com os dados
-//do que foi apagado porem com as edições feitas é criado
+// Função para excluir um usuário do JSON Server
+async function excluirUsuario(id) {
+    try {
+        const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+            method: 'DELETE',
+        });
+        if (!response.ok) {
+            throw new Error('Erro ao excluir usuário');
+        }
+        console.log('Usuário excluído com sucesso!');
+        window.location.reload();
+    } catch (error) {
+        console.error('Erro ao excluir usuário:', error.message);
+    }
+}
+
 document.getElementById('formEdicao').addEventListener('submit', function(event) {
     event.preventDefault(); 
+
     const id = document.getElementById('campoID').value.trim();
-    console.log(id);
     const nome = document.getElementById('campoNome').value;
     const sobrenome = document.getElementById('campoSobrenome').value;
     const nickname = document.getElementById('campoNickname').value;
@@ -151,9 +130,6 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
     const sexo = document.getElementById('campoSexo').value;
     const email = document.getElementById('campoEmail').value;
     const senha = document.getElementById('campoSenha').value;
-    
-    // Exclui o usuário antes de atualizar
-    excluirUsuario(id);
     
     const usuarioAtualizado = {
         id: id,
@@ -167,11 +143,23 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
         senha: senha
     };
 
-    // Atualizar o usuário no localStorage
+    // Atualizar o usuário no JSON Server
     atualizarUsuario(usuarioAtualizado);
-
-    window.location.reload();
 });
 
-
-
+// Chamar a função para carregar os dados quando o DOM estiver pronto
+$(document).ready(function() {
+    carregarDados();
+    
+    // Evento de clique no botão de editar
+    $(document).on('click', '.editar', function() {
+        var id = $(this).data('id');
+        abrirModalEdicao(id);
+    });
+    
+    // Evento de clique no botão de excluir
+    $(document).on('click', '.excluir', function() {
+        var id = $(this).data('id');
+        excluirUsuario(id);
+    });
+});

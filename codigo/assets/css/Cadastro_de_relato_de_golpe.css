@@ -1,83 +1,30 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
+    background-color: #f8f9fa;
 }
-
-.navbar {
-    background-color: #fff;
-    color: #333;
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+main {
+    margin-top: 50px;
 }
-
-.navbar-brand img {
-    max-height: 50px;
-}
-
-.navbar-nav .nav-link {
-    color: #333;
-    margin-right: 15px;
-}
-
-.btn-primary {
-    background-color: #007BFF;
-    color: #fff;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-}
-
-.main-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 50px auto;
-}
-
 h1 {
     text-align: center;
-    color: #333;
+    margin-bottom: 40px;
 }
-
-form label {
-    display: block;
-    margin-top: 10px;
-    color: #555;
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-input[type="text"],
-input[type="url"],
-textarea {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+.form-control:focus {
+    box-shadow: none;
 }
-
-input[type="checkbox"] {
-    margin-top: 10px;
+.form-check-label {
+    margin-left: 5px;
 }
-
-button[type="submit"] {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
+.btn-primary, .btn-danger {
+    width: 100px;
+    margin: 5px;
+}
+.btn-success {
     width: 100%;
-    font-size: 16px;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
+    margin-top: 20px;
 }

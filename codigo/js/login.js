@@ -1,49 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); 
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    let usuarios = JSON.parse(localStorage.getItem("Cadastro_de_Usuario"));
-
-    if (!usuarios) {
-      fetch("../Data/bd.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const user = data.usuarios.find(
-            (usuario) => usuario.email === email && usuario.senha === password
-          );
-
-          if (user) {
-            // Cria uma sessão do usuário
-            sessionStorage.setItem("user", JSON.stringify(user));
-            alert("Login realizado com sucesso!");
-            // Redireciona para a página de usuário
-            window.location.href = "../views/Home_User.html";
-          } else {
-            alert("Email, ID ou senha incorretos. Tente novamente.");
-          }
-        })
-        .catch((error) => {
-          console.error("Erro ao carregar o JSON:", error);
-          alert(
-            "Erro ao carregar os dados. Por favor, tente novamente mais tarde."
-          );
-        });
-    } else {
-      const userLocal = usuarios.find(
-        (usuario) => usuario.email === email && usuario.senha === password
+    try {
+      // Faz uma requisição para o JSON Server
+      const response = await fetch(
+        `http://localhost:3000/usuarios?email=${email}&senha=${password}`
       );
+      console.log("Response:", response); // Log the response for debugging
 
-      if (userLocal) {
-        sessionStorage.setItem("user", JSON.stringify(userLocal));
-        alert("Login realizado com sucesso!");
-        window.location.href = "../views/Home_User.html";
-      } else {
-        alert("Email, ID ou senha incorretos. Tente novamente.");
+      if (!response.ok) {
+        throw new Error("Erro ao autenticar usuário");
       }
+
+      const usuarios = await response.json();
+      console.log("Usuarios:", usuarios); // Log the user data for debugging
+
+      if (usuarios.length > 0) {
+        const user = usuarios[0]; // Usuário encontrado
+        console.log("Usuário encontrado:", user); // Log the found user
+        // Cria uma sessão do usuário
+        sessionStorage.setItem("user", JSON.stringify(user));
+        alert("Login realizado com sucesso!");
+        // Redireciona para a página de usuário
+        window.location.href = "../views/Cadastro_de_relato_de_golpe.html";
+      } else {
+        alert("Email ou senha incorretos. Tente novamente.");
+      }
+    } catch (error) {
+      console.error("Erro ao autenticar usuário:", error);
+      alert(
+        "Erro ao carregar os dados. Por favor, tente novamente mais tarde."
+      );
     }
   });
 });

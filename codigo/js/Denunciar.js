@@ -161,3 +161,13 @@ function fecharModalEditar() {
     document.getElementById('formEditar').reset();
     document.getElementById('selectDenuncia').value = '';
 }
+function verificarLogin() {
+    const user = sessionStorage.getItem("user");
+    if (!user) {
+      window.location.href = "../views/login.html";
+    }
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    verificarLogin(); 
+  
+  });

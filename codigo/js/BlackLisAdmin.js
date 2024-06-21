@@ -1,13 +1,17 @@
 // Função para verificar se há dados no localStorage 
-function verificarDadosLocalStorage() {
+async function verificarDadosLocalStorage() {
     if (!localStorage.getItem('postagens')) {
-        fetch('dados.json')
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem('postagens', JSON.stringify(data));
-                adicionarLinhasTabela(); // Atualizar a tabela após carregar dados
-            })
-            .catch(error => console.error('Erro ao carregar dados:', error));
+        try {
+            const response = await fetch('http://localhost:3000/blacklist');
+            if (!response.ok) {
+                throw new Error('Erro ao carregar dados');
+            }
+            const data = await response.json();
+            localStorage.setItem('postagens', JSON.stringify(data));
+            adicionarLinhasTabela(); // Atualizar a tabela após carregar dados
+        } catch (error) {
+            console.error('Erro ao carregar dados:', error);
+        }
     } else {
         adicionarLinhasTabela(); // Atualizar a tabela se já houver dados
     }
@@ -28,27 +32,40 @@ function adicionarLinhasTabela() {
             <td>${new Date(postagem.dataPost).toLocaleDateString()}</td>
             <td><a href="${postagem.link}" target="_blank">${postagem.link}</a></td>
             <td>${postagem.descricao}</td>
-            <td><button class="btn btn-danger" onclick="excluirLinha('${postagem.id}')">Excluir</button></td>
+            <td><button class="btn btn-danger" onclick="excluirLinha(${postagem.id})">Excluir</button></td>
         `;
     });
 }
 
 // Função para excluir uma linha e remover do localStorage
-function excluirLinha(id) {
+async function excluirLinha(id) {
     let postagens = JSON.parse(localStorage.getItem('postagens')) || [];
 
-    postagens = postagens.filter(postagem => postagem.id != id);
-    localStorage.setItem('postagens', JSON.stringify(postagens));
+    // Enviar requisição DELETE ao JSON Server
+    try {
+        const response = await fetch(`http://localhost:3000/blacklist/${id}`, {
+            method: 'DELETE'
+        });
+        if (!response.ok) {
+            throw new Error('Erro ao excluir postagem');
+        }
 
-    // Atualizar a tabela
-    adicionarLinhasTabela();
+        // Remover do localStorage
+        postagens = postagens.filter(postagem => postagem.id != id);
+        localStorage.setItem('postagens', JSON.stringify(postagens));
+
+        // Atualizar a tabela
+        adicionarLinhasTabela();
+    } catch (error) {
+        console.error('Erro ao excluir postagem:', error);
+    }
 }
-
 
 window.onload = function() {
     verificarDadosLocalStorage();
 }
-//metodo que faz a busca na barra de busca
+
+// Método que faz a busca na barra de busca
 function searchTable() {
     var input, filter, table, tr, td, i, j, txtValue;
     input = document.getElementById("searchInput");
@@ -69,4 +86,3 @@ function searchTable() {
         }
     }
 }
-;

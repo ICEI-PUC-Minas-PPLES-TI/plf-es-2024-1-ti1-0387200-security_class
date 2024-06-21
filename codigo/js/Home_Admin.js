@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Email do admin:", admin.email);
     } else {
       // Redireciona se não houver sessão válida
-      window.location.href = "../Login_Admin/index.html";
+      window.location.href = "../views/Login_Admin.html";
     }
   });
 
@@ -21,6 +21,9 @@ function Gerenciar_Usuarios(){
 }
 function Gerenciar_cursos(){
   window.location.href = "../views/Gerenciar_Cursos.html";
+}
+function BlackList(){
+  window.location.href = "../views/BlacklistAdmin.html";
 }
 // Verifica se já existe uma variável 'cursosJSON' no localStorage
 // Se não existir, busca o JSON do arquivo '../Data/Cadastro_Cursos.json'

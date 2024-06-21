@@ -5,44 +5,39 @@ const admin = JSON.parse(adminSession);
 
 // Funções
 
-function carregarDados() {
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
-
-    if (!cursosJSON) {
-        fetch('../Data/Cadastro_de_Curso.json')
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem('cursosJSON', JSON.stringify(data));
-                cursosJSON = data.courses; // Acessa o array 'courses' dentro dos dados
-                atualizarTabela(cursosJSON);
-            })
-            .catch(error => console.error('Erro ao carregar cursos:', error));
-    } else {
-        atualizarTabela(cursosJSON.courses); // Acessa o array 'courses' dentro dos dados
+async function carregarDados() {
+    try {
+        const response = await fetch('http://localhost:3000/courses');
+        if (!response.ok) {
+            throw new Error('Erro ao carregar os dados dos cursos');
+        }
+        const cursosJSON = await response.json();
+        atualizarTabela(cursosJSON);
+    } catch (error) {
+        console.error('Erro ao carregar cursos:', error);
     }
 }
-
 
 function atualizarTabela(cursosJSON) {
     var tableBody = $('#dataTable tbody');
     tableBody.empty();
 
-    $.each(cursosJSON, function(index, item) {
+    cursosJSON.forEach(curso => {
         var newRow = '<tr>' +
-            '<td>' + item.id + '</td>' +
-            '<td>' + item.titulo + '</td>' +
-            '<td>' + item.plataforma + '</td>' +
-            '<td>' + item.descricao + '</td>' +
-            '<td>' + item.preco + '</td>' +
-            '<td>' + item.recomendacao + '</td>' +
-            '<td>' + item.link + '</td>' +
-            '<td>' + (item.secoes ? item.secoes.length : 0) + '</td>' + // Número de Seções
-            '<td>' + item.aulas + '</td>' +
-            '<td>' + item.conclusao + '</td>' +
-            '<td>' + item.professor + '</td>' +
+            '<td>' + curso.id + '</td>' +
+            '<td>' + curso.titulo + '</td>' +
+            '<td>' + curso.plataforma + '</td>' +
+            '<td>' + curso.descricao + '</td>' +
+            '<td>' + curso.preco + '</td>' +
+            '<td>' + curso.recomendacao + '</td>' +
+            '<td>' + curso.link + '</td>' +
+            '<td>' + (curso.secoes ? curso.secoes.length : 0) + '</td>' +
+            '<td>' + curso.aulas + '</td>' +
+            '<td>' + curso.conclusao + '</td>' +
+            '<td>' + curso.professor + '</td>' +
             '<td>' +
-            '<button class="btn btn-primary btn-sm editar mt-1" data-id="' + item.id + '">Editar</button>' +
-            '<button class="btn btn-danger btn-sm excluir mt-1" data-id="' + item.id + '">Excluir</button>' +
+            '<button class="btn btn-primary btn-sm editar mt-1" data-id="' + curso.id + '">Editar</button>' +
+            '<button class="btn btn-danger btn-sm excluir mt-1" data-id="' + curso.id + '">Excluir</button>' +
             '</td>' +
             '</tr>';
 
@@ -61,96 +56,57 @@ function atualizarTabela(cursosJSON) {
     });
 }
 
-function abrirModalEdicao(id) {
-console.log('ID do curso para editar:', id); // Adicione este console.log para verificar o ID
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
-    let cursoParaEditar = cursosJSON.courses.find(curso => curso.id === id); // Acessa o array 'courses' dentro dos dados
+async function abrirModalEdicao(id) {
+    try {
+        const response = await fetch(`http://localhost:3000/courses/${id}`);
+        if (!response.ok) {
+            throw new Error('Erro ao carregar curso para edição');
+        }
+        const cursoParaEditar = await response.json();
 
+        $('#campoID').val(cursoParaEditar.id);
+        $('#campoTitulo').val(cursoParaEditar.titulo);
+        $('#campoPlataforma').val(cursoParaEditar.plataforma);
+        $('#campoDescricao').val(cursoParaEditar.descricao);
+        $('#campoPreco').val(cursoParaEditar.preco);
+        $('#campoRecomendacao').val(cursoParaEditar.recomendacao);
+        $('#campoLink').val(cursoParaEditar.link);
+        $('#campoSecoes').val(cursoParaEditar.secoes.length);
+        $('#campoAulas').val(cursoParaEditar.aulas);
+        $('#campoConclusao').val(cursoParaEditar.conclusao);
+        $('#campoProfessor').val(cursoParaEditar.professor);
 
-    $('#campoID').val(cursoParaEditar.id);
-    $('#campoTitulo').val(cursoParaEditar.titulo);
-    $('#campoPlataforma').val(cursoParaEditar.plataforma);
-    $('#campoDescricao').val(cursoParaEditar.descricao);
-    $('#campoPreco').val(cursoParaEditar.preco);
-    $('#campoRecomendacao').val(cursoParaEditar.recomendacao);
-    $('#campoLink').val(cursoParaEditar.link);
-    $('#campoSecoes').val(cursoParaEditar.secoes.length);
-    $('#campoAulas').val(cursoParaEditar.aulas);
-    $('#campoConclusao').val(cursoParaEditar.conclusao);
-    $('#campoProfessor').val(cursoParaEditar.professor);
-
-    // Remove as seções antigas antes de adicionar as novas seções dinamicamente
-    $('.secao-edicao').remove();
-
-    // Adaptação para carregar as seções do curso no modal de edição
-    if (cursoParaEditar.secoes) {
-        cursoParaEditar.secoes.forEach((secao, index) => {
-            const numeracaoId = `numeracaoEdicao${index + 1}`;
-            const descricaoId = `descricaoEdicao${index + 1}`;
-            const secaoHtml = `
-                <div class="form-group secao-edicao">
-                    <label for="${numeracaoId}" class="col-form-label">Numeração Seção ${index + 1}:</label>
-                    <input type="text" class="form-control" id="${numeracaoId}" value="${secao.numeracao}">
-                    <label for="${descricaoId}" class="col-form-label">Descrição Seção ${index + 1}:</label>
-                    <textarea class="form-control" id="${descricaoId}">${secao.descricao}</textarea>
-                </div>
-            `;
-            $('#formEdicao').append(secaoHtml);
-        });
+        var modal = new bootstrap.Modal(document.getElementById('modalEdicao'));
+        modal.show();
+    } catch (error) {
+        console.error('Erro ao abrir modal de edição:', error);
     }
-
-    var modal = new bootstrap.Modal(document.getElementById('modalEdicao'));
-    modal.show();
 }
 
-function excluirCurso(id) {
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
-
-    if (cursosJSON && cursosJSON.courses && Array.isArray(cursosJSON.courses)) {
-        cursosJSON.courses = cursosJSON.courses.filter(function(curso) {
-            return curso.id !== id;
+async function excluirCurso(id) {
+    try {
+        const response = await fetch(`http://localhost:3000/courses/${id}`, {
+            method: 'DELETE',
         });
-
-        localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
-
+        if (!response.ok) {
+            throw new Error('Erro ao excluir curso');
+        }
         console.log('Curso excluído com sucesso!');
-        console.log('JSON atualizado:', cursosJSON); // Mostra o JSON atualizado no console
-
-        // Recarrega a tabela após a exclusão
-        atualizarTabela(cursosJSON.courses);
-        recarregarPagina();
-    } else {
-        console.error('Erro ao carregar cursos do localStorage ou cursosJSON não é um array.');
+        carregarDados(); // Recarrega os dados após a exclusão
+    } catch (error) {
+        console.error('Erro ao excluir curso:', error);
     }
-}
-
-
-function recarregarPagina() {
-    window.location.reload();
 }
 
 // Eventos
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Recupera a sessão do usuário
-    const adminSession = sessionStorage.getItem("admin");
-    const admin = JSON.parse(adminSession);
-
-    if (admin) {
-        // Exemplo de uso da sessão
-        console.log("ID do admin:", admin.id);
-        console.log("Email do admin:", admin.email);
-    } else {
-        // Redireciona se não houver sessão válida
-        window.location.href = "../views/Login_Admin.html";
-    }
-
-    // Carrega os dados do JSON e atualiza a tabela HTML
+    // Carrega os dados do JSON Server e atualiza a tabela HTML
     carregarDados();
 });
 
 // Event listener para o envio do formulário de edição
-document.getElementById('formEdicao').addEventListener('submit', function(event) {
+document.getElementById('formEdicao').addEventListener('submit', async function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
     const id = parseInt(document.getElementById('campoID').value); 
     const titulo = document.getElementById('campoTitulo').value;
@@ -163,36 +119,34 @@ document.getElementById('formEdicao').addEventListener('submit', function(event)
     const conclusao = document.getElementById('campoConclusao').value;
     const professor = document.getElementById('campoProfessor').value;
 
-    // Atualiza as informações do curso no localStorage
-    let cursosJSON = JSON.parse(localStorage.getItem('cursosJSON'));
-    let cursoIndex = cursosJSON.findIndex(curso => curso.id === id);
-    cursosJSON[cursoIndex].titulo = titulo;
-    cursosJSON[cursoIndex].plataforma = plataforma;
-    cursosJSON[cursoIndex].descricao = descricao;
-    cursosJSON[cursoIndex].preco = preco;
-    cursosJSON[cursoIndex].recomendacao = recomendacao;
-    cursosJSON[cursoIndex].link = link;
-    cursosJSON[cursoIndex].aulas = aulas;
-    cursosJSON[cursoIndex].conclusao = conclusao;
-    cursosJSON[cursoIndex].professor = professor;
-
-    // Atualiza as seções do curso
-    const secoesEditadas = [];
-    const numeracoes = document.querySelectorAll('.form-control[id^="numeracaoEdicao"]');
-    const descricoes = document.querySelectorAll('.form-control[id^="descricaoEdicao"]');
-    numeracoes.forEach((numeracao, index) => {
-        secoesEditadas.push({ numeracao: numeracao.value, descricao: descricoes[index].value });
-    });
-    cursosJSON[cursoIndex].secoes = secoesEditadas;
-
-    localStorage.setItem('cursosJSON', JSON.stringify(cursosJSON));
-
-    console.log('Curso editado com sucesso!');
-    console.log('JSON atualizado:', cursosJSON); // Mostra o JSON atualizado no console
-
-    // Recarrega a tabela após a edição
-    atualizarTabela(cursosJSON);
-    var modal = bootstrap.Modal.getInstance(document.getElementById('modalEdicao'));
-    modal.hide();
-    recarregarPagina();
+    // Atualiza as informações do curso no JSON Server
+    try {
+        const response = await fetch(`http://localhost:3000/courses/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id,
+                titulo,
+                plataforma,
+                descricao,
+                preco,
+                recomendacao,
+                link,
+                aulas,
+                conclusao,
+                professor,
+            }),
+        });
+        if (!response.ok) {
+            throw new Error('Erro ao editar curso');
+        }
+        console.log('Curso editado com sucesso!');
+        carregarDados(); // Recarrega os dados após a edição
+        var modal = bootstrap.Modal.getInstance(document.getElementById('modalEdicao'));
+        modal.hide();
+    } catch (error) {
+        console.error('Erro ao editar curso:', error);
+    }
 });
