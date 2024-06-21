@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
           document.getElementById("cadastroForm").reset();
           preencherSelect();
           preencherSelect2();
+          window.location.href = "../views/login.html"
         })
         .catch((error) => {
           console.error("Erro ao cadastrar usuário:", error);

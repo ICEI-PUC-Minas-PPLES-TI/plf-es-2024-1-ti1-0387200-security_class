@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sessionStorage.setItem("user", JSON.stringify(user));
         alert("Login realizado com sucesso!");
         // Redireciona para a página de usuário
-        window.location.href = "../views/Cadastro_de_relato_de_golpe.html";
+        window.location.href = "../views/Exibicao_de_relato_de_Golpe.html";
       } else {
         alert("Email ou senha incorretos. Tente novamente.");
       }
@@ -39,3 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+function Cadastro(){
+  window.location.href = "../views/Cadastro_de_Usuario.html";
+}

@@ -1,3 +1,9 @@
+function Insights(){
+    window.location.href = "../views/painel_analitico.html"
+}
+function Post(){
+    window.location.href = "../views/Cadastro_de_relato_de_golpe.html"
+}
 document.addEventListener("DOMContentLoaded", async function () {
     let allPosts = [];
     try {
@@ -59,4 +65,15 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
         });
     }
+});
+function verificarLogin() {
+    const user = sessionStorage.getItem("user");
+    if (!user) {
+      window.location.href = "../views/login.html";
+    }
+  }
+  
+document.addEventListener("DOMContentLoaded", function () {
+    verificarLogin(); 
+  
 });

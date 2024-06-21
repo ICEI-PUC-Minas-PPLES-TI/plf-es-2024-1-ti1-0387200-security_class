@@ -89,7 +89,8 @@ function verificarLogin() {
       window.location.href = "../views/login.html";
     }
   }
-  document.addEventListener("DOMContentLoaded", function () {
+  
+document.addEventListener("DOMContentLoaded", function () {
     verificarLogin(); 
   
-  });
+});

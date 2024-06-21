@@ -28,7 +28,7 @@
                             <a class="nav-link" href="./Cadastro_de_relato_de_golpe.html">Post</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../views/Exibição_de_Cursos.html">Cursos</a>
+                            <a class="nav-link" href="../views/Exibicao_de_Cursos.html">Cursos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../views/Blacklist.html">Blacklist</a>
@@ -37,8 +37,6 @@
                             <a class="nav-link" href="../index.html">Verificador de link</a>
                         </li>
                     </ul>
-                    <button class="btn btn-outline-primary me-2" type="button" onclick="Cadastrar()">CADASTRE-SE</button>
-                    <button class="btn btn-primary" type="button">ENTRAR</button>
                 </div>
             </div>
         </nav>
@@ -51,6 +49,9 @@
             </div>
             <div class="col-md-9">
                 <h1 class="mb-4">Fórum de Denúncias de Golpes</h1>
+                <button onclick="Post()"    class="btn btn-success btn-block mt-2">Post</button>
+                <button onclick="Insights()"    class="btn btn-success btn-block mt-2">Insights</button>
+
                 <div class="row" id="forumCards">
                     <!-- Cards de denúncias serão inseridos aqui dinamicamente -->
                 </div>
@@ -96,7 +97,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/Exibição_de_relato_de_Golpe.js"></script>
+    <script src="../js/Exibicao_de_relato_de_Golpe.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,14 @@
+function verificarLogin() {
+  const user = sessionStorage.getItem("user");
+  if (!user) {
+    window.location.href = "../views/login.html";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  verificarLogin(); 
+
+});
 // Função para buscar informações do curso pelo ID no JSON Server
 async function buscarInformacoesDoCurso(id) {
   try {
