@@ -1,0 +1,12 @@
+{
+    "name": "plf-es-2024-1-ti1-0387200-security_class",
+    "version": "1.0.0",
+    "description": "Descrição do seu projeto",
+    "scripts": {
+      "start": "json-server --watch ./Data/bd.json --port 3000"
+    },
+    "devDependencies": {
+      "json-server": "^0.17.0"
+    }
+  }
+  

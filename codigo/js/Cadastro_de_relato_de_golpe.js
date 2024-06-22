@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
 
         let idUsuario = usuario.id;
-        let nickname = usuario.nickname
+        let nickname = usuario.nickname;
         let titulo = document.getElementById('titulo').value;
         let tipoGolpe = document.getElementById('tipoGolpe').value;
-        console.log(tipoGolpe)
+        console.log(tipoGolpe);
         let descricao = document.getElementById('descricao').value;
         let link = document.getElementById('link').value;
         let publico = document.getElementById('publico').checked;
@@ -76,6 +76,30 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 alert('Post cadastrado com sucesso!');
                 document.getElementById('cadastroPostForm').reset();
+
+                // Adicionar o post à black list no JSON Server
+                let novaBlackList = {
+                    "id": data.id,  // Assumindo que a resposta contém o ID do novo post
+                    "data": new Date().toISOString(),
+                    "link": link,
+                    "descricao": descricao,
+                    "titulo": titulo
+                };
+
+                fetch('http://localhost:3000/blacklist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(novaBlackList),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Item adicionado à black list:", data);
+                })
+                .catch(error => {
+                    console.error('Erro ao adicionar item à black list:', error);
+                });
             })
             .catch(error => {
                 console.error('Erro ao cadastrar post:', error);
@@ -83,14 +107,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
 function verificarLogin() {
     const user = sessionStorage.getItem("user");
     if (!user) {
-      window.location.href = "../views/login.html";
+        window.location.href = "../views/login.html";
     }
-  }
-  
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     verificarLogin(); 
-  
 });

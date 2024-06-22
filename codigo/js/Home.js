@@ -1,3 +1,4 @@
+console.log("Servidor JSON rodando com json-server.");
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('linkCheckerForm');
     const linkInput = document.getElementById('linkInput');
