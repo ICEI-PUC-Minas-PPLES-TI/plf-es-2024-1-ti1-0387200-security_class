@@ -16,7 +16,8 @@
                 <a class="navbar-brand" href="#">
                     <img src="../assets/IMG/Logo.png" alt="Logo" width="150">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -49,9 +50,6 @@
             </div>
             <div class="col-md-9">
                 <h1 class="mb-4">Fórum de Denúncias de Golpes</h1>
-                <button onclick="Post()"    class="btn btn-success btn-block mt-2">Post</button>
-                <button onclick="Insights()"    class="btn btn-success btn-block mt-2">Insights</button>
-
                 <div class="row" id="forumCards">
                     <!-- Cards de denúncias serão inseridos aqui dinamicamente -->
                 </div>
@@ -72,24 +70,32 @@
         </div>
     </main>
 
-    <!-- Modal -->
+    <!-- Modal para exibir detalhes do post -->
     <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="postModalLabel">Detalhes do Relato</h5>
+                    <h5 class="modal-title" id="postModalLabel">Detalhes do Post</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 id="modalTitulo"></h5>
-                    <p id="modalDescricao"></p>
-                    <p><strong>Tipo de Golpe:</strong> <span id="modalTipoGolpe"></span></p>
-                    <p><strong>Link:</strong> <a id="modalLink" href="#" target="_blank">Clique aqui</a></p>
-                    <p><strong>Data do Post:</strong> <span id="modalDataPost"></span></p>
-                    <p><strong>Localização:</strong> <span id="modalLocalizacao"></span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <div class="post-section mb-3">
+                        <h5 id="postTitle"></h5>
+                        <p id="postDescription"></p>
+                        <a id="postLink" href="#" target="_blank"></a>
+                    </div>
+                    <div class="comments-section mb-3">
+                        <div id="commentList">
+                            <!-- Os comentários serão renderizados aqui -->
+                        </div>
+                        <div class="new-comment-section d-flex align-items-center mt-3">
+                            <img src="../assets/IMG/Perfil.jpg" alt="Foto do Usuário" class="rounded-circle me-3"
+                                width="50" height="50">
+                            <input type="text" id="entradaComentario" class="form-control me-3"
+                                placeholder="Digite seu comentário">
+                            <button id="botaoComentario" class="btn btn-success">Comentar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

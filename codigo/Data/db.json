@@ -119,7 +119,7 @@
       "localizacao": "-18.5122, -44.5550"
     },
     {
-      "id": "61cb",
+      "idpost": "61cb",
       "idUsuario": "1",
       "titulo": "IA",
       "tipoGolpe": "phishing",
@@ -130,7 +130,7 @@
       "localizacao": "-19.9213666, -43.9341315"
     },
     {
-      "id": "8edf",
+      "idpost": "8edf",
       "idUsuario": "1",
       "titulo": "Inteligencia artificial",
       "tipoGolpe": "scam",
@@ -141,7 +141,7 @@
       "localizacao": "-19.9213666, -43.9341315"
     },
     {
-      "id": "ac18",
+      "idpost": "ac18",
       "idUsuario": "c3ba",
       "titulo": "Mercado Livre Falso",
       "tipoGolpe": "fraude",
@@ -152,7 +152,7 @@
       "localizacao": "-19.9213666, -43.9341315"
     },
     {
-      "id": "c017",
+      "idpost": "c017",
       "idUsuario": "c3ba",
       "nickname": "vg",
       "titulo": "Propaganda",
