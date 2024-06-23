@@ -21,7 +21,6 @@ async function carregarCursosDoJSONServer(url) {
   return cursos;
 }
 
-// Função para criar a div do curso
 async function criarDiv(id) {
   if (!id) {
     console.error('ID inválido fornecido para criarDiv:', id);
@@ -32,12 +31,12 @@ async function criarDiv(id) {
     return;
   }
 
-  ultimoCursoExibido = id;
-
   const divExistente = document.getElementById(`curso-${id}`);
   if (divExistente) {
-    return;
+    return; // Se a div já existe, não faz nada
   }
+
+  ultimoCursoExibido = id;
 
   const cursos = await carregarCursosDoJSONServer('http://localhost:3000/courses');
   const curso = cursos.find(curso => curso.id === id); // Ajuste para comparação de ID alfanumérico
