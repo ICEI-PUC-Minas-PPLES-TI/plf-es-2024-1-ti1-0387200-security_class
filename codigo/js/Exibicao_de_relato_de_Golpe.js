@@ -284,3 +284,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 });
+function re(){
+    location.reload();
+}
