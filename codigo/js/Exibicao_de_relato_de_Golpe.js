@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById('postLink').href = post.link;
         document.getElementById('postLink').innerText = post.link;
 
-        // Verifica se 'comentarios' existe e é um array
         if (Array.isArray(post.comentarios)) {
             renderizarComentarios(post.comentarios);
         } else {
@@ -75,7 +74,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             renderizarComentarios([]);
         }
 
-        // Atualiza o ID do post atual para uso na adição de comentários
         idPostAtual = post.id;
 
         new bootstrap.Modal(document.getElementById('postModal')).show();
@@ -89,7 +87,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
         commentList.innerHTML = '<h6>Comentários</h6>';
 
-        // Verifica se 'comentarios' é um array
         if (!Array.isArray(comentarios)) {
             console.error("Dados de comentários inválidos:", comentarios);
             return;
@@ -99,7 +96,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             const elementoComentario = document.createElement('div');
             elementoComentario.classList.add('comment-card', 'card', 'mb-3');
 
-            // Transformando a data para um formato de data JS
             const dataHora = new Date(comentario.dataHora);
 
             const tempoDecorrido = obterTempoDecorrido(dataHora);
@@ -138,27 +134,22 @@ document.addEventListener("DOMContentLoaded", async function () {
                 botaoCurtir.style.color = 'grey';
             }
 
-            // Event listener para curtir comentário
             elementoComentario.querySelector('.comment-likes').addEventListener('click', function () {
                 const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
                 curtirComentario(idComentario);
             });
 
-            // Event listener para editar comentário
             elementoComentario.querySelector('.edit-comment').addEventListener('click', function () {
                 const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
                 editarComentario(idComentario);
             });
 
-            // Event listener para deletar comentário
             elementoComentario.querySelector('.delete-comment').addEventListener('click', function () {
                 const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
-                deletarComentario(idComentario, comentario.idDenuncia); // Utiliza o idDenuncia do comentário atual para deletar
+                deletarComentario(idComentario, comentario.idDenuncia);
             });
-
         });
 
-        // Event listener para o botão de comentário
         const botaoComentario = document.getElementById('botaoComentario');
         if (botaoComentario) {
             botaoComentario.addEventListener('click', adicionarComentario);
@@ -166,7 +157,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.error("Elemento botaoComentario não encontrado.");
         }
 
-        // Event listener para o campo de entrada de comentário
         const entradaComentario = document.getElementById('entradaComentario');
         if (entradaComentario) {
             entradaComentario.addEventListener('keypress', function (e) {
@@ -180,7 +170,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function curtirComentario(idComentario) {
-        fetch(`http://localhost:3000/comentarios/${idComentario}`)
+        fetch(`http://localhost:3000/comentariosDenuncia/${idComentario}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Erro ao obter comentário para curtir');
@@ -202,7 +192,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function editarComentario(comentario) {
-        fetch(`http://localhost:3000/comentarios/${comentario.id}`, {
+        fetch(`http://localhost:3000/comentariosDenuncia/${comentario.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -217,7 +207,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             })
             .then(updatedComentario => {
                 console.log('Comentário editado com sucesso:', updatedComentario);
-                // Aqui você pode atualizar a interface se necessário
             })
             .catch(error => {
                 console.error('Erro ao editar comentário:', error);
@@ -225,7 +214,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function deletarComentario(idComentario, idDenuncia) {
-        fetch(`http://localhost:3000/comentarios/${idComentario}`, {
+        fetch(`http://localhost:3000/comentariosDenuncia/${idComentario}`, {
             method: 'DELETE',
         })
             .then(response => {
@@ -260,7 +249,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         return segundos + ' segundo(s) atrás';
     }
 
-    // Função para adicionar um novo comentário
     function adicionarComentario() {
         const entradaComentario = document.getElementById('entradaComentario');
         if (!entradaComentario || entradaComentario.value.trim() === "") return;
@@ -278,28 +266,29 @@ document.addEventListener("DOMContentLoaded", async function () {
         entradaComentario.value = '';
     }
 
-    // Função para salvar o novo comentário no servidor
     async function salvarComentario(comentario) {
         try {
-            const response = await fetch('http://localhost:3000/comentarios', {
+            const response = await fetch('http://localhost:3000/comentariosDenuncia', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(comentario),
             });
-
+    
             if (!response.ok) {
                 throw new Error('Erro ao salvar comentário');
             }
-
+    
             const novoComentario = await response.json();
             console.log('Comentário salvo com sucesso:', novoComentario);
-
-            // Atualiza a interface para refletir o novo comentário
+    
+            // Encontra o índice do post correspondente em allPosts
             const postIndex = allPosts.findIndex(post => post.id === idPostAtual);
             if (postIndex !== -1) {
+                // Adiciona o novo comentário ao array de comentários do post
                 allPosts[postIndex].comentarios.push(novoComentario);
+                // Atualiza a interface com os comentários atualizados do post
                 renderizarComentarios(allPosts[postIndex].comentarios);
             } else {
                 console.error('Post não encontrado para adicionar o comentário.');
@@ -308,23 +297,92 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.error('Erro ao salvar comentário:', error);
         }
     }
+    
+    function renderizarComentarios(comentarios) {
+        const commentList = document.getElementById('commentList');
+        if (!commentList) {
+            console.error("Elemento #commentList não encontrado.");
+            return;
+        }
+        commentList.innerHTML = '<h6>Comentários</h6>';
+    
+        comentarios.forEach(comentario => {
+            const elementoComentario = document.createElement('div');
+            elementoComentario.classList.add('comment-card', 'card', 'mb-3');
+    
+            const dataHora = new Date(comentario.dataHora);
+            const tempoDecorrido = obterTempoDecorrido(dataHora);
+            const jaCurtiu = comentario.curtidas && comentario.curtidas.includes(usuarioAtual);
+    
+            elementoComentario.innerHTML = `
+                <div class="card-body d-flex">
+                    <img src="../assets/IMG/Perfil.jpg" alt="Foto de Usuário" class="rounded-circle me-3" width="50" height="50">
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="fw-bold">${comentario.nickname}</span>
+                                <div class="text-muted small">${tempoDecorrido}</div>
+                            </div>
+                            <div class="comment-actions d-flex flex-column align-items-end" data-id="${comentario.id}">
+                                <div class="comment-likes" style="cursor: pointer;">
+                                    <span>&#10084;</span>
+                                    <span>${comentario.curtidas}</span>
+                                </div>
+                                <div class="comment-actions mt-1">
+                                    <button type="button" class="btn btn-outline-primary btn-sm edit-comment">Editar</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm delete-comment">Excluir</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-1">${comentario.comentario}</p>
+                    </div>
+                </div>
+            `;
+    
+            commentList.appendChild(elementoComentario);
+    
+            if (jaCurtiu) {
+                const botaoCurtir = elementoComentario.querySelector('.comment-likes');
+                botaoCurtir.style.cursor = 'not-allowed';
+                botaoCurtir.style.color = 'grey';
+            }
+    
+            elementoComentario.querySelector('.comment-likes').addEventListener('click', function () {
+                const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
+                curtirComentario(idComentario);
+            });
+    
+            elementoComentario.querySelector('.edit-comment').addEventListener('click', function () {
+                const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
+                editarComentario(idComentario);
+            });
+    
+            elementoComentario.querySelector('.delete-comment').addEventListener('click', function () {
+                const idComentario = parseInt(this.closest('.comment-actions').getAttribute('data-id'));
+                deletarComentario(idComentario, comentario.idDenuncia);
+            });
+        });
+    
+        // Limpar campo de entrada de comentário após renderizar os comentários
+        const entradaComentario = document.getElementById('entradaComentario');
+        if (entradaComentario) {
+            entradaComentario.value = '';
+        } else {
+            console.error("Elemento entradaComentario não encontrado.");
+        }
+    }
 
-    // Função para verificar se o usuário está logado
     function verificarLogin() {
         const user = sessionStorage.getItem("user");
         if (!user) {
             window.location.href = "../views/login.html";
         }
-        return user; // Retorna o usuário atual para uso em outras partes do código
+        return user;
     }
 
-    // Obtém o usuário atual logado
     const usuarioAtual = verificarLogin();
-
-    // ID do post atual, inicialmente vazio até que um post seja selecionado
     let idPostAtual = '';
 
-    // Event listener para o botão de comentário
     const botaoComentario = document.getElementById('botaoComentario');
     if (botaoComentario) {
         botaoComentario.addEventListener('click', adicionarComentario);
@@ -332,7 +390,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("Elemento botaoComentario não encontrado.");
     }
 
-    // Event listener para o campo de entrada de comentário
     const entradaComentario = document.getElementById('entradaComentario');
     if (entradaComentario) {
         entradaComentario.addEventListener('keypress', function (e) {
@@ -344,6 +401,3 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("Elemento entradaComentario não encontrado.");
     }
 });
-
-
-
