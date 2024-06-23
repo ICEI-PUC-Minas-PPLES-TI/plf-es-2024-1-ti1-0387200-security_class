@@ -401,3 +401,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("Elemento entradaComentario não encontrado.");
     }
 });
+function re(){
+    location.reload();
+}
