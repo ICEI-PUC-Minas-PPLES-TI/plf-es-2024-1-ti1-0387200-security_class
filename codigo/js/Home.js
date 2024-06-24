@@ -27,3 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 });
+function login(){
+    window.location.href = "../views/login.html"
+}
