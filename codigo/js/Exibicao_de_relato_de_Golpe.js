@@ -287,3 +287,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 function re(){
     location.reload();
 }
+function Post(){
+    window.location.href = '../views/Cadastro_de_relato_de_golpe.html'
+}
+function Painel(){
+    window.location.href = '../views/painel_analitico.html'
+}
