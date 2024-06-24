@@ -62,6 +62,75 @@ function initMap() {
         .catch(error => console.error('Erro ao carregar dados do JSON Server:', error));
 }
 
+// Função para inicializar o gráfico
+function initChart(posts) {
+    const ctx = document.getElementById('chart').getContext('2d');
+    const chartType = document.getElementById('chartType').value;
+
+    let labels = [];
+    let data = [];
+
+    if (chartType === 'estados') {
+        const estadosCount = {};
+
+        posts.forEach(post => {
+            if (post.localizacao && post.localizacao !== 'Localização não disponível') {
+                const [lat, lng] = post.localizacao.split(',').map(Number);
+                const estado = obterEstado([lat, lng]);
+
+                if (estado) {
+                    estadosCount[estado] = (estadosCount[estado] || 0) + 1;
+                }
+            }
+        });
+
+        labels = Object.keys(estadosCount);
+        data = Object.values(estadosCount);
+    } else if (chartType === 'paises') {
+        const paisesCount = {};
+
+        posts.forEach(post => {
+            if (post.localizacao && post.localizacao !== 'Localização não disponível') {
+                const [lat, lng] = post.localizacao.split(',').map(Number);
+                const pais = obterPais([lat, lng]);
+
+                if (pais) {
+                    paisesCount[pais] = (paisesCount[pais] || 0) + 1;
+                }
+            }
+        });
+
+        labels = Object.keys(paisesCount);
+        data = Object.values(paisesCount);
+    }
+
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
+
+    window.myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Número de Golpes',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
 // Função para obter o estado a partir da localização (latitude, longitude)
 function obterEstado(localizacao) {
     const estados = {
@@ -109,76 +178,46 @@ function obterEstado(localizacao) {
     return estadoMaisProximo;
 }
 
-// Função para inicializar o gráfico
-function initChart(posts) {
-    const ctx = document.getElementById('chart').getContext('2d');
-    const chartType = document.getElementById('chartType').value;
+// Função para obter o país a partir da localização (latitude, longitude)
+function obterPais(localizacao) {
+    const paises = {
+        "Brasil": [-14.235, -51.9253],
+        "Argentina": [-38.4161, -63.6167],
+        "Estados Unidos": [37.0902, -95.7129],
+        "Canadá": [56.1304, -106.3468],
+        "França": [46.6034, 1.8883],
+        "Alemanha": [51.1657, 10.4515],
+        "Reino Unido": [55.3781, -3.4360],
+        "Austrália": [-25.2744, 133.7751],
+        "Índia": [20.5937, 78.9629],
+        "China": [35.8617, 104.1954],
+        "Japão": [36.2048, 138.2529],
+        "Rússia": [61.5240, 105.3188]
+    };
 
-    let labels = [];
-    let data = [];
+    let paisMaisProximo = null;
+    let menorDistancia = Infinity;
 
-    if (chartType === 'estados') {
-        const estadosCount = {};
-
-        posts.forEach(post => {
-            if (post.localizacao && post.localizacao !== 'Localização não disponível') {
-                const [lat, lng] = post.localizacao.split(',').map(Number);
-                const estado = obterEstado([lat, lng]);
-
-                if (estado) {
-                    estadosCount[estado] = (estadosCount[estado] || 0) + 1;
-                }
-            }
-        });
-
-        labels = Object.keys(estadosCount);
-        data = Object.values(estadosCount);
-    } else if (chartType === 'paises') {
-        const paisesCount = {};
-
-        posts.forEach(post => {
-            const pais = post.pais || 'Desconhecido';
-            paisesCount[pais] = (paisesCount[pais] || 0) + 1;
-        });
-
-        labels = Object.keys(paisesCount);
-        data = Object.values(paisesCount);
-    }
-
-    if (window.myChart) {
-        window.myChart.destroy();
-    }
-
-    window.myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Número de Golpes',
-                data: data,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
+    for (const pais in paises) {
+        const [lat, lng] = paises[pais];
+        const distancia = Math.sqrt(Math.pow(lat - localizacao[0], 2) + Math.pow(lng - localizacao[1], 2));
+        if (distancia < menorDistancia) {
+            menorDistancia = distancia;
+            paisMaisProximo = pais;
         }
-    });
+    }
+
+    return paisMaisProximo;
 }
+
+
 function verificarLogin() {
     const user = sessionStorage.getItem("user");
     if (!user) {
       window.location.href = "../views/login.html";
     }
-  }
-  
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     verificarLogin(); 
-  
 });
