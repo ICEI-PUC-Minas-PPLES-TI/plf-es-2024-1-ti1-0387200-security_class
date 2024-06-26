@@ -1,64 +1,58 @@
 <<<<<<< HEAD
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Security Class
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Ferreira Titton 
+    given-names: Matheus
+  - family-names: de Paiva Gomes
+    given-names: Rafael
+  - family-names: Gabriel Cruz Pereira
+    given-names: Victor
+  - family-names: Sena da Silva
+    given-names: Jonathan
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Henrique da Costa Silva
+    given-names: Luiz
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Augusto de Faria Barros
+    given-names: Diego 
 keywords:
-  - 
-  - 
-repository-code: 
+  - Golpes Virtuais
+  - Aplicação WEB
+  - Web Security
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class.git
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14
 =======
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Security Class
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Ferreira Titton 
+    given-names: Matheus
+  - family-names: de Paiva Gomes
+    given-names: Rafael
+  - family-names: Gabriel Cruz Pereira
+    given-names: Victor
+  - family-names: Sena da Silva
+    given-names: Jonathan
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Henrique da Costa Silva
+    given-names: Luiz
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Augusto de Faria Barros
+    given-names: Diego 
 keywords:
-  - 
-  - 
-repository-code: 
+  - Golpes Virtuais
+  - Aplicação WEB
+  - Web Security
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class.git
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14
