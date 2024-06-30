@@ -7,10 +7,8 @@ Este trabalho tem como objetivo geral desenvolver uma aplicação web a fim de p
 * Víctor Gabriel Cruz Pereira
 * Matheus Ferreira Titton
 * Rafael de Paiva Gomes
-* Luiza Lorys Silva Lima
-* Vinícius Arthur Nascimento Macedo de Souza
 * Jonathan Sena da Silva
-* Bruno Oliveira Pires
+
 
 ## Professores responsáveis
 
@@ -19,4 +17,4 @@ Este trabalho tem como objetivo geral desenvolver uma aplicação web a fim de p
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Utilizar o comando npm start no diretorio da pasta código utilizando o power shell do windows e fazer os testes necessários das funções utilizando da extensão "Live Server" do VSCODE.
