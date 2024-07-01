@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: Security Class
@@ -13,12 +12,12 @@ authors:
     given-names: Jonathan
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: Henrique da Costa Silva
-    given-names: Luiz
+    family-names: da Costa Silva
+    given-names: Luiz Henrique
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: Augusto de Faria Barros
-    given-names: Diego 
+    family-names: de Faria Barros
+    given-names: Diego Augusto
 keywords:
   - Golpes Virtuais
   - Aplicação WEB
@@ -27,33 +26,3 @@ repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-03
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14
-=======
-cff-version: 1.0.1
-message: Please cite this software using these metadata.
-title: Security Class
-authors:
-  - family-names: Ferreira Titton 
-    given-names: Matheus
-  - family-names: de Paiva Gomes
-    given-names: Rafael
-  - family-names: Gabriel Cruz Pereira
-    given-names: Victor
-  - family-names: Sena da Silva
-    given-names: Jonathan
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: Henrique da Costa Silva
-    given-names: Luiz
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: Augusto de Faria Barros
-    given-names: Diego 
-keywords:
-  - Golpes Virtuais
-  - Aplicação WEB
-  - Web Security
-repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0387200-security_class.git
-license: CC-BY-4.0
-version: 1.0.0
-date-released: 2022-07-14
->>>>>>> 576e4073eb686b7caee5801aac8f95491eb4d605
